@@ -20,3 +20,6 @@ Route::get('/viewcart', 'CartController@show');
 
 Route::get('/product', 'ProductController@show');
 
+
+// some new feature by Divya
+Route::get('/product', 'ProductController@show');
