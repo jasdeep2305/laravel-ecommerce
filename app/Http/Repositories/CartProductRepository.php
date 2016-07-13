@@ -10,6 +10,7 @@ namespace App\Http\Repositories;
 
 
 use App\CartProduct;
+use Illuminate\Http\Request;
 
 class CartProductRepository
 {
@@ -41,11 +42,12 @@ class CartProductRepository
      */
     private function params($request, $cart)
     {
+       // dd($cart->all());
         return [
-            'product_id' => $request->product_id,
+            'product_id' => $request['product_id'],
             'cart_id' => $cart->id,
-            'quantity' => $request->quantity,
-            'totalprice' => $request->totalprice
+            'quantity' => $request['quantity'],
+           'totalprice' => $request['totalprice']
         ];
     }
 }

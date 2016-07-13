@@ -26,14 +26,23 @@ class ProductController extends Controller
     }
 
     /**
+     *
+     */
+    public function index()
+    {
+        $products = $this->productRepository->viewAllProduct();
+        return view ('product.index',compact('products'));
+    }
+
+    /**
      * Fetch a particular product
      * @param Product $product
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Product $product)
+    public function show($id)
     {
 
-        $product = $this->productRepository->viewProduct($product->id);
+         $product = $this->productRepository->viewProduct($id);
         return view('product.show', compact('product'));
 
     }

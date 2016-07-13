@@ -12,7 +12,9 @@
     @foreach($cart->cart_products as $cart_product)
 
         <li class="list-group-item">
-            {{$cart_product}}
+           Product id : <a href="/products/{{$cart_product->product_id}}" >{{$cart_product->product_id}}<br></a>
+           Product quantity: {{$cart_product->quantity}}<br>
+           Product Price: {{$cart_product->totalprice}}<br>
 
         </li>
 

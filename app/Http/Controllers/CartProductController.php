@@ -18,7 +18,7 @@ class CartProductController extends Controller
      * @param CartProductRepository $cartProductRepository
      * @param CartRepository $cartRepository
      */
-    public function __constructor(CartProductRepository $cartProductRepository, CartRepository $cartRepository)
+    public function __construct(CartProductRepository $cartProductRepository, CartRepository $cartRepository)
     {
         $this->cartProductRepository=$cartProductRepository;
         $this->cartRepository=$cartRepository;
