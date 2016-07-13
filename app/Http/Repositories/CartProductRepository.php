@@ -29,8 +29,11 @@ class CartProductRepository
      */
     public function addProductsToCart($request, $cart)
     {
+        //dd($cart->id);
         $params = $this->params($request, $cart);
+        //dd($params);
         $cartProduct = CartProduct::create($params);
+
         return $cartProduct;
     }
 
@@ -43,11 +46,14 @@ class CartProductRepository
     private function params($request, $cart)
     {
        // dd($cart->all());
+       // dd($cart->id);
         return [
             'product_id' => $request['product_id'],
             'cart_id' => $cart->id,
             'quantity' => $request['quantity'],
            'totalprice' => $request['totalprice']
         ];
+
+        dd($params);
     }
 }
