@@ -18,8 +18,12 @@ Route::get('/', function () {
 
 Route::get('/viewcart', 'CartController@show');
 
-Route::get('/product', 'ProductController@show');
+Route::resource('cart','CartController');
+
+Route::resource('products', 'ProductController');
+Route::resource('products/{product_id}/reviews', 'ProductReviewsController');
 
 
-// some new feature by Divya
-Route::get('/product', 'ProductController@show');
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

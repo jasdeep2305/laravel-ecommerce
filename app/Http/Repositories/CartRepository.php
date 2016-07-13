@@ -8,7 +8,7 @@
 
 namespace App\Http\Repositories;
 
-use app\Cart;
+use App\Cart;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Request;
@@ -24,19 +24,19 @@ class CartRepository
     public function createCart()
    {
 
-       $params = [
-           //'user_id' => Auth::user()->id
-           'user_id' => '1'
-       ];
+       $user_id = null;
 
-       if($cart = Cart::where('user_id', $params)->first())
+       if(Auth::check())
+           $user_id = Auth::user()->id;
+
+       if($cart = Cart::where('user_id', $user_id)->first())
        {
            return $cart;
        }
 
        else
        {
-           $cart= Cart::create($params);
+           $cart= Cart::create(['user_id'=> $user_id]);
            return $cart;
        }
 

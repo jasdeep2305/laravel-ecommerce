@@ -40,7 +40,7 @@ class CartController extends Controller
      * @param Cart $cart
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Cart $cart)
+    public function index()
     {
         $cart = $this->cartRepository->createCart();
         return view('cart.show', compact('cart'));
