@@ -23,7 +23,6 @@ Route::resource('cartproducts','CartProductController');
 Route::resource('products', 'ProductController');
 Route::resource('products/{product_id}/reviews', 'ProductReviewsController');
 
-
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

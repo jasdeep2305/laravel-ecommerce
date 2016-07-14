@@ -6,10 +6,17 @@
  * Time: 15:51
  */
 
-namespace app\Http\Repositories;
+namespace App\Http\Repositories;
 
+
+use App\OrderProduct;
 
 class OrderProductRepository
 {
+
+    public function getProductsForOrder($id)
+    {
+        return OrderProduct::where('order_id',$id)->get();
+    }
 
 }
