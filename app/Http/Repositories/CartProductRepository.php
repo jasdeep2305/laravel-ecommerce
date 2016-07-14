@@ -86,12 +86,9 @@ class CartProductRepository
      */
     public function removeProductFromCart($product_id)
     {
-
         $cart= $this->cartRepository->getCart();
 
         return CartProduct::where('product_id',$product_id)->where('cart_id',$cart->id)->delete();
-
-        
     }
 
     /**
@@ -113,6 +110,22 @@ class CartProductRepository
      */
     private function getProductQuantityInCart($request, $cart)
     {
-        return CartProduct::where('product_id',$request['product_id'])->where('cart_id',$cart->id)->first()->quantity;
+        return CartProduct::where('product_id',$request['product_id'])
+            ->where('cart_id',$cart->id)
+            ->first()->quantity;
+    }
+
+    /**
+     * Update Product Quantity
+     * @param $request
+     * @param $cart
+     * @return mixed
+     */
+    public function updateProductQuantity($request, $cart)
+    {
+        $cartProduct= CartProduct::where('product_id',$request['product_id'])
+            ->where('cart_id',$cart->id)
+            ->update(['quantity' => $request['updated_quantity']]);
+        return $cartProduct;
     }
 }

@@ -13,6 +13,7 @@ use App\Cart;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Request;
 use Illuminate\Support\Facades\Auth;
+Use App\User;
 
 class CartRepository 
 {
@@ -28,6 +29,8 @@ class CartRepository
 
        if(Auth::check())
            $user_id = Auth::user()->id;
+//       else
+//           return redirect('\login');
 
        if($cart = Cart::where('user_id', $user_id)->first())
        {
@@ -41,11 +44,6 @@ class CartRepository
        }
 
    }
-
-    public function store()
-    {
-        
-    }
 
     /**
      * Get the current cart

@@ -25,7 +25,7 @@ class OrderController extends Controller
 
     public function __construct(OrderRepository $orderRepository,OrderProductRepository $orderProductRepository,ProductRepository $productRepository)
     {
-
+        $this->middleware('auth');
         $this->orderRepository = $orderRepository;
         $this->orderProductRepository = $orderProductRepository;
         $this->productRepository = $productRepository;
