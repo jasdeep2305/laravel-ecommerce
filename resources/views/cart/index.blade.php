@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="content">
-        <div class="title">Your Cart</div>
-    </div>
-    Cart id: {{$cart->id}}
+
+        <h3 align="center">Your Cart contains {{count($cart->products)}} products</h3>
+</div>
+
 </div>
 
 <ul class="list-group">
@@ -12,11 +12,10 @@
     @foreach($cart->products as $product)
 
         <li class="list-group-item">
-           Product id : <a href="/products/{{$product->id}}" >{{$product->id}}<br></a>
-           Product quantity: {{$product->pivot->quantity}}<br>
-           Product Price: {{$product->pivot->totalprice}}<br>
-
-
+            <label> Product id :</label> <a href="/products/{{$product->id}}" >{{$product->id}}<br></a>
+            <label> Product quantity:</label> {{$product->pivot->quantity}}<br>
+            <label>Product Price: </label>{{$product->pivot->totalprice}}<br>
+            <label>Product Title:</label> {{$product-> title}} <br>
 
         <form method="POST" action="/cartproducts/{{$product->id}}">
             {{method_field('DELETE')}}

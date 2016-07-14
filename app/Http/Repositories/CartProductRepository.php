@@ -36,7 +36,22 @@ class CartProductRepository
      */
     public function addProductsToCart($request, $cart)
     {
-        //dd($cart->id);
+        $current_quantity=0;
+       if( $this->checkIfProductInCart($request, $cart)>0)
+       {
+           $current_quantity = $this->getProductQuantityInCart($request, $cart);
+       }
+
+        if($current_quantity>0)
+        {
+            $updated_quantity=$request['quantity']+$current_quantity;
+            $cartProduct= CartProduct::where('product_id',$request['product_id'])
+                ->where('cart_id',$cart->id)
+                ->update(['quantity' => $updated_quantity]);
+
+            return $cartProduct;
+        }
+
         $params = $this->params($request, $cart);
         //dd($params);
         $cartProduct = CartProduct::create($params);
@@ -77,5 +92,27 @@ class CartProductRepository
         return CartProduct::where('product_id',$product_id)->where('cart_id',$cart->id)->delete();
 
         
+    }
+
+    /**
+     * Check if a product is already added in Cart
+     * @param $request
+     * @param $cart
+     * @return mixed
+     */
+    private function checkIfProductInCart($request, $cart)
+    {
+      return ( CartProduct::where('product_id',$request['product_id'])->where('cart_id',$cart->id)->count());
+    }
+
+    /**
+     * Get the quantity of a product present in cart
+     * @param $request
+     * @param $cart
+     * @return mixed
+     */
+    private function getProductQuantityInCart($request, $cart)
+    {
+        return CartProduct::where('product_id',$request['product_id'])->where('cart_id',$cart->id)->first()->quantity;
     }
 }
