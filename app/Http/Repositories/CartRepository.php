@@ -48,6 +48,29 @@ class CartRepository
     }
 
     /**
+     * Get the current cart
+     * @return static
+     */
+    public function getCart()
+    {
+        $user_id = null;
+
+        if(Auth::check())
+            $user_id = Auth::user()->id;
+
+        if($cart = Cart::where('user_id', $user_id)->first())
+        {
+            return $cart;
+        }
+
+        else
+        {
+            $cart= Cart::create(['user_id'=> $user_id]);
+            return $cart;
+        }
+    }
+
+    /**
      * 
      * @param $id
      * @return Cart

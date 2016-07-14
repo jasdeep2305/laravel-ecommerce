@@ -27,10 +27,11 @@ class Cart extends Model
      */
     public function products()
     {
-    return $this->belongsToMany('App\Product', 'cart_products')
+    return( $this->belongsToMany('App\Product', 'cart_products')
         ->withPivot(['quantity', 'totalprice'])
-        ->withTimestamps()->orderBy('created_at');
+        );
 //
+       // ->withTimestamps()->orderBy('created_at')
 //        $this->belongsToMany('App\Product', 'cart_products')
 //            ->withPivot(['quantity', 'totalprice'])
 //            ->withTimestamps()

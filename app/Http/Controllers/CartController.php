@@ -43,7 +43,7 @@ class CartController extends Controller
     public function index()
     {
         $cart = $this->cartRepository->createCart();
-        return view('cart.show', compact('cart'));
+        return view('cart.index', compact('cart'));
     }
 
 }
