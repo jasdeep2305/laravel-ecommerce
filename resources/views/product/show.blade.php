@@ -23,6 +23,16 @@
                 </div>
             </form>
 
+            <form method="POST" action="/orders">
+
+                {{csrf_field()}}
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Buy Now</button>
+                </div>
+            </form>
+
+
         </li>
 
     </div>

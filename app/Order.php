@@ -18,6 +18,7 @@ class Order extends Model
 
     public function products()
     {
-        return $this->hasManyThrough('App\Product','App\OrderProduct');
+        return $this->belongsToMany('App\Product','order_products')
+            ->withTimestamps()->orderBy('created_at');
     }
 }
