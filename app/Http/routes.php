@@ -27,3 +27,7 @@ Route::resource('products/{product_id}/reviews', 'ProductReviewsController');
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::resource('user','UserController');
+
+Route::resource('order','OrderController');

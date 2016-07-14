@@ -58,7 +58,7 @@ return [
             'port' => env('DB_PORT', '3306'),
            'database' => 'test',
             'username' => 'root',
-            'password' => '1234',
+            'password' => 'naina',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
