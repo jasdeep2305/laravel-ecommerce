@@ -41,7 +41,7 @@ class OrderController extends Controller
         CartRepository $cartRepository
     )
     {
-
+        $this->middleware('auth');
         $this->orderRepository = $orderRepository;
         $this->orderProductRepository = $orderProductRepository;
         $this->productRepository = $productRepository;

@@ -19,6 +19,7 @@ class CartProductController extends Controller
      */
     public function __construct(CartProductRepository $cartProductRepository, CartRepository $cartRepository)
     {
+        $this->middleware('auth');
         $this->cartProductRepository=$cartProductRepository;
         $this->cartRepository=$cartRepository;
     }
@@ -40,9 +41,29 @@ class CartProductController extends Controller
         
     }
 
+    /**
+     * Remove a product from cart
+     * @param $productid
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($productid)
     {
         $this->cartProductRepository->removeProductFromCart($productid);
         return redirect()->back();
+    }
+
+    /**
+     * Chnage quantity of a product in cart
+     * @param $productid
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request)
+    {
+        //get the card
+        $cart = $this->cartRepository->createCart(); 
+        
+        $this->cartProductRepository->updateProductQuantity($request,$cart);
+        return redirect()->back();
+
     }
 }

@@ -1,13 +1,14 @@
 @extends('layouts.app')
 @section('content')
 
+    <h1 align="center">{{$product->title}}</h1>
     {{--{{$product->details}}--}}
     <div class="content">
         <li class="list-group-item">
-            {{$product->title}}<br>
-            {{$product->description}}<br>
-            {{$product->seller_name}}<br>
-            {{$product->price}}<br>
+            <label>Title: </label> {{$product->title}}<br>
+            <label>Description: </label> {{$product->description}}<br>
+            <label>Seller: </label>  {{$product->seller_name}}<br>
+            <label>Price: </label> {{$product->price}}<br>
 
             <form method="POST" action="/cartproducts">
 

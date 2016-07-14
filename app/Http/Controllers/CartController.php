@@ -21,22 +21,13 @@ class CartController extends Controller
      */
     public function __construct(CartRepository $cartRepository)
    {
+       $this->middleware('auth');
        $this->cartRepository = $cartRepository;
    }
 
     /**
-     * Create a cart
-     * @param Request $request
-     */
-    public function store()
-    {
-        $this->cartRepository->store();
-        return redirect('/carts');
-    }
-
-
-    /**
-     * view Cart
+     * View the Cart for a userr
+     * If cart is not present create a new cart
      * @param Cart $cart
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

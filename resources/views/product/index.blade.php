@@ -1,12 +1,14 @@
 @extends('layouts.app')
 @section('content')
+
+    <h1 align="center">All Products</h1>
     <ul class="list-group">
 
         @foreach($products as $product)
 
             <li class="list-group-item">
-                <a href="/products/{{$product->id}}" > <label>Title: </label> {{$product->title}} <br></a>
-                <label> Description: </label> {{$product->description}} <br>
+                <a href="/products/{{$product->id}}" > <label>Product Title: </label> {{$product->title}} <br></a>
+                <label>Description: </label> {{$product->description}} <br>
                 <label>Price: </label> {{$product->price}}
 
 

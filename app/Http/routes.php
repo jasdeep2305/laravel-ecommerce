@@ -11,10 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::post('orders/confirmation','OrderController@confirmation');
+Route::get('/', 'ProductController@index');
 
 
 Route::get('/viewcart', 'CartController@show');

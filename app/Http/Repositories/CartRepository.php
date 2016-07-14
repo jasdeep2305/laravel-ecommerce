@@ -10,11 +10,13 @@ namespace App\Http\Repositories;
 
 use App\Cart;
 use Illuminate\Support\Facades\Auth;
+Use App\User;
 
 class CartRepository 
 {
     /**
      * Create a cart if doesn't exist for a user
+     * Else return cart
      * @param $request
      * @return cart
      */
@@ -25,6 +27,8 @@ class CartRepository
 
        if(Auth::check())
            $user_id = Auth::user()->id;
+//       else
+//           return redirect('\login');
 
        if($cart = Cart::where('user_id', $user_id)->first())
        {
@@ -38,11 +42,6 @@ class CartRepository
        }
 
    }
-
-    public function store()
-    {
-        
-    }
 
     /**
      * Get the current cart
