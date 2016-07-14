@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::post('orders/confirmation','OrderController@confirmation');
 
 
 Route::get('/viewcart', 'CartController@show');
@@ -29,4 +30,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('user','UserController');
 
-Route::resource('order','OrderController');
+Route::resource('orders','OrderController');
+Route::get('orders/confirmation',function(){
+   return  view('order.confirmation');
+});

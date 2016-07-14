@@ -43,4 +43,14 @@ class OrderRepository
     {
         return Order::find($id);
     }
+
+    public function addNewOrder()
+    {
+        $user_id=Auth::user()->id;
+        $order=Order::create(['user_id'=>$user_id]);
+        return $order;
+
+
+    }
+   
 }

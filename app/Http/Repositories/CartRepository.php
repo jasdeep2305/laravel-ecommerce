@@ -9,9 +9,6 @@
 namespace App\Http\Repositories;
 
 use App\Cart;
-
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CartRepository 

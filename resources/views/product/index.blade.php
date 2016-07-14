@@ -21,11 +21,21 @@
                      <div class="form-group">
                         <button type="submit" class="btn btn-primary">Add to Cart</button>
                     </div>
-                    {{-- By Divya--}}
 
-                    {{--<div class="form-group">--}}
-                        {{--<button type="submit" class="btn btn-primary">Buy Now</button>--}}
-                    {{--</div>--}}
+
+
+                </form>
+
+                {{-- By Divya--}}
+                <form method="POST" action="/orders/confirmation">
+
+                    {{csrf_field()}}
+                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                    <input type="hidden" name="quantity" value="1">
+                    <input type="hidden" name="totalprice" value="100">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Buy Now</button>
+                    </div>
                 </form>
 
             </li>

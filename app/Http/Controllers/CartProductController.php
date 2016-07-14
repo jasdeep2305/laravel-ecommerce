@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\CartProductRepository;
 use App\Http\Repositories\CartRepository;
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class CartProductController extends Controller
 {

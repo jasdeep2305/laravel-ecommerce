@@ -23,9 +23,12 @@
                 </div>
             </form>
 
-            <form method="POST" action="/orders">
+            <form method="GET" action="/orders/confirmation">
 
                 {{csrf_field()}}
+
+                <input type="hidden" name="product_id" value="{{$product->id}}">
+
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Buy Now</button>

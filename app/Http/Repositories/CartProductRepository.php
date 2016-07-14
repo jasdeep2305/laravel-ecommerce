@@ -40,7 +40,7 @@ class CartProductRepository
         $params = $this->params($request, $cart);
         //dd($params);
         $cartProduct = CartProduct::create($params);
-
+       
         return $cartProduct;
     }
 
