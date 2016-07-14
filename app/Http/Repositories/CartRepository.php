@@ -19,6 +19,7 @@ class CartRepository
 {
     /**
      * Create a cart if doesn't exist for a user
+     * Else return cart
      * @param $request
      * @return cart
      */

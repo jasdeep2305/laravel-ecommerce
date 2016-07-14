@@ -26,18 +26,8 @@ class CartController extends Controller
    }
 
     /**
-     * Create a new cart
-     * @param Request $request
-     */
-    public function store()
-    {
-        $this->cartRepository->store();
-        return redirect('/carts');
-    }
-
-
-    /**
-     * View the Cart
+     * View the Cart for a userr
+     * If cart is not present create a new cart
      * @param Cart $cart
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
