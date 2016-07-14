@@ -61,7 +61,7 @@ class CartProductRepository
            'totalprice' => $request['totalprice']
         ];
 
-        dd($params);
+       // dd($params);
     }
 
     /**
