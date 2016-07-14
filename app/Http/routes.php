@@ -16,12 +16,12 @@ Route::get('/', function () {
 });
 
 
-//Route::get('/viewcart', 'CartController@show');
+Route::get('/viewcart', 'CartController@show');
 
 Route::resource('cart','CartController');
-
-//Route::resource('products', 'ProductController');
-//Route::resource('products/{product_id}/reviews', 'ProductReviewsController');
+Route::resource('cartproducts','CartProductController');
+Route::resource('products', 'ProductController');
+Route::resource('products/{product_id}/reviews', 'ProductReviewsController');
 
 
 Route::auth();

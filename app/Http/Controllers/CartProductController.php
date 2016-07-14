@@ -18,7 +18,7 @@ class CartProductController extends Controller
      * @param CartProductRepository $cartProductRepository
      * @param CartRepository $cartRepository
      */
-    public function __constructor(CartProductRepository $cartProductRepository, CartRepository $cartRepository)
+    public function __construct(CartProductRepository $cartProductRepository, CartRepository $cartRepository)
     {
         $this->cartProductRepository=$cartProductRepository;
         $this->cartRepository=$cartRepository;
@@ -33,11 +33,11 @@ class CartProductController extends Controller
     public function store(Request $request)
     {
         //get the card
-        $cart = $this->cartRepository->createCart();
+         $cart = $this->cartRepository->createCart();
         
         // add product to cart
         $this->cartProductRepository->addProductsToCart($request->all(), $cart);
-        return ('/');
+        return redirect('/cart');
         
     }
 }

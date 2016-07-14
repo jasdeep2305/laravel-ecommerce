@@ -42,6 +42,11 @@ class CartRepository
 
    }
 
+    public function store()
+    {
+        
+    }
+
     /**
      * 
      * @param $id

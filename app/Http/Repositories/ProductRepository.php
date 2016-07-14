@@ -6,7 +6,7 @@
  * Time: 15:52
  */
 
-namespace app\Http\Repositories;
+namespace App\Http\Repositories;
 
 
 use App\Product;
@@ -21,6 +21,18 @@ class ProductRepository
      */
     public function viewProduct($id)
     {
-        return Product::find('1');
+
+        return Product::find($id);
+        //return Product::find(1);
+        //return Product::where('id',$id)->first();
+    }
+
+    /**
+     * Fetch all the products
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function viewAllProduct()
+    {
+        return Product::all();
     }
 }
