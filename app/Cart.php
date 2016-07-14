@@ -27,6 +27,14 @@ class Cart extends Model
      */
     public function products()
     {
-        return $this->hasManyThrough('App\Product', 'App\CartProduct', 'cart_id', 'id');
+    return $this->belongsToMany('App\Product', 'cart_products')
+        ->withPivot(['quantity', 'totalprice'])
+        ->withTimestamps()->orderBy('created_at');
+//
+//        $this->belongsToMany('App\Product', 'cart_products')
+//            ->withPivot(['quantity', 'totalprice'])
+//            ->withTimestamps()
+//            ->wherePivotIn('quantity', [3,4,5]);
+        //dd( $this->hasManyThrough('App\Product', 'App\CartProduct', 'cart_id', 'id'));
     }
 }

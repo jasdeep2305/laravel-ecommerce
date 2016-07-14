@@ -9,12 +9,12 @@
 
 <ul class="list-group">
 
-    @foreach($cart->cart_products as $cart_product)
+    @foreach($cart->products as $product)
 
         <li class="list-group-item">
-           Product id : <a href="/products/{{$cart_product->product_id}}" >{{$cart_product->product_id}}<br></a>
-           Product quantity: {{$cart_product->quantity}}<br>
-           Product Price: {{$cart_product->totalprice}}<br>
+           Product id : <a href="/products/{{$product->id}}" >{{$product->id}}<br></a>
+           Product quantity: {{$product->pivot->quantity}}<br>
+           Product Price: {{$product->pivot->totalprice}}<br>
 
         </li>
 
