@@ -40,4 +40,10 @@ class CartProductController extends Controller
         return redirect('/cart');
         
     }
+
+    public function destroy($productid)
+    {
+        $this->cartProductRepository->removeProductFromCart($productid);
+        return redirect()->back();
+    }
 }

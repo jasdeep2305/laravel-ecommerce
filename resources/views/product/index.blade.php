@@ -5,9 +5,9 @@
         @foreach($products as $product)
 
             <li class="list-group-item">
-                <a href="/products/{{$product->id}}" > Title: {{$product->title}} <br></a>
-                Description: {{$product->description}} <br>
-                Price: {{$product->price}}
+                <a href="/products/{{$product->id}}" > <label>Title: </label> {{$product->title}} <br></a>
+                <label> Description: </label> {{$product->description}} <br>
+                <label>Price: </label> {{$product->price}}
 
 
                 <form method="POST" action="/cartproducts">
@@ -16,9 +16,9 @@
 
                     <input type="hidden" name="product_id" value="{{$product->id}}">
 
-                    <input type="number" name="quantity" value="1">
-                    <input type="number" name="totalprice" value="1000">
-                    <div class="form-group">
+                    <label>Quantity: </label> <input type="number" name="quantity" value="1"><br>
+                    <input type="hidden" name="totalprice" value="100">
+                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Add to Cart</button>
                     </div>
                     {{-- By Divya--}}

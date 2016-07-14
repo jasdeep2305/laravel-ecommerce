@@ -15,10 +15,17 @@ use Illuminate\Http\Request;
 class CartProductRepository
 {
     /**
-     * CartProductRepository constructor.
+     * @var CartRepository
      */
-    public function __construct()
+    private $cartRepository;
+
+    /**
+     * CartProductRepository constructor.
+     * @param CartRepository $cartRepository
+     */
+    public function __construct(CartRepository $cartRepository)
     {
+        $this->cartRepository = $cartRepository;
     }
 
     /**
@@ -55,5 +62,20 @@ class CartProductRepository
         ];
 
         dd($params);
+    }
+
+    /**
+     * Remove a product from cart
+     * @param $productid
+     * @return mixed
+     */
+    public function removeProductFromCart($product_id)
+    {
+
+        $cart= $this->cartRepository->getCart();
+
+        return CartProduct::where('product_id',$product_id)->where('cart_id',$cart->id)->delete();
+
+        
     }
 }
