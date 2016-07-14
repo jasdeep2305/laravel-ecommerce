@@ -22,6 +22,6 @@ class Cart extends Model
 
     public function products()
     {
-        return $this->hasManyThrough('App\Product','App\CartProduct');
+        return $this->hasManyThrough('App\Product','App\CartProduct', 'cart_id', 'product_id');
     }
 }
