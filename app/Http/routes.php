@@ -11,28 +11,31 @@
 |
 */
 
-Route::post('orders/confirmation','OrderController@confirmation');
-Route::get('/', 'ProductController@index');
+Route::group(['middleware' => ['auth']], function () {
+    Route::post('orders/confirmation', 'OrderController@confirmation');
+    Route::get('/', 'ProductController@index');
+
+
+    Route::get('/viewcart', 'CartController@show');
+
+    Route::resource('cart', 'CartController');
+    Route::resource('cartproducts', 'CartProductController');
+    Route::resource('products', 'ProductController');
+    Route::resource('products/{product_id}/reviews', 'ProductReviewsController');
 
 
 
-Route::get('/viewcart', 'CartController@show');
+    Route::get('/home', 'HomeController@index');
 
-Route::resource('cart','CartController');
-Route::resource('cartproducts','CartProductController');
-Route::resource('products', 'ProductController');
-Route::resource('products/{product_id}/reviews', 'ProductReviewsController');
+    Route::resource('user', 'UserController');
+
+    Route::resource('orders', 'OrderController');
+
+
+    Route::post('/payment/{order_id}', 'OrderController@payment');
+});
 
 Route::auth();
-
-Route::get('/home', 'HomeController@index');
-
-Route::resource('user','UserController');
-
-Route::resource('orders','OrderController');
-
-
-Route::post('/payment/{order_id}','OrderController@payment');
 //Route::get('orders/confirmation',function(){
 //   return  view('order.confirmation');
 //});
