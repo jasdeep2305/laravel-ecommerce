@@ -1,5 +1,3 @@
-
-
 @extends('layouts.app')
 @section('content')
     <ul class="list-group">

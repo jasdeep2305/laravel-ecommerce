@@ -47,4 +47,26 @@ class ProductController extends Controller
 
     }
 
+    /**
+     * Load form for adding a new product
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function create()
+    {
+        return view('product.create');
+    }
+
+    /**
+     * Add a new product
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Request $request)
+    {
+        $this->productRepository->addNewProduct($request);
+        return redirect()->to('/products');
+    }
+
 }
