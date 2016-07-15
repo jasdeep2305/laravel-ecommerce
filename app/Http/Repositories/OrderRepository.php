@@ -9,6 +9,7 @@
 namespace App\Http\Repositories;
 
 use App\Order;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 //use App\OrderProduct;
@@ -39,15 +40,28 @@ class OrderRepository
         return Order::where('id',$id)->get();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function find($id)
     {
         return Order::find($id);
     }
 
-    public function addNewOrder()
+    /**
+     * @return static
+     */
+    public function addNewOrder($request)
     {
+        //dd($request->all());
         $user_id=Auth::user()->id;
-        $order=Order::create(['user_id'=>$user_id]);
+        $placed_on= Carbon::now()->toDateString();
+        $delivered_on= Carbon::now()->addDay(3)->toDateString();
+        $bill_amount= $request['totalprice'];
+       // dd($bill_amount);
+        $order=Order::create(['user_id'=>$user_id,'placed_on'=>$placed_on,'delivered_on'=>$delivered_on,'bill_amount'=>$bill_amount]);
+        //dd($order);
         return $order;
 
 

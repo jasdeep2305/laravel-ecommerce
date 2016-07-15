@@ -68,8 +68,8 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        //return $request->all();
-        $new_order = $this->orderRepository->addNewOrder();
+        //dd($request->all());
+        $new_order = $this->orderRepository->addNewOrder($request);
         $this->orderProductRepository->addProductToYourOrders($request->all(), $new_order);
         // $this->orderProductRepository->addProductToYourOrders($request->all());
         return redirect('/orders');

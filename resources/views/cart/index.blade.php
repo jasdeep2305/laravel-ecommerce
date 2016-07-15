@@ -10,7 +10,8 @@
     @foreach($cart->products as $product)
 
         <li class="list-group-item">
-            <label> Product id :</label> <a href="/products/{{$product->id}}" >{{$product->id}}<br></a>
+            {{--<label> Product id :</label> <a href="/products/{{$product->id}}" >{{$product->id}}<br></a>--}}
+            <label> Product id :</label> <a href="{{url('/products/'.$product->id)}}">{{$product->id}}<br></a>
             <label>Product Title:</label> {{$product-> title}} <br>
             <label> Product quantity:</label> {{$product->pivot->quantity}}<br>
             <label>Product Price: </label>{{$product->pivot->totalprice}}<br>
@@ -61,7 +62,7 @@
                 {{csrf_field()}}
                 <input type="hidden" name="product_id" value="{{$product->id}}">
                 <input type="hidden" name="quantity" value="1">
-                <input type="hidden" name="totalprice" value="100">
+                <input type="hidden" name="totalprice" value="{{$product->price}}">
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Buy Now</button>
                 </div>
