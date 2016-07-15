@@ -83,6 +83,8 @@ class OrderController extends Controller
         }
 
         $new_order = $this->orderRepository->addNewOrder();
+        //dd($request->all());
+        $new_order = $this->orderRepository->addNewOrder($request);
         $this->orderProductRepository->addProductToYourOrders($request->all(), $new_order);
         // $this->orderProductRepository->addProductToYourOrders($request->all());
         return redirect('/orders');
@@ -92,6 +94,7 @@ class OrderController extends Controller
     {
         //dd($request->all());
         //$this->dispatch(new CreateNewOrder($request));
+
         $cart=$this->cartRepository->getCart();
 
         $this->cartProductRepository->addProductsToCart($request,$cart);

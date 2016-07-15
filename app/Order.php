@@ -9,7 +9,8 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'placed_on',
-        'delivered_on'
+        'delivered_on',
+        'bill_amount'
     ];
     public function order_products()
     {

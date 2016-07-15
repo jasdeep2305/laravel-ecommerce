@@ -17,9 +17,9 @@
                 <input type="hidden" name="product_id" value="{{$product->id}}">
 
                 <label>Quantity to buy: </label> <input type="number" name="quantity" value="1"><br>
-                <input type="hidden" name="totalprice" value="100">
                 <input type="hidden" name="description" value="{{$product->description}}">
                 <input type="hidden" name="title" value="{{$product->title}}">
+                <input type="hidden" name="totalprice" value="{{$product->price}}">
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
@@ -31,7 +31,7 @@
                 {{csrf_field()}}
 
                 <input type="hidden" name="product_id" value="{{$product->id}}">
-
+                <input type="hidden" name="totalprice" value="{{$product->price}}">
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Buy Now</button>

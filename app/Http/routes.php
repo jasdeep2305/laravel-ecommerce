@@ -29,6 +29,7 @@ Route::get('/home', 'HomeController@index');
 Route::resource('user','UserController');
 
 Route::resource('orders','OrderController');
+
 //Route::get('orders/confirmation',function(){
 //   return  view('order.confirmation');
 //});
