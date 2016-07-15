@@ -50,7 +50,7 @@
                     <li><a href="{{ url('/home') }}">Home</a></li>
                     <li><a href="{{ url('/products') }}">All Products</a></li>
                     <li><a href="{{ url('/cart') }}">Your Cart</a></li>
-                    <li><a href="{{ url('/order') }}">Your Orders</a></li>
+                    <li><a href="{{ url('/orders') }}">Your Orders</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

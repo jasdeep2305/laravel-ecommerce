@@ -24,7 +24,7 @@
                 </div>
             </form>
 
-            <form method="GET" action="/orders/confirmation">
+            <form method="POST" action="/orders/confirmation">
 
                 {{csrf_field()}}
 

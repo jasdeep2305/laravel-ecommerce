@@ -81,6 +81,7 @@ class OrderController extends Controller
     {
         //dd($request->all());
         //$this->dispatch(new CreateNewOrder($request));
+
         $cart=$this->cartRepository->getCart();
 
         $this->cartProductRepository->addProductsToCart($request,$cart);
