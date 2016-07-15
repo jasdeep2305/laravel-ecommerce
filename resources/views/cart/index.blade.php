@@ -45,13 +45,24 @@
                 </div>
             </form>
 
-            <form method="POST" action="/cartproducts/{{$product->id}}">
+            {{--<form method="POST" action="/cartproducts/{{$product->id}}">--}}
+
+                {{--{{csrf_field()}}--}}
+
+                {{--<input type="hidden" name="product_id" value="{{$product->id}}"><br>--}}
+
+                {{--<div class="form-group" align="top-right">--}}
+                    {{--<button type="submit" class="btn btn-primary">Buy Now</button>--}}
+                {{--</div>--}}
+            {{--</form>--}}
+
+            <form method="POST" action="/orders/confirmation">
 
                 {{csrf_field()}}
-
-                <input type="hidden" name="product_id" value="{{$product->id}}"><br>
-
-                <div class="form-group" align="top-right">
+                <input type="hidden" name="product_id" value="{{$product->id}}">
+                <input type="hidden" name="quantity" value="1">
+                <input type="hidden" name="totalprice" value="100">
+                <div class="form-group">
                     <button type="submit" class="btn btn-primary">Buy Now</button>
                 </div>
             </form>

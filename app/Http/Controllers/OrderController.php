@@ -79,7 +79,7 @@ class OrderController extends Controller
 
     public function confirmation(Request $request)
     {
-        //dd($request->all());
+//        dd($request->all());
         //$this->dispatch(new CreateNewOrder($request));
 
         $cart=$this->cartRepository->getCart();
