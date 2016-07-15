@@ -8,6 +8,7 @@ use App\Http\Repositories\OrderProductRepository;
 use App\Http\Repositories\OrderRepository;
 use App\Http\Repositories\ProductRepository;
 use App\Http\Requests;
+use App\Tasks\CreateNewOrder;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -75,19 +76,29 @@ class OrderController extends Controller
 //        return view('order.show',compact('orderProducts'));
     }
 
+    /**
+     * for adding a new order
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(Request $request)
     {
-        //return $request->all();
+
         if($request->confirmation=='no'){
             return redirect()->to('/products');
         }
 
+        $task=new CreateNewOrder();
+        $task->handle();
+        return redirect('/orders');
+
+
         //$new_order = $this->orderRepository->addNewOrder();
         //dd($request->all());
-        $new_order = $this->orderRepository->addNewOrder($request);
-        $this->orderProductRepository->addProductToYourOrders($request->all(), $new_order);
-        // $this->orderProductRepository->addProductToYourOrders($request->all());
-        return redirect('/orders');
+//        $new_order = $this->orderRepository->addNewOrder($request);
+//        $this->orderProductRepository->addProductToYourOrders($request->all(), $new_order);
+
+
     }
 
     /**

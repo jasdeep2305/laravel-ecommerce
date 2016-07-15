@@ -9,10 +9,9 @@
 namespace App\Http\Repositories;
 
 use App\Order;
+use App\OrderProduct;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-
-//use App\OrderProduct;
 
 
 class OrderRepository
@@ -70,5 +69,12 @@ class OrderRepository
 
 
     }
-   
+
+    public function addProductToOrder($order_id,$product_id)
+    {
+
+        return OrderProduct::create(['order_id'=>$order_id,'product_id'=>$product_id]);
+
+
+    }
 }
