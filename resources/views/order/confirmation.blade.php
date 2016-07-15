@@ -12,31 +12,37 @@
                             Do you want to buy the following product?
 
 
-                                {{--<li class="list-group-item">--}}
-                                    {{--Product ID: {{$product->id}} <br>--}}
-                                    {{--Product Description: {{$product->description}}--}}
-                                    {{--Seller Name: {{$product->seller_name}}--}}
-                                {{--</li>--}}
-                                <form method="POST" action="{{url('/orders')}}">
+                                <li class="list-group-item">
+                                    Product ID: {{request('product_id')}} <br>
+                                    Title: {{request('title')}}<br>
+                                    Product Description: {{request('description')}}<br>
+                                    Total Price: {{request('totalprice')}}
+                                </li>
+                                <form method="POST" action="{{url('/orders')}} ">
                                     {{csrf_field()}}
                                     <input type="hidden" name="product_id" value="{{request('product_id')}}">
                                     <input type="hidden" name="totalprice" value="{{request('totalprice')}}">
-                                    <input type="hidden" name="quantity" value="{{request('quantity')}}">
+                                    <input type="hidden" name="quantity" value="{{request('quantity')}}" >
 
                                 <div class="form-group">
-                                    <input type="radio" name="confirmation" value="yes" checked>Yes</input>
+                                    <input type="radio" name="confirmation" value="yes" checked>YES</input>
                                     <input type="radio" name="confirmation" value="no"> NO </input>
-
                                 </div>
                                     <div class="form-group">
+
                                         <button type="submit" class="btn btn-primary">Proceed</button>
 
                                     </div>
                                 </form>
 
-                                    {{--<div class="form-group">--}}
-                                        {{--<a href="{{url('/products')}}" class="btn btn-primary">No</a>--}}
-                                    {{--</div>--}}
+
+                            <form method="GET" action={{url('/products')}}>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Continue Shopping</button>
+
+                                </div>
+
+                            </form>
 
 
                         </div>

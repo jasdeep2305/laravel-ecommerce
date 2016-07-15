@@ -14,7 +14,7 @@
                             @foreach($orders as $order)
 
                                 <li class="list-group-item">
-                                    <b>Order ID: <a href="/orders/{{$order->id}}}"> {{$order->id}} </a></b> <br>
+                                    <b>Order ID: <a href={{url('/orders/'.$order->id)}}> {{$order->id}} </a></b> <br>
                                     Order Placed on: {{$order->placed_on}} <br>
                                     Total Price: {{$order->bill_amount}}
 
@@ -23,26 +23,18 @@
 
                             @endforeach
 
+                            <form method="GET" action={{url('/products')}}>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">Continue Shopping</button>
+
+                                </div>
+
+                            </form>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-        {{--<form method="POST" action="/order/{{$order->id}}/edit">--}}
-            {{--</form>--}}
-
-
-
-            {{--<div class="form-group">--}}
-                {{--<button type="submit" class="btn btn-primary">Edit Order--}}
-                {{--</button>--}}
-              {{--</div>--}}
-            {{--</form>--}}
     </ul>
 @stop

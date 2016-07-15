@@ -10,13 +10,13 @@
     @foreach($cart->products as $product)
 
         <li class="list-group-item">
-            <label> Product id :</label> <a href="/products/{{$product->id}}" >{{$product->id}}<br></a>
+            <label> Product id :</label> <a href={{url('/products/'.$product->id)}} >{{$product->id}}<br></a>
             <label>Product Title:</label> {{$product-> title}} <br>
             <label> Product quantity:</label> {{$product->pivot->quantity}}<br>
             <label>Product Price: </label>{{$product->pivot->totalprice}}<br>
 
 
-        <form method="POST" action="/cartproducts/{{$product->id}}">
+        <form method="POST" action={{url('/cartproducts/'.$product->id)}}>
             {{method_field('DELETE')}}
             {{csrf_field()}}
 
@@ -29,7 +29,7 @@
             </div>
         </form>
 
-            <form method="POST" action="/cartproducts/{{$product->id}}">
+            <form method="POST" action={{url('/cartproducts/'.$product->id)}}>
                 {{method_field('PATCH')}}
                 {{csrf_field()}}
 
@@ -56,18 +56,32 @@
                 {{--</div>--}}
             {{--</form>--}}
 
-            <form method="POST" action="/orders/confirmation">
+            <form method="POST" action={{url('/orders/confirmation')}}>
 
                 {{csrf_field()}}
                 <input type="hidden" name="product_id" value="{{$product->id}}">
                 <input type="hidden" name="quantity" value="1">
                 <input type="hidden" name="totalprice" value="100">
+                <input type="hidden" name="description" value="{{$product->description}}">
+                <input type="hidden" name="title" value="{{$product->title}}">
+
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Buy Now</button>
                 </div>
             </form>
-        </li>
-    @endforeach</ul>
 
-@stop
+
+        </li>
+    @endforeach
+
+        <form method="GET" action={{url('/products')}}>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Continue Shopping</button>
+
+            </div>
+
+        </form>
+                    </ul>
+
+@endsection
 

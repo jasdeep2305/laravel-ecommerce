@@ -7,12 +7,12 @@
         @foreach($products as $product)
 
             <li class="list-group-item">
-                <a href="/products/{{$product->id}}" > <label>Product Title: </label> {{$product->title}} <br></a>
+                <a href={{url('/products/'.$product->id)}} > <label>Product Title: </label> {{$product->title}} <br></a>
                 <label>Description: </label> {{$product->description}} <br>
                 <label>Price: </label> {{$product->price}}
 
 
-                <form method="POST" action="/cartproducts">
+                <form method="POST" action={{url('/cartproducts')}}>
 
                 {{csrf_field()}}
 
@@ -29,12 +29,14 @@
                 </form>
 
                 {{-- By Divya--}}
-                <form method="POST" action="/orders/confirmation">
+                <form method="POST" action={{url('/orders/confirmation')}}>
 
                     {{csrf_field()}}
                     <input type="hidden" name="product_id" value="{{$product->id}}">
                     <input type="hidden" name="quantity" value="1">
                     <input type="hidden" name="totalprice" value="100">
+                    <input type="hidden" name="description" value="{{$product->description}}">
+                    <input type="hidden" name="title" value="{{$product->title}}">
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Buy Now</button>
                     </div>

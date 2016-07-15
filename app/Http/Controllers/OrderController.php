@@ -49,13 +49,22 @@ class OrderController extends Controller
         $this->cartRepository = $cartRepository;
     }
 
+    /**
+     * This function shows list of all the orders for the current user.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $orders = $this->orderRepository->getAllOrders();
-//        return $orders;
         return view('order.index', compact('orders'));
+        // return $orders;
     }
 
+    /**
+     * This function fetches the data for the details for a particular order
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */                       
     public function show($id)
     {
         $order = $this->orderRepository->find($id);
@@ -69,17 +78,19 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         //return $request->all();
+        if($request->confirmation=='no'){
+            return redirect()->to('/products');
+        }
+
         $new_order = $this->orderRepository->addNewOrder();
         $this->orderProductRepository->addProductToYourOrders($request->all(), $new_order);
         // $this->orderProductRepository->addProductToYourOrders($request->all());
         return redirect('/orders');
-
-
     }
 
     public function confirmation(Request $request)
     {
-//        dd($request->all());
+        //dd($request->all());
         //$this->dispatch(new CreateNewOrder($request));
         $cart=$this->cartRepository->getCart();
 
