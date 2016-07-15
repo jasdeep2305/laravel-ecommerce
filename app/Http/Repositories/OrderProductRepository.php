@@ -16,12 +16,21 @@ use Illuminate\Http\Request;
 class OrderProductRepository
 {
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getProductsForOrder($id)
     {
         return OrderProduct::where('order_id',$id)->get();
     }
 
-    public function addProductToYourOrders($request,$new_order){
+    /**
+     * @param $request
+     * @param $new_order
+     * @return static
+     */
+    public function addProductToYourOrders($request, $new_order){
 
         $params = $this->params($request, $new_order);
         $newProduct= OrderProduct::create($params);
@@ -30,13 +39,17 @@ class OrderProductRepository
 
     }
 
+    /**
+     * @param $request
+     * @param $new_order
+     * @return array
+     */
     private function params($request, $new_order)
     {
 
         return [
             'product_id' => $request['product_id'],
             'order_id' => $new_order->id,
-
         ];
 
         // dd($params);

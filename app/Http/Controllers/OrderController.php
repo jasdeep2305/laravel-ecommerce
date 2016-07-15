@@ -82,7 +82,7 @@ class OrderController extends Controller
             return redirect()->to('/products');
         }
 
-        $new_order = $this->orderRepository->addNewOrder();
+      //  $new_order = $this->orderRepository->addNewOrder();
         //dd($request->all());
         $new_order = $this->orderRepository->addNewOrder($request);
         $this->orderProductRepository->addProductToYourOrders($request->all(), $new_order);
