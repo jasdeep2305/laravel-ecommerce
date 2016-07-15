@@ -1,5 +1,3 @@
-
-
 @extends('layouts.app')
 @section('content')
     <ul class="list-group">
@@ -17,12 +15,8 @@
                                     <b>Order ID: <a href={{url('/orders/'.$order->id)}}> {{$order->id}} </a></b> <br>
                                     Order Placed on: {{$order->placed_on}} <br>
                                     Total Price: {{$order->bill_amount}}
-
-
                                 </li>
-
                             @endforeach
-
                             <form method="GET" action={{url('/products')}}>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Continue Shopping</button>

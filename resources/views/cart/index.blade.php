@@ -1,11 +1,15 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+    <ul class="list-group">
+    <div class="container">
+
+        <form method="GET" action={{url('/products')}}>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Continue Shopping</button>
+            </div>
+        </form>
 
         <h3 align="center">Your Cart contains {{count($cart->products)}} products</h3>
-</div>
-
-<ul class="list-group">
 
     @foreach($cart->products as $product)
 
@@ -15,7 +19,6 @@
             <label>Product Title:</label> {{$product-> title}} <br>
             <label> Product quantity:</label> {{$product->pivot->quantity}}<br>
             <label>Product Price: </label>{{$product->pivot->totalprice}}<br>
-
 
         <form method="POST" action={{url('/cartproducts/'.$product->id)}}>
             {{method_field('DELETE')}}
@@ -75,14 +78,7 @@
 
         </li>
     @endforeach
-
-        <form method="GET" action={{url('/products')}}>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Continue Shopping</button>
-
-            </div>
-
-        </form>
+    </div>
                     </ul>
 
 @endsection
