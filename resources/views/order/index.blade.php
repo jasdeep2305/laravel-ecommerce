@@ -17,19 +17,24 @@
                                     <b>Order ID: <a href={{url('/orders/'.$order->id)}}> {{$order->id}} </a></b> <br>
                                     Order Placed on: {{$order->placed_on}} <br>
                                     Total Price: {{$order->bill_amount}}
+                                    <br>
+                                    <form method="POST" action={{url('/payment/'.$order->id)}}>
+                                        {{csrf_field()}}
+                                        <br>
+                                        <input type="hidden" name="bill_payment" value={{$order->bill_amount}}>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary"> Make Payment </button>
+                                        </div>
+                                    </form>
 
 
                                 </li>
 
                             @endforeach
 
-                            <form method="GET" action={{url('/products')}}>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Continue Shopping</button>
-
-                                </div>
-
-                            </form>
+                            <div class="form-group" >
+                                <label><a href="{{url('/products')}}">Continue Shopping</a> </label>
+                            </div>
 
                         </div>
                     </div>

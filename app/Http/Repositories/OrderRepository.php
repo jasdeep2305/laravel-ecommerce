@@ -34,6 +34,10 @@ class OrderRepository
 //        $order_id=$this->getAllOrders();
 //        return OrderProduct::where('order_id',$order_id)->get();
 //    }
+    /**
+     * @param $id
+     * @return mixed
+     */
 
     public function getProductsForOrder($id)
     {

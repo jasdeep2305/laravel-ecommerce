@@ -82,7 +82,7 @@ class OrderController extends Controller
             return redirect()->to('/products');
         }
 
-        $new_order = $this->orderRepository->addNewOrder();
+        //$new_order = $this->orderRepository->addNewOrder();
         //dd($request->all());
         $new_order = $this->orderRepository->addNewOrder($request);
         $this->orderProductRepository->addProductToYourOrders($request->all(), $new_order);
@@ -90,6 +90,11 @@ class OrderController extends Controller
         return redirect('/orders');
     }
 
+    /**
+     * Confirmation to place the order
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function confirmation(Request $request)
     {
         //dd($request->all());
@@ -99,6 +104,17 @@ class OrderController extends Controller
 
         $this->cartProductRepository->addProductsToCart($request,$cart);
         return view('order.confirmation');
+    }
+
+    /**
+     * Making the payment of the order using order_id
+     * @param $order_id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function payment($order_id)
+    {
+        $details=$this->orderRepository->find($order_id);
+        return view('order.payment',compact('details'));
     }
 
 }

@@ -36,13 +36,17 @@
                                 </form>
 
 
-                            <form method="GET" action={{url('/products')}}>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Continue Shopping</button>
 
-                                </div>
+                                {{--<div class="form-group" a href="">--}}
+                                    {{--<button type="submit" class="btn btn-primary">Continue Shopping</button>--}}
 
-                            </form>
+                                {{--</div>--}}
+                            <div class="form-group" >
+                            <label><a href="{{url('/products')}}">Continue Shopping</a> </label>
+                        </div>
+
+
+
 
 
                         </div>
