@@ -9,6 +9,7 @@
 namespace App\Http\Repositories;
 
 use App\Cart;
+use App\CartProduct;
 use Illuminate\Support\Facades\Auth;
 Use App\User;
 
@@ -64,6 +65,11 @@ class CartRepository
             $cart= Cart::create(['user_id'=> $user_id]);
             return $cart;
         }
+    }
+
+    public function removeProductsFromCart($product_id,$cart_id)
+    {
+        return CartProduct::where('product_id',$product_id)->where('cart_id',$cart_id)->delete();
     }
 
     /**

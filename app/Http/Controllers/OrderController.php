@@ -8,6 +8,7 @@ use App\Http\Repositories\OrderProductRepository;
 use App\Http\Repositories\OrderRepository;
 use App\Http\Repositories\ProductRepository;
 use App\Http\Requests;
+use App\Tasks\CreateNewOrder;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -77,16 +78,14 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        //return $request->all();
         if($request->confirmation=='no'){
             return redirect()->to('/products');
         }
 
-        //$new_order = $this->orderRepository->addNewOrder();
-        //dd($request->all());
-        $new_order = $this->orderRepository->addNewOrder($request);
-        $this->orderProductRepository->addProductToYourOrders($request->all(), $new_order);
-        // $this->orderProductRepository->addProductToYourOrders($request->all());
+        $task= new CreateNewOrder();
+        $task->handle();
+//        $new_order = $this->orderRepository->addNewOrder($request);
+//        $this->orderProductRepository->addProductToYourOrders($request->all(), $new_order);
         return redirect('/orders');
     }
 
