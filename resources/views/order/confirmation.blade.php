@@ -10,6 +10,9 @@
 
                         <div class="panel-body">
                             Do you want to buy the following product?
+                            <br>
+
+
 
 
                                 <li class="list-group-item">
@@ -18,29 +21,13 @@
                                     Product Description: {{request('description')}}<br>
                                     Total Price: {{request('totalprice')}}
                                 </li>
-                                <form method="POST" action="{{url('/orders')}} ">
-                                    {{csrf_field()}}
-                                    <input type="hidden" name="product_id" value="{{request('product_id')}}">
-                                    <input type="hidden" name="totalprice" value="{{request('totalprice')}}">
-                                    <input type="hidden" name="quantity" value="{{request('quantity')}}" >
+                            {{--{!! Form::label('product_id','Product ID:') !!}--}}
 
-                                <div class="form-group">
-                                    <input type="radio" name="confirmation" value="yes" checked>YES</input>
-                                    <input type="radio" name="confirmation" value="no"> NO </input>
-                                </div>
-                                    <div class="form-group">
+                            {{--{!! Form::label('') !!}--}}
 
-                                        <button type="submit" class="btn btn-primary">Proceed</button>
+                            <br>
+                            @include('order.form.confirmation')
 
-                                    </div>
-                                </form>
-
-
-
-                                {{--<div class="form-group" a href="">--}}
-                                    {{--<button type="submit" class="btn btn-primary">Continue Shopping</button>--}}
-
-                                {{--</div>--}}
                             <div class="form-group" >
                             <label><a href="{{url('/products')}}">Continue Shopping</a> </label>
                         </div>

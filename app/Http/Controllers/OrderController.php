@@ -84,7 +84,9 @@ class OrderController extends Controller
     public function store(Request $request)
     {
 
+
         if($request->confirmation=='no'){
+            //dd($request->all());
             return redirect()->to('/products');
         }
 

@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['middleware' => ['auth']], function () {
+
     Route::post('orders/confirmation', 'OrderController@confirmation');
     Route::get('/', 'ProductController@index');
 
@@ -33,7 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     Route::post('/payment/{order_id}', 'OrderController@payment');
-});
+
 
 Route::auth();
 //Route::get('orders/confirmation',function(){

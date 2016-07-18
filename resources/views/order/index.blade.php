@@ -16,14 +16,8 @@
                                     Order Placed on: {{$order->placed_on}} <br>
                                     Total Price: {{$order->bill_amount}}
                                     <br>
-                                    <form method="POST" action={{url('/payment/'.$order->id)}}>
-                                        {{csrf_field()}}
-                                        <br>
-                                        <input type="hidden" name="bill_payment" value={{$order->bill_amount}}>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary"> Make Payment </button>
-                                        </div>
-                                    </form>
+
+                                    @include('order.form.payment')
 
 
                                 </li>
