@@ -10,9 +10,11 @@ namespace App\Http\Repositories;
 
 use App\Cart;
 use App\CartProduct;
+use App\Contracts\Repository;
 use Illuminate\Support\Facades\Auth;
+Use App\User;
 
-class CartRepository
+class CartRepository implements Repository
 {
     /**
      * Create a cart if doesn't exist for a user
@@ -21,23 +23,27 @@ class CartRepository
      * @return cart
      */
     public function createCart()
-    {
+   {
 
-        $user_id = null;
+       $user_id = null;
 
-        if (Auth::check())
-            $user_id = Auth::user()->id;
+       if(Auth::check())
+           $user_id = Auth::user()->id;
 //       else
 //           return redirect('\login');
 
-        if ($cart = Cart::where('user_id', $user_id)->first()) {
-            return $cart;
-        } else {
-            $cart = Cart::create(['user_id' => $user_id]);
-            return $cart;
-        }
+       if($cart = Cart::where('user_id', $user_id)->first())
+       {
+           return $cart;
+       }
 
-    }
+       else
+       {
+           $cart= Cart::create(['user_id'=> $user_id]);
+           return $cart;
+       }
+
+   }
 
     /**
      * Get the current cart
@@ -47,19 +53,75 @@ class CartRepository
     {
         $user_id = null;
 
-        if (Auth::check())
+        if(Auth::check())
             $user_id = Auth::user()->id;
 
-        if ($cart = Cart::where('user_id', $user_id)->first()) {
+        if($cart = Cart::where('user_id', $user_id)->first())
+        {
             return $cart;
-        } else {
-            $cart = Cart::create(['user_id' => $user_id]);
+        }
+
+        else
+        {
+            $cart= Cart::create(['user_id'=> $user_id]);
             return $cart;
         }
     }
 
-    public function removeProductFromCart($product_id,$cart_id)
+    public function removeProductsFromCart($product_id,$cart_id)
     {
         return CartProduct::where('product_id',$product_id)->where('cart_id',$cart_id)->delete();
+    }
+
+    /**
+     * 
+     * @param $id
+     * @return Cart
+     */
+//    public function viewCart()
+//    {
+//        $params = [
+//
+//            'user_id' => '1'
+//        ];
+//
+//
+//        if($cart = Cart::where('user_id',1)->first())
+//        {
+//            return $cart;
+//        }
+//
+//        else
+//        {
+//            $cart= Cart::create($params);
+//            return $cart;
+//        }
+//
+//    }
+
+
+    public function all()
+    {
+        // TODO: Implement all() method.
+    }
+
+    public function find($id)
+    {
+        // TODO: Implement find() method.
+    }
+
+    public function create()
+    {
+        // TODO: Implement create() method.
+    }
+
+    public function update($id)
+    {
+        // TODO: Implement update() method.
+    }
+
+    public function delete($id)
+    {
+        // TODO: Implement delete() method.
     }
 }

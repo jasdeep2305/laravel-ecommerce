@@ -10,33 +10,34 @@
             <label>Seller: </label>  {{$product->seller_name}}<br>
             <label>Price: </label> {{$product->price}}<br>
 
-            <form method="POST" action={{url('/cartproducts')}}>
+            @include('product.form.show')
+            {{--<form method="POST" action={{url('/cartproducts')}}>--}}
 
-                {{csrf_field()}}
+                {{--{{csrf_field()}}--}}
 
-                <input type="hidden" name="product_id" value="{{$product->id}}">
+                {{--<input type="hidden" name="product_id" value="{{$product->id}}">--}}
 
-                <label>Quantity to buy: </label> <input type="number" name="quantity" value="1"><br>
-                <input type="hidden" name="description" value="{{$product->description}}">
-                <input type="hidden" name="title" value="{{$product->title}}">
-                <input type="hidden" name="totalprice" value="{{$product->price}}">
+                {{--<label>Quantity to buy: </label> <input type="number" name="quantity" value="1"><br>--}}
+                {{--<input type="hidden" name="description" value="{{$product->description}}">--}}
+                {{--<input type="hidden" name="title" value="{{$product->title}}">--}}
+                {{--<input type="hidden" name="totalprice" value="{{$product->price}}">--}}
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                </div>
-            </form>
+                {{--<div class="form-group">--}}
+                    {{--<button type="submit" class="btn btn-primary">Add to Cart</button>--}}
+                {{--</div>--}}
+            {{--</form>--}}
 
-            <form method="POST" action={{url('/orders/confirmation')}}>
+            {{--<form method="POST" action={{url('/orders/confirmation')}}>--}}
 
-                {{csrf_field()}}
+                {{--{{csrf_field()}}--}}
 
-                <input type="hidden" name="product_id" value="{{$product->id}}">
-                <input type="hidden" name="totalprice" value="{{$product->price}}">
+                {{--<input type="hidden" name="product_id" value="{{$product->id}}">--}}
+                {{--<input type="hidden" name="totalprice" value="{{$product->price}}">--}}
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Buy Now</button>
-                </div>
-            </form>
+                {{--<div class="form-group">--}}
+                    {{--<button type="submit" class="btn btn-primary">Buy Now</button>--}}
+                {{--</div>--}}
+            {{--</form>--}}
 
 
         </li>

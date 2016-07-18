@@ -10,10 +10,11 @@ namespace App\Http\Repositories;
 
 
 
+use App\Contracts\Repository;
 use App\OrderProduct;
 use Illuminate\Http\Request;
 
-class OrderProductRepository
+class OrderProductRepository implements Repository
 {
 
     /**
@@ -22,7 +23,8 @@ class OrderProductRepository
      */
     public function getProductsForOrder($id)
     {
-        return OrderProduct::where('order_id',$id)->get();
+        return $this->find($id);
+        //return OrderProduct::where('order_id',$id)->get();
     }
 
     /**
@@ -55,4 +57,28 @@ class OrderProductRepository
         // dd($params);
     }
 
+    public function all()
+    {
+        // TODO: Implement all() method.
+    }
+
+    public function find($id)
+    {
+        return OrderProduct::where('order_id',$id)->get();
+    }
+
+    public function create()
+    {
+        // TODO: Implement create() method.
+    }
+
+    public function update($id)
+    {
+        // TODO: Implement update() method.
+    }
+
+    public function delete($id)
+    {
+        // TODO: Implement delete() method.
+    }
 }

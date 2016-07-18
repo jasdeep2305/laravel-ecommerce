@@ -2,22 +2,25 @@
 @section('content')
 
     <div class="container">
-        @include('common.form_errors')
-    <form method="POST" action="{{url('/products')}}">
+    {{--<form method="POST" action="{{url('/products')}}">--}}
 
-        {{csrf_field()}}
+        {{--{{csrf_field()}}--}}
 
-        <label>Product Title : </label><br> <input type="text" name="product_title"><br>
-        <label>Product Description : </label><br><input type="text" name="product_description" ><br>
-        <label>Seller Name : </label><br><input type="text" name="product_sellername" ><br>
-        <label>Seller Id : </label><br><input type="number" name="product_sellerid" ><br>
-        <label>Product Price : </label><br><input type="number" name="product_price"><br>
+        {{--<label>Product Title : </label><br> <input type="text" name="product_title" value="" required><br>--}}
+        {{--<label>Product Description : </label><br><input type="text" name="product_description" value="" required><br>--}}
+        {{--<label>Seller Name : </label><br><input type="text" name="product_sellername" value="" required><br>--}}
+        {{--<label>Seller Id : </label><br><input type="number" name="product_sellerid" value="" required><br>--}}
+        {{--<label>Product Price : </label><br><input type="number" name="product_price" value="" required><br>--}}
 
-        <div class="form-group">
-           <br> <button type="submit" class="btn btn-primary">Add Product</button>
+        {{--<div class="form-group">--}}
+           {{--<br> <button type="submit" class="btn btn-primary">Add Product</button>--}}
 
-        </div>
+        {{--</div>--}}
 
-    </form>
+    {{--</form>--}}
+    @include('product.form.create')
+
+
+
     </div>
 @stop

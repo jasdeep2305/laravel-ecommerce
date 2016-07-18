@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Repositories\ProductRepository;
-use App\Http\Requests;
-use App\Http\Requests\CreateNewProduct;
 use App\Http\Requests\CreateProductRequest;
 use App\Product;
 use Illuminate\Http\Request;
@@ -22,7 +20,6 @@ class ProductController extends Controller
      */
     public function __construct(ProductRepository $productRepository)
     {
-
         $this->middleware('editor')->only(['create','store']);
         $this->productRepository = $productRepository;
     }
@@ -43,8 +40,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-
-         $product = $this->productRepository->viewProduct($id);
+        $product = $this->productRepository->viewProduct($id);
         return view('product.show', compact('product'));
 
     }
@@ -67,7 +63,6 @@ class ProductController extends Controller
      */
     public function store(CreateProductRequest $request)
     {
-       //dd($request->all());
         $this->productRepository->addNewProduct($request);
         return redirect()->to('/products');
     }

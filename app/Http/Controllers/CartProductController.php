@@ -33,6 +33,7 @@ class CartProductController extends Controller
     public function store(Request $request)
     {
         //get the card
+       //dd($request->all());
          $cart = $this->cartRepository->createCart();
         
         // add product to cart

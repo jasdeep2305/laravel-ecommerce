@@ -9,7 +9,33 @@
 namespace app\Http\Repositories;
 
 
-class UserRepository
+use App\Contracts\Repository;
+
+class UserRepository implements Repository
 {
 
+    public function all()
+    {
+        // TODO: Implement all() method.
+    }
+
+    public function find($id)
+    {
+        // TODO: Implement find() method.
+    }
+
+    public function create()
+    {
+        // TODO: Implement create() method.
+    }
+
+    public function update($id)
+    {
+        // TODO: Implement update() method.
+    }
+
+    public function delete($id)
+    {
+        // TODO: Implement delete() method.
+    }
 }
