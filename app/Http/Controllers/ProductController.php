@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Repositories\ProductRepository;
-use App\Http\Requests;
-use App\Http\Requests\CreateNewProduct;
+use App\Http\Requests\CreateProductRequest;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -21,7 +20,6 @@ class ProductController extends Controller
      */
     public function __construct(ProductRepository $productRepository)
     {
-
         $this->middleware('editor')->only(['create','store']);
         $this->productRepository = $productRepository;
     }
@@ -63,7 +61,7 @@ class ProductController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CreateNewProduct $request)
+    public function store(CreateProductRequest $request)
     {
         $this->productRepository->addNewProduct($request);
         return redirect()->to('/products');
