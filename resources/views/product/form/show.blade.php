@@ -3,7 +3,7 @@
 
         {!! Form::model ($product,['method'=>'POST','url'=>'/cartproducts']) !!}
         {!! Form::hidden('product_id',$product->id) !!}
-        {!! Form::hidden('quantity',$product->id) !!}
+        {!! Form::hidden('quantity',$product->quantity) !!}
         {!! Form::hidden('description',$product->description) !!}
         {!! Form::hidden('title',$product->title) !!}
         {!! Form::hidden('price',$product->price) !!}
@@ -14,7 +14,7 @@
         {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
 
         {!! Form::hidden('product_id',$product->id) !!}
-        {!! Form::hidden('quantity',$product->id) !!}
+        {!! Form::hidden('quantity',$product->quantity) !!}
         {!! Form::hidden('description',$product->description) !!}
         {!! Form::hidden('title',$product->title) !!}
         {!! Form::hidden('price',$product->price) !!}
