@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Repositories\ProductRepository;
 use App\Http\Requests;
 use App\Http\Requests\CreateNewProduct;
+use App\Http\Requests\CreateProductRequest;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -64,7 +65,7 @@ class ProductController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CreateNewProduct $request)
+    public function store(CreateProductRequest $request)
     {
        //dd($request->all());
         $this->productRepository->addNewProduct($request);
