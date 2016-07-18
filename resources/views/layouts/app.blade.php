@@ -51,7 +51,9 @@
                     <li><a href="{{ url('/products') }}">All Products</a></li>
                     <li><a href="{{ url('/cart') }}">Your Cart</a></li>
                     <li><a href="{{ url('/orders') }}">Your Orders</a></li>
-                    <li><a href="{{url('/products/create')}}" >Add New Product</a></li>
+                    @if(Auth::user()->level_id<3)
+                        <li><a href="{{url('/products/create')}}" >Add New Product</a></li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->

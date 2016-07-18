@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\Http\Repositories\CartRepository;
 use App\Http\Requests;
-use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
@@ -22,6 +21,7 @@ class CartController extends Controller
     public function __construct(CartRepository $cartRepository)
    {
        $this->middleware('auth');
+    
        $this->cartRepository = $cartRepository;
    }
 

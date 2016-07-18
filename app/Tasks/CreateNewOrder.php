@@ -1,82 +1,70 @@
 <?php
 
 namespace App\Tasks;
-
-use App\Http\Repositories\OrderRepository;
+use App\Http\Repositories;
 use App\Http\Repositories\CartRepository;
+use App\Http\Repositories\OrderRepository;
 use App\Order;
+use App\Tasks;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Created by PhpStorm.
+ * User: DELL
+ * Date: 7/15/2016
+ * Time: 5:38 PM
+ */
 class CreateNewOrder extends Task
 {
-
+    private $order;
     private $cartRepository;
     private $orderRepository;
     private $cart;
-    private $order;
 
-    /**
-     *
-     * CreateNewOrder constructor.
-     */
     public function __construct()
     {
-        $this->cartRepository = new CartRepository();
-        $this->orderRepository = new OrderRepository();
-
+        $this->cartRepository=new CartRepository();
+        $this->orderRepository=new OrderRepository();
     }
 
-    /**
-     *
-     */
     public function handle()
     {
-        $this->cart = $this->cartRepository->getCart();
-
+        $this->cart=$this->cartRepository->getCart();
         $this->createOrder();
-
         $this->addProductsToOrder();
 
     }
 
-    /**
-     * @return static
-     */
-    private function createOrder()
+
+    public function createOrder()
     {
-        $params = [
-            'user_id' => Auth::user()->id,
-            'placed_on' => Carbon::now()->toDateString(),
-            'delivered_on' => Carbon::now()->addDay(3)->toDateString(),
-            'bill_amount' => $this->billAmount()
+        $params=[
+        'user_id'=>Auth::user()->id,
+        'placed_on'=> Carbon::now()->toDateString(),
+        'delivered_on'=> Carbon::now()->addDay(3)->toDateString(),
+            'bill_amount'=>$this->billamount()
         ];
-        return $this->order = Order::create($params);
+        $this->order=Order::create($params);
+        return $this->order;
+
 
     }
 
-    /**
-     *
-     * @return string
-     */
-    private function addProductsToOrder()
+    public function billamount()
     {
-        $products = $this->cart->products;
+        return '500';
+    }
 
-        foreach ($products as $product)
-        {
+    public function addProductsToOrder()
+    {
+        $products=$this->cart->products;
+
+        foreach($products as $product) {
             $this->orderRepository->addProductsToOrder($this->order->id, $product->id);
-            $this->cartRepository->removeProductsFromCart($product->id, $this->cart->id);
+            $this->cartRepository->removeProductFromCart($product->id, $this->cart->id);
         }
-       // return ('');
     }
 
-    /**
-     *
-     * @return string
-     */
-    private function billAmount()
-    {
-        return '800';
-    }
+     
 }

@@ -15,12 +15,15 @@
     Route::post('orders/confirmation', 'OrderController@confirmation');
     Route::get('/', 'ProductController@index');
 
+
     Route::get('/viewcart', 'CartController@show');
 
     Route::resource('cart', 'CartController');
     Route::resource('cartproducts', 'CartProductController');
     Route::resource('products', 'ProductController');
     Route::resource('products/{product_id}/reviews', 'ProductReviewsController');
+
+
 
     Route::get('/home', 'HomeController@index');
 
@@ -31,7 +34,8 @@
 
     Route::post('/payment/{order_id}', 'OrderController@payment');
 
-    Route::auth();
+
+Route::auth();
 //Route::get('orders/confirmation',function(){
 //   return  view('order.confirmation');
 //});

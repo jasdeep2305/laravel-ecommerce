@@ -76,17 +76,31 @@ class OrderController extends Controller
 //        return view('order.show',compact('orderProducts'));
     }
 
+    /**
+     * for adding a new order
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(Request $request)
     {
+
+
         if($request->confirmation=='no'){
+            //dd($request->all());
             return redirect()->to('/products');
         }
 
-        $task= new CreateNewOrder();
+        $task=new CreateNewOrder();
         $task->handle();
+        return redirect('/orders');
+
+
+        //$new_order = $this->orderRepository->addNewOrder();
+        //dd($request->all());
 //        $new_order = $this->orderRepository->addNewOrder($request);
 //        $this->orderProductRepository->addProductToYourOrders($request->all(), $new_order);
-        return redirect('/orders');
+
+
     }
 
     /**
