@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
+    @include('common.form_errors')
     <div class="container">
         @include('common.form_errors')
     {{--<form method="POST" action="{{url('/products')}}">--}}

@@ -63,6 +63,7 @@ class ProductController extends Controller
      */
     public function store(CreateProductRequest $request)
     {
+
         $this->productRepository->addNewProduct($request);
         return redirect()->to('/products');
     }

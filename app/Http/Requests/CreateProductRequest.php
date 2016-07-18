@@ -25,10 +25,12 @@ class CreateProductRequest extends Request
     public function rules()
     {
         return [
-            'product_title'=>'required|min:8',
-           // 'product_desription'=>'required|max:255',
-            'product_sellername'=>'required',
-            'product_sellerid'=>'integer',
+            'product_title' => 'required|min:8',
+            'product_description' => 'required|max:255',
+            'product_sellername' => 'required',
+            'product_sellerid' => 'required',
+            'product_image' => 'required|image'
+
 
         ];
     }

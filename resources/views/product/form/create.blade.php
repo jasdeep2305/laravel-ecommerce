@@ -1,5 +1,5 @@
 
-{!! Form::open(['url'=>'/products','method'=>'POST']) !!}
+{!! Form::open(['url'=>'/products','method'=>'POST','files'=>true]) !!}
 
 <div class="row">
     <div class="col-md-4">
@@ -20,7 +20,7 @@
         <br>
 
         {!! Form::label('product_image', 'Upload Product Image')!!}
-        {!! Form::file('image') !!}
+        {!! Form::file('product_image') !!}
 
         <br>
 

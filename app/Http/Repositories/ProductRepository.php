@@ -11,6 +11,7 @@ namespace App\Http\Repositories;
 
 use App\Contracts\Repository;
 use App\Product;
+use Illuminate\Support\Facades\Storage;
 
 class ProductRepository implements Repository
 {
@@ -45,6 +46,7 @@ class ProductRepository implements Repository
     public function addNewProduct($request)
     {
         $params = $this->params($request);
+        $this->uploadFile($request->file('product_image'));
         return Product::create($params);
     }
 
@@ -87,5 +89,14 @@ class ProductRepository implements Repository
     public function delete($id)
     {
         // TODO: Implement delete() method.
+    }
+
+    private function uploadFile($file)
+    {
+        if($file){
+
+            Storage::put($file->getClientOriginalName(),file_get_contents($file));
+        }
+
     }
 }
