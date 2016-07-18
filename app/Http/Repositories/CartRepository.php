@@ -10,10 +10,11 @@ namespace App\Http\Repositories;
 
 use App\Cart;
 use App\CartProduct;
+use App\Contracts\Repository;
 use Illuminate\Support\Facades\Auth;
 Use App\User;
 
-class CartRepository 
+class CartRepository implements Repository
 {
     /**
      * Create a cart if doesn't exist for a user
@@ -99,4 +100,28 @@ class CartRepository
 //    }
 
 
+    public function all()
+    {
+        // TODO: Implement all() method.
+    }
+
+    public function find($id)
+    {
+        // TODO: Implement find() method.
+    }
+
+    public function create()
+    {
+        // TODO: Implement create() method.
+    }
+
+    public function update($id)
+    {
+        // TODO: Implement update() method.
+    }
+
+    public function delete($id)
+    {
+        // TODO: Implement delete() method.
+    }
 }

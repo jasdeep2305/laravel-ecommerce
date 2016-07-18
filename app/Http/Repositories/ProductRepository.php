@@ -9,9 +9,10 @@
 namespace App\Http\Repositories;
 
 
+use App\Contracts\Repository;
 use App\Product;
 
-class ProductRepository
+class ProductRepository implements Repository
 {
 
     /**
@@ -61,5 +62,30 @@ class ProductRepository
             'seller_name' => $request['product_sellername'],
             'price' => $request['product_price']
         ];
+    }
+
+    public function all()
+    {
+        // TODO: Implement all() method.
+    }
+
+    public function find($id)
+    {
+        // TODO: Implement find() method.
+    }
+
+    public function create()
+    {
+        // TODO: Implement create() method.
+    }
+
+    public function update($id)
+    {
+        // TODO: Implement update() method.
+    }
+
+    public function delete($id)
+    {
+        // TODO: Implement delete() method.
     }
 }

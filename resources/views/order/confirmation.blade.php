@@ -16,12 +16,12 @@
                                     Product ID: {{request('product_id')}} <br>
                                     Title: {{request('title')}}<br>
                                     Product Description: {{request('description')}}<br>
-                                    Total Price: {{request('totalprice')}}
+                                    Total Price: {{request('price')}}
                                 </li>
                                 <form method="POST" action="{{url('/orders')}} ">
                                     {{csrf_field()}}
                                     <input type="hidden" name="product_id" value="{{request('product_id')}}">
-                                    <input type="hidden" name="totalprice" value="{{request('totalprice')}}">
+                                    <input type="hidden" name="totalprice" value="{{request('price')}}">
                                     <input type="hidden" name="quantity" value="{{request('quantity')}}" >
 
                                 <div class="form-group">

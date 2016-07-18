@@ -27,6 +27,9 @@ class CreateNewOrder extends Task
 
     }
 
+    /**
+     *
+     */
     public function handle()
     {
         $this->cart = $this->cartRepository->getCart();
@@ -37,6 +40,9 @@ class CreateNewOrder extends Task
 
     }
 
+    /**
+     * @return static
+     */
     private function createOrder()
     {
         $params = [
@@ -50,6 +56,7 @@ class CreateNewOrder extends Task
     }
 
     /**
+     *
      * @return string
      */
     private function addProductsToOrder()
@@ -61,9 +68,13 @@ class CreateNewOrder extends Task
             $this->orderRepository->addProductsToOrder($this->order->id, $product->id);
             $this->cartRepository->removeProductsFromCart($product->id, $this->cart->id);
         }
-        return ('');
+       // return ('');
     }
 
+    /**
+     *
+     * @return string
+     */
     private function billAmount()
     {
         return '800';

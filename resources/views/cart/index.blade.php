@@ -3,11 +3,9 @@
     <ul class="list-group">
     <div class="container">
 
-        <form method="GET" action={{url('/products')}}>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Continue Shopping</button>
-            </div>
-        </form>
+        <div class="form-group" >
+            <label><a href="{{url('/products')}}">Continue Shopping</a> </label>
+        </div>
 
         <h3 align="center">Your Cart contains {{count($cart->products)}} products</h3>
 

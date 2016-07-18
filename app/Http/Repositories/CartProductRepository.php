@@ -10,9 +10,10 @@ namespace App\Http\Repositories;
 
 
 use App\CartProduct;
+use App\Contracts\Repository;
 use Illuminate\Http\Request;
 
-class CartProductRepository
+class CartProductRepository implements Repository
 {
     /**
      * @var CartRepository
@@ -73,7 +74,7 @@ class CartProductRepository
             'product_id' => $request['product_id'],
             'cart_id' => $cart->id,
             'quantity' => $request['quantity'],
-           'totalprice' => $request['totalprice']
+           'totalprice' => $request['price']
         ];
 
        // dd($params);
@@ -86,9 +87,11 @@ class CartProductRepository
      */
     public function removeProductFromCart($product_id)
     {
-        $cart= $this->cartRepository->getCart();
+//        $cart= $this->cartRepository->getCart();
+//
+//        return CartProduct::where('product_id',$product_id)->where('cart_id',$cart->id)->delete();
 
-        return CartProduct::where('product_id',$product_id)->where('cart_id',$cart->id)->delete();
+        return $this->delete($product_id);
     }
 
     /**
@@ -99,6 +102,7 @@ class CartProductRepository
      */
     private function checkIfProductInCart($request, $cart)
     {
+     // dd($request->all());
       return ( CartProduct::where('product_id',$request['product_id'])->where('cart_id',$cart->id)->count());
     }
 
@@ -127,5 +131,34 @@ class CartProductRepository
             ->where('cart_id',$cart->id)
             ->update(['quantity' => $request['updated_quantity']]);
         return $cartProduct;
+    }
+
+    public function all()
+    {
+        // TODO: Implement all() method.
+    }
+
+    public function find($id)
+    {
+
+    }
+
+    public function create()
+    {
+        // TODO: Implement create() method.
+    }
+
+    public function update($id)
+    {
+        // TODO: Implement update() method.
+    }
+
+    public function delete($id)
+    {
+        $product_id=$id;
+
+        $cart= $this->cartRepository->getCart();
+
+        return CartProduct::where('product_id',$product_id)->where('cart_id',$cart->id)->delete();
     }
 }

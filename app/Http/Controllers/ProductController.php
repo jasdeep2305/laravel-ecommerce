@@ -21,7 +21,7 @@ class ProductController extends Controller
      */
     public function __construct(ProductRepository $productRepository)
     {
-
+        $this->middleware('admin',['only'=>['create','store']]);
         $this->productRepository = $productRepository;
     }
 
@@ -41,10 +41,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-
-         $product = $this->productRepository->viewProduct($id);
+        $product = $this->productRepository->viewProduct($id);
         return view('product.show', compact('product'));
-
     }
 
     /**
@@ -65,6 +63,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $this->productRepository->addNewProduct($request);
         return redirect()->to('/products');
     }

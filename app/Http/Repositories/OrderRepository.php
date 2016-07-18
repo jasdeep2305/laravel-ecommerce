@@ -8,11 +8,12 @@
 
 namespace App\Http\Repositories;
 
+use App\Contracts\Repository;
 use App\Order;
 use App\OrderProduct;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-class OrderRepository
+class OrderRepository implements Repository
 {
 
 
@@ -71,4 +72,23 @@ class OrderRepository
 
     }
 
+    public function all()
+    {
+        // TODO: Implement all() method.
+    }
+
+    public function create()
+    {
+        // TODO: Implement create() method.
+    }
+
+    public function update($id)
+    {
+        // TODO: Implement update() method.
+    }
+
+    public function delete($id)
+    {
+        // TODO: Implement delete() method.
+    }
 }
