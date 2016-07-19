@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="db8cccf1-676e-495a-aaf8-73006b27c1cc" name="Default" comment="de">
+    <list default="true" id="db8cccf1-676e-495a-aaf8-73006b27c1cc" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CartProductController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartProductController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/AdminMiddleware.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/AdminMiddleware.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/EditorMiddleWare.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/EditorMiddleWare.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Repositories/CartProductRepository.php" afterPath="$PROJECT_DIR$/app/Http/Repositories/CartProductRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Repositories/CartRepository.php" afterPath="$PROJECT_DIR$/app/Http/Repositories/CartRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Repositories/OrderProductRepository.php" afterPath="$PROJECT_DIR$/app/Http/Repositories/OrderProductRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Repositories/OrderRepository.php" afterPath="$PROJECT_DIR$/app/Http/Repositories/OrderRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Repositories/ProductRepository.php" afterPath="$PROJECT_DIR$/app/Http/Repositories/ProductRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/CreateProductRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/CreateProductRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/product/form/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/product/form/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/product/form/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/product/form/show.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/product/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/product/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/product/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/product/show.blade.php" />
     </list>
     <ignored path="demo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -499,7 +484,7 @@
       <workItem from="1468556828267" duration="288000" />
       <workItem from="1468557309785" duration="21628000" />
       <workItem from="1468816504710" duration="21188000" />
-      <workItem from="1468902828546" duration="7781000" />
+      <workItem from="1468902828546" duration="7827000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1468401188881</created>
@@ -732,11 +717,18 @@
       <option name="project" value="LOCAL" />
       <updated>1468905437884</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Formatting">
+      <created>1468910774621</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1468910774621</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125865000" />
+    <option name="totallyTimeSpent" value="125911000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -800,7 +792,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="first commit" />
     <MESSAGE value="renamed product show" />
     <MESSAGE value="changes for feature 1 by Jasdeep" />
     <MESSAGE value="changes for Auth and routes" />
@@ -825,7 +816,8 @@
     <MESSAGE value="File Upload&#10;&#10;" />
     <MESSAGE value="&#10;File Upload changes" />
     <MESSAGE value="Cart Product Changes for HTML" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cart Product Changes for HTML" />
+    <MESSAGE value="Formatting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Formatting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
