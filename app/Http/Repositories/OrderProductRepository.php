@@ -11,7 +11,6 @@ namespace App\Http\Repositories;
 
 use App\Contracts\Repository;
 use App\OrderProduct;
-use Illuminate\Http\Request;
 
 class OrderProductRepository implements Repository
 {
@@ -67,7 +66,7 @@ class OrderProductRepository implements Repository
         // TODO: Implement create() method.
     }
 
-    public function update($id)
+    public function update($request,$id)
     {
         // TODO: Implement update() method.
     }

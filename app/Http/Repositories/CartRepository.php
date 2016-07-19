@@ -12,7 +12,6 @@ use App\Cart;
 use App\CartProduct;
 use App\Contracts\Repository;
 use Illuminate\Support\Facades\Auth;
-Use App\User;
 
 class CartRepository implements Repository
 {
@@ -84,7 +83,7 @@ class CartRepository implements Repository
         // TODO: Implement create() method.
     }
 
-    public function update($id)
+    public function update($request, $id)
     {
         // TODO: Implement update() method.
     }

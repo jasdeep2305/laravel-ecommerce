@@ -29,7 +29,7 @@ class UserRepository implements Repository
         // TODO: Implement create() method.
     }
 
-    public function update($id)
+    public function update($request, $id)
     {
         // TODO: Implement update() method.
     }

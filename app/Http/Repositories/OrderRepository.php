@@ -13,6 +13,7 @@ use App\Order;
 use App\OrderProduct;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+
 class OrderRepository implements Repository
 {
 
@@ -86,7 +87,7 @@ class OrderRepository implements Repository
         // TODO: Implement create() method.
     }
 
-    public function update($id)
+    public function update($request,$id)
     {
         // TODO: Implement update() method.
     }
