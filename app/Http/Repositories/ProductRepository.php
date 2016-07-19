@@ -10,6 +10,8 @@ namespace App\Http\Repositories;
 
 
 use App\Contracts\Repository;
+use App\Events\NewProductCreated;
+use App\Events\ProductUpdated;
 use App\Product;
 use Illuminate\Support\Facades\Storage;
 
@@ -46,7 +48,9 @@ class ProductRepository implements Repository
     {
         $params = $this->params($request);
         $this->uploadFile($request->file('product_image'));
-        return Product::create($params);
+        $product = Product::create($params);
+        event(new NewProductCreated($product));
+        return $product;
     }
 
     /**
@@ -82,9 +86,8 @@ class ProductRepository implements Repository
 
     public function update($request, $id)
     {
-       $param=$this->params($request);
-        return $this->updateProduct($param,$id);
-
+        $param = $this->params($request);
+        return $this->updateProduct($param, $id);
     }
 
     /**

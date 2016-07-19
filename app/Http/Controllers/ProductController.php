@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewProductCreated;
+use App\Events\ProductUpdated;
 use App\Http\Repositories\ProductRepository;
 use App\Http\Requests\CreateProductRequest;
+use App\Listeners\NewProductConfirmation;
 use App\Product;
 use Illuminate\Http\Request;
 
@@ -78,20 +81,29 @@ class ProductController extends Controller
         $this->productRepository->delete($id);
         return redirect()->to('/products');
     }
-    
-    public function update(Request $request,$id)
+
+    /**
+     * Update a product's field
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, $id)
     {
         //dd($request);
-        $this->productRepository->update($request,$id);
+        $this->productRepository->update($request, $id);
         return redirect()->to('/products');
-        
-        
     }
 
+    /**
+     * Edit a product
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($id)
     {
-        $product=$this->productRepository->find($id);
-        return view('product.edit',compact('product'));
+        $product = $this->productRepository->find($id);
+        return view('product.edit', compact('product'));
     }
 
 }
