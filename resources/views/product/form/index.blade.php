@@ -40,6 +40,13 @@
                     @if(Auth::check()&&Auth::user()->level_id<3)
 
                         {!! Form::model($product,['url'=>'/products/'.$product->id.'/edit','method'=>'GET']) !!}
+
+                        {!! Form::hidden('product_id',$product->id) !!}
+                        {!! Form::hidden('quantity',$product->quantity) !!}
+                        {!! Form::hidden('description',$product->description) !!}
+                        {!! Form::hidden('title',$product->title) !!}
+                        {!! Form::hidden('price',$product->price) !!}
+
                         {!! Form::submit('Edit the Product') !!}
                         {!! Form::close() !!}
 

@@ -11,7 +11,6 @@ namespace App\Http\Repositories;
 
 use App\CartProduct;
 use App\Contracts\Repository;
-use Illuminate\Http\Request;
 
 class CartProductRepository implements Repository
 {
@@ -148,7 +147,7 @@ class CartProductRepository implements Repository
         // TODO: Implement create() method.
     }
 
-    public function update($id)
+    public function update($request,$id)
     {
         // TODO: Implement update() method.
     }

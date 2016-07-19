@@ -75,5 +75,20 @@ class ProductController extends Controller
         $this->productRepository->delete($id);
         return redirect()->to('/products');
     }
+    
+    public function update(Request $request,$id)
+    {
+        //dd($request);
+        $this->productRepository->update($request,$id);
+        return redirect()->to('/products');
+        
+        
+    }
+
+    public function edit($id)
+    {
+        $product=$this->productRepository->find($id);
+        return view('product.edit',compact('product'));
+    }
 
 }

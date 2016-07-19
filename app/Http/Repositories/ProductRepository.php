@@ -73,7 +73,7 @@ class ProductRepository implements Repository
 
     public function find($id)
     {
-        // TODO: Implement find() method.
+        return Product::find($id)->first();
     }
 
     public function create()
@@ -81,9 +81,11 @@ class ProductRepository implements Repository
         // TODO: Implement create() method.
     }
 
-    public function update($id)
+    public function update($request, $id)
     {
-        // TODO: Implement update() method.
+       $param=$this->params($request);
+        return $this->updateProduct($param,$id);
+
     }
 
     public function delete($id)
@@ -98,6 +100,19 @@ class ProductRepository implements Repository
             Storage::put($file->getClientOriginalName(),file_get_contents($file));
         }
 
+    }
+
+    private function updateProduct($request,$id)
+    {
+
+        $product= Product::where('id',$id)
+            ->update(['title' => $request['title'],
+                'description'=>$request['description'],
+                'seller_name'=>$request['seller_name'],
+                'seller_id' => $request['seller_id'],
+                'price' => $request['price']
+            ]);
+        return $product;
     }
 
 
