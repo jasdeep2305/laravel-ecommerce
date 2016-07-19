@@ -48,7 +48,7 @@ class ProductRepository implements Repository
     {
         $params = $this->params($request);
         $this->uploadFile($request->file('product_image'));
-        $product= Product::create($params);
+        $product = Product::create($params);
         event(new NewProductCreated($product));
         return $product;
     }
@@ -76,9 +76,7 @@ class ProductRepository implements Repository
 
     public function find($id)
     {
-        $product= Product::find($id)->first();
-        event(new ProductUpdated($product));
-        return $product;
+        return Product::find($id)->first();
     }
 
     public function create()
@@ -88,9 +86,8 @@ class ProductRepository implements Repository
 
     public function update($request, $id)
     {
-       $param=$this->params($request);
-        return $this->updateProduct($param,$id);
-
+        $param = $this->params($request);
+        return $this->updateProduct($param, $id);
     }
 
     /**
@@ -116,16 +113,14 @@ class ProductRepository implements Repository
 
     }
 
-    private function updateProduct($request,$id)
+    private function updateProduct($request, $id)
     {
 
-        $product= Product::where('id',$id)
-            ->update(['title' => $request['title'],
-                'description'=>$request['description'],
-                'seller_name'=>$request['seller_name'],
-                'seller_id' => $request['seller_id'],
-                'price' => $request['price']
-            ]);
+        $product = Product::where('id', $id)->update($request);
+//        dd($product);
+//        $update_product= Product::find($product)->first();
+//        dd($update_product);
+//       event(new ProductUpdated($update_product));
         return $product;
     }
 

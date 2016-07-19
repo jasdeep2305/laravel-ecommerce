@@ -27,7 +27,7 @@ trait EmailNotifier
     {
 
             dd('Mail Sent');
-            Mail::sent();
+            //Mail::sent();
 
 
     }

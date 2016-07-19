@@ -13,15 +13,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class SendEmailToEditorsAboutProductUpdated extends Job implements ShouldQueue
 {
     use InteractsWithQueue, SerializesModels,EmailNotifier;
+    /**
+     * @var Product
+     */
+    private $product;
 
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param Product $product
      */
-    public function __construct()
+    public function __construct(Product $product)
     {
         //
+        $this->product = $product;
     }
 
     /**
@@ -29,12 +34,12 @@ class SendEmailToEditorsAboutProductUpdated extends Job implements ShouldQueue
      *
      * @return void
      */
-    public function handle(Product $product)
+    public function handle()
     {
         //all editors
         $users = User::where('level_id', 2)->get();
         foreach ($users as $user) {
-            $this->sendEmail($user, $product, 'product.update');
+            $this->sendEmail($user, $this->product, 'product.update');
         }
     }
 }

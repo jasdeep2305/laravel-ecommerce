@@ -34,12 +34,12 @@ class SendEmailToEditorsAboutNewProduct extends Job implements ShouldQueue
      *
      * @param Product $product
      */
-    public function handle(Product $product)
+    public function handle()
     {
         //all editor users
         $users = User::where('level_id', 2)->get();
         foreach ($users as $user) {
-            $this->sendEmail($user, $product, 'product.create');
+            $this->sendEmail($user, $this->product, 'product.create');
         }
     }
 }

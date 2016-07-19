@@ -33,13 +33,13 @@ class SendEmailToAdminsAboutNewProduct extends Job implements ShouldQueue
      *
      * @param Product $product
      */
-    public function handle(Product $product)
+    public function handle()
     {
         //all admin users
         $users=User::where('level_id', 1)->get();
 
         foreach ($users as $user) {
-            $this->sendEmail($user, $product, 'product.create');
+            $this->sendEmail($user, $this->product, 'product.create');
         }
     }
 }
