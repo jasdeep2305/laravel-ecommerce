@@ -52,7 +52,7 @@ class CartProductRepository implements Repository
         }
 
         $params = $this->params($request, $cart);
-        //dd($params);
+        
         $cartProduct = CartProduct::create($params);
 
         return $cartProduct;
@@ -66,13 +66,11 @@ class CartProductRepository implements Repository
      */
     private function params($request, $cart)
     {
-        // dd($cart->all());
-        // dd($cart->id);
         return [
             'product_id' => $request['product_id'],
             'cart_id' => $cart->id,
             'quantity' => $request['quantity'],
-            'totalprice' => $request['price']
+            'totalprice' => $request['totalprice']
         ];
     }
 
@@ -83,12 +81,10 @@ class CartProductRepository implements Repository
      */
     public function removeProductFromCart($product_id)
     {
-//        $cart= $this->cartRepository->getCart();
-//
-//        return CartProduct::where('product_id',$product_id)->where('cart_id',$cart->id)->delete();
-
         return $this->delete($product_id);
     }
+
+
 
     /**
      * Check if a product is already added in Cart
@@ -98,9 +94,12 @@ class CartProductRepository implements Repository
      */
     private function checkIfProductInCart($request, $cart)
     {
-        // dd($request->all());
+
         return (CartProduct::where('product_id', $request['product_id'])->where('cart_id', $cart->id)->count());
     }
+
+
+
 
     /**
      * Get the quantity of a product present in cart
@@ -114,6 +113,9 @@ class CartProductRepository implements Repository
             ->where('cart_id', $cart->id)
             ->first()->quantity;
     }
+
+
+
 
     /**
      * Update Product Quantity
@@ -129,6 +131,10 @@ class CartProductRepository implements Repository
         return $cartProduct;
     }
 
+
+/*
+     * Interface methods
+     */
     public function all()
     {
         // TODO: Implement all() method.
@@ -149,6 +155,10 @@ class CartProductRepository implements Repository
         // TODO: Implement update() method.
     }
 
+
+
+
+
     /**
      * Remove a product from Cart
      * @param $id
@@ -157,9 +167,7 @@ class CartProductRepository implements Repository
     public function delete($id)
     {
         $product_id = $id;
-
         $cart = $this->cartRepository->getCart();
-
         return CartProduct::where('product_id', $product_id)->where('cart_id', $cart->id)->delete();
     }
 }

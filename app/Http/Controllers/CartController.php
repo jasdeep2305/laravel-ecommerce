@@ -26,7 +26,7 @@ class CartController extends Controller
    }
 
     /**
-     * View the Cart for a userr
+     * View the Cart for a user
      * If cart is not present create a new cart
      * @param Cart $cart
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

@@ -26,7 +26,7 @@ class CreateProductRequest extends Request
             'product_description' => 'required|max:255',
             'product_sellername' => 'required',
             'product_sellerid' => 'required',
-            'product_image' => 'required|image'
+            //'product_image' => 'required'
         ];
     }
 }

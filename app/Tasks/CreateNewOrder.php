@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Tasks;
+use App\Events\NewOrderCreated;
 use App\Http\Repositories;
 use App\Http\Repositories\CartRepository;
 use App\Http\Repositories\OrderRepository;
@@ -9,12 +10,7 @@ use App\Tasks;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-/**
- * Created by PhpStorm.
- * User: DELL
- * Date: 7/15/2016
- * Time: 5:38 PM
- */
+
 class CreateNewOrder extends Task
 {
     private $order;
@@ -28,11 +24,15 @@ class CreateNewOrder extends Task
         $this->orderRepository=new OrderRepository();
     }
 
+/*
+ * This will call the NewOrderCreated Event
+ */
     public function handle()
     {
         $this->cart=$this->cartRepository->getCart();
         $this->createOrder();
         $this->addProductsToOrder();
+        event(new NewOrderCreated($this->order));
 
     }
 

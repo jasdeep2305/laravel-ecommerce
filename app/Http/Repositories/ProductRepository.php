@@ -114,12 +114,7 @@ class ProductRepository implements Repository
     {
 
         $product= Product::where('id',$id)
-            ->update(['title' => $request['title'],
-                'description'=>$request['description'],
-                'seller_name'=>$request['seller_name'],
-                'seller_id' => $request['seller_id'],
-                'price' => $request['price']
-            ]);
+            ->update($request);
         return $product;
     }
 

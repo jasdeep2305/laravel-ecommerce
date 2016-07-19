@@ -11,6 +11,7 @@ namespace App\Http\Repositories;
 use App\Contracts\Repository;
 use App\Order;
 use App\OrderProduct;
+use App\Tasks\CreateNewOrder;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +29,8 @@ class OrderRepository implements Repository
         return Order::where('user_id', Auth::user()->id)->get();
     }
 
+
+
     /**
      * @param $id
      * @return mixed
@@ -37,6 +40,8 @@ class OrderRepository implements Repository
     {
         return Order::where('id',$id)->get();
     }
+
+
 
     /**
      * @param $id
@@ -48,6 +53,8 @@ class OrderRepository implements Repository
     }
 
 
+
+
     /**
      * Add a new order
      * @param $request
@@ -55,7 +62,6 @@ class OrderRepository implements Repository
      */
     public function addNewOrder($request)
     {
-        //dd($request->all());
         $user_id=Auth::user()->id;
         $placed_on= Carbon::now()->toDateString();
         $delivered_on= Carbon::now()->addDay(3)->toDateString();
@@ -63,6 +69,8 @@ class OrderRepository implements Repository
         $order=Order::create(['user_id'=>$user_id,'placed_on'=>$placed_on,'delivered_on'=>$delivered_on,'bill_amount'=>$bill_amount]);
         return $order;
     }
+
+
 
     /**
      * Add products to a order
@@ -85,6 +93,9 @@ class OrderRepository implements Repository
     public function create()
     {
         // TODO: Implement create() method.
+        $task = new CreateNewOrder();
+        $task->handle();
+        
     }
 
     public function update($request,$id)
