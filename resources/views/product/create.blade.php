@@ -3,6 +3,7 @@
 
     @include('common.form_errors')
     <div class="container">
+        @include('common.form_errors')
     {{--<form method="POST" action="{{url('/products')}}">--}}
 
         {{--{{csrf_field()}}--}}
