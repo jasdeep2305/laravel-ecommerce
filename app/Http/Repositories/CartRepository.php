@@ -23,27 +23,21 @@ class CartRepository implements Repository
      * @return cart
      */
     public function createCart()
-   {
+    {
 
-       $user_id = null;
+        $user_id = null;
 
-       if(Auth::check())
-           $user_id = Auth::user()->id;
-//       else
-//           return redirect('\login');
+        if (Auth::check())
+            $user_id = Auth::user()->id;
 
-       if($cart = Cart::where('user_id', $user_id)->first())
-       {
-           return $cart;
-       }
+        if ($cart = Cart::where('user_id', $user_id)->first()) {
+            return $cart;
+        } else {
+            $cart = Cart::create(['user_id' => $user_id]);
+            return $cart;
+        }
 
-       else
-       {
-           $cart= Cart::create(['user_id'=> $user_id]);
-           return $cart;
-       }
-
-   }
+    }
 
     /**
      * Get the current cart
@@ -53,52 +47,27 @@ class CartRepository implements Repository
     {
         $user_id = null;
 
-        if(Auth::check())
+        if (Auth::check())
             $user_id = Auth::user()->id;
 
-        if($cart = Cart::where('user_id', $user_id)->first())
-        {
+        if ($cart = Cart::where('user_id', $user_id)->first()) {
+            return $cart;
+        } else {
+            $cart = Cart::create(['user_id' => $user_id]);
             return $cart;
         }
-
-        else
-        {
-            $cart= Cart::create(['user_id'=> $user_id]);
-            return $cart;
-        }
-    }
-
-    public function removeProductsFromCart($product_id,$cart_id)
-    {
-        return CartProduct::where('product_id',$product_id)->where('cart_id',$cart_id)->delete();
     }
 
     /**
-     * 
-     * @param $id
-     * @return Cart
+     * Remove products present in cart
+     * @param $product_id
+     * @param $cart_id
+     * @return mixed
      */
-//    public function viewCart()
-//    {
-//        $params = [
-//
-//            'user_id' => '1'
-//        ];
-//
-//
-//        if($cart = Cart::where('user_id',1)->first())
-//        {
-//            return $cart;
-//        }
-//
-//        else
-//        {
-//            $cart= Cart::create($params);
-//            return $cart;
-//        }
-//
-//    }
-
+    public function removeProductsFromCart($product_id, $cart_id)
+    {
+        return CartProduct::where('product_id', $product_id)->where('cart_id', $cart_id)->delete();
+    }
 
     public function all()
     {

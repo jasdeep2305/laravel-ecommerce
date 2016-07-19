@@ -9,6 +9,8 @@ class EditorMiddleWare
 {
     /**
      * To check if the user is logged in as Editor or Admin..
+     * Level_id =1-> Admin
+     * Level_id=2=>Editor
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request

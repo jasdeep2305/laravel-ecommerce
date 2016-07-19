@@ -27,11 +27,6 @@ class OrderRepository implements Repository
         return Order::where('user_id', Auth::user()->id)->get();
     }
 
-//    public function getProductID()
-//    {
-//        $order_id=$this->getAllOrders();
-//        return OrderProduct::where('order_id',$order_id)->get();
-//    }
     /**
      * @param $id
      * @return mixed
@@ -51,7 +46,10 @@ class OrderRepository implements Repository
         return Order::find($id);
     }
 
+
     /**
+     * Add a new order
+     * @param $request
      * @return static
      */
     public function addNewOrder($request)
@@ -65,6 +63,12 @@ class OrderRepository implements Repository
         return $order;
     }
 
+    /**
+     * Add products to a order
+     * @param $order_id
+     * @param $product_id
+     * @return static
+     */
     public function addProductsToOrder($order_id, $product_id)
     {
         $newProduct= OrderProduct::create(['order_id'=>$order_id,'product_id'=>$product_id]);

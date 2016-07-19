@@ -23,7 +23,6 @@ class ProductRepository implements Repository
      */
     public function viewProduct($id)
     {
-
         return Product::find($id);
         //return Product::find(1);
         //return Product::where('id',$id)->first();
@@ -86,16 +85,25 @@ class ProductRepository implements Repository
         // TODO: Implement update() method.
     }
 
+    /**
+     * Delete a product
+     * @param $id
+     * @return mixed
+     */
     public function delete($id)
     {
-      return Product::where('id',$id)->delete();
+        return Product::where('id', $id)->delete();
     }
 
+    /**
+     * Upload a file specific to a product
+     * @param $file
+     */
     private function uploadFile($file)
     {
-        if($file){
+        if ($file) {
 
-            Storage::put($file->getClientOriginalName(),file_get_contents($file));
+            Storage::put($file->getClientOriginalName(), file_get_contents($file));
         }
 
     }

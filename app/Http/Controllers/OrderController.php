@@ -65,7 +65,7 @@ class OrderController extends Controller
      * This function fetches the data for the details for a particular order
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */                       
+     */
     public function show($id)
     {
         $order = $this->orderRepository->find($id);
@@ -83,24 +83,17 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        if($request->confirmation=='no'){
+        if ($request->confirmation == 'no') {
             //dd($request->all());
             return redirect()->to('/products');
         }
-
-        $task=new CreateNewOrder();
+        $task = new CreateNewOrder();
         $task->handle();
         return redirect('/orders');
-
-
         //$new_order = $this->orderRepository->addNewOrder();
         //dd($request->all());
 //        $new_order = $this->orderRepository->addNewOrder($request);
 //        $this->orderProductRepository->addProductToYourOrders($request->all(), $new_order);
-
-
     }
 
     /**
@@ -113,9 +106,8 @@ class OrderController extends Controller
         //dd($request->all());
         //$this->dispatch(new CreateNewOrder($request));
 
-        $cart=$this->cartRepository->getCart();
-
-        $this->cartProductRepository->addProductsToCart($request,$cart);
+        $cart = $this->cartRepository->getCart();
+        $this->cartProductRepository->addProductsToCart($request, $cart);
         return view('order.confirmation');
     }
 
@@ -126,8 +118,8 @@ class OrderController extends Controller
      */
     public function payment($order_id)
     {
-        $details=$this->orderRepository->find($order_id);
-        return view('order.payment',compact('details'));
+        $details = $this->orderRepository->find($order_id);
+        return view('order.payment', compact('details'));
     }
 
 }

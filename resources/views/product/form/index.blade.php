@@ -27,10 +27,10 @@
                     {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
 
                     {!! Form::hidden('product_id',$product->id) !!}
-                    {!! Form::hidden('quantity',$product->quantity) !!}
+                    {!! Form::hidden('quantity','1') !!}
                     {!! Form::hidden('description',$product->description) !!}
                     {!! Form::hidden('title',$product->title) !!}
-                    {!! Form::hidden('price',$product->price) !!}
+                    {!! Form::hidden('totalprice',$product->price) !!}
                     <br>
                     {!! Form::submit('Buy Now') !!}
                     {!! Form::close() !!}

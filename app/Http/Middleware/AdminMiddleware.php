@@ -10,6 +10,8 @@ class AdminMiddleware
     /**
      * Handle an incoming request.
      *
+     * Level_id =1-> Admin
+     * Level_id=2=>Editor
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed

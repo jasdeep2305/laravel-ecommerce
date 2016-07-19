@@ -11,10 +11,7 @@ class CreateProductRequest extends Request
      */
     public function authorize()
     {
-
         return true;
-
-
     }
 
     /**
@@ -30,8 +27,6 @@ class CreateProductRequest extends Request
             'product_sellername' => 'required',
             'product_sellerid' => 'required',
             'product_image' => 'required|image'
-
-
         ];
     }
 }

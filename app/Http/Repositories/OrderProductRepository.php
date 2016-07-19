@@ -9,7 +9,6 @@
 namespace App\Http\Repositories;
 
 
-
 use App\Contracts\Repository;
 use App\OrderProduct;
 use Illuminate\Http\Request;
@@ -32,29 +31,25 @@ class OrderProductRepository implements Repository
      * @param $new_order
      * @return static
      */
-    public function addProductToYourOrders($request, $new_order){
-
+    public function addProductToYourOrders($request, $new_order)
+    {
         $params = $this->params($request, $new_order);
-        $newProduct= OrderProduct::create($params);
+        $newProduct = OrderProduct::create($params);
         return $newProduct;
-
-
     }
 
     /**
+     * Fetch required parameters
      * @param $request
      * @param $new_order
      * @return array
      */
     private function params($request, $new_order)
     {
-
         return [
             'product_id' => $request['product_id'],
             'order_id' => $new_order->id,
         ];
-
-        // dd($params);
     }
 
     public function all()
@@ -64,7 +59,7 @@ class OrderProductRepository implements Repository
 
     public function find($id)
     {
-        return OrderProduct::where('order_id',$id)->get();
+        return OrderProduct::where('order_id', $id)->get();
     }
 
     public function create()

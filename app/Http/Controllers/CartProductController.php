@@ -20,8 +20,8 @@ class CartProductController extends Controller
     public function __construct(CartProductRepository $cartProductRepository, CartRepository $cartRepository)
     {
         $this->middleware('auth');
-        $this->cartProductRepository=$cartProductRepository;
-        $this->cartRepository=$cartRepository;
+        $this->cartProductRepository = $cartProductRepository;
+        $this->cartRepository = $cartRepository;
     }
 
     /**
@@ -33,13 +33,13 @@ class CartProductController extends Controller
     public function store(Request $request)
     {
         //get the card
-       //dd($request->all());
-         $cart = $this->cartRepository->createCart();
-        
+        //dd($request->all());
+        $cart = $this->cartRepository->createCart();
+
         // add product to cart
         $this->cartProductRepository->addProductsToCart($request->all(), $cart);
         return redirect('/cart');
-        
+
     }
 
     /**
@@ -54,16 +54,16 @@ class CartProductController extends Controller
     }
 
     /**
-     * Chnage quantity of a product in cart
+     * Change quantity of a product in cart
      * @param $productid
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request)
     {
         //get the card
-        $cart = $this->cartRepository->createCart(); 
-        
-        $this->cartProductRepository->updateProductQuantity($request,$cart);
+        $cart = $this->cartRepository->createCart();
+
+        $this->cartProductRepository->updateProductQuantity($request, $cart);
         return redirect()->back();
 
     }

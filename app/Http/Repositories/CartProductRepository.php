@@ -31,23 +31,22 @@ class CartProductRepository implements Repository
 
     /**
      * Add products to Cart
+     * Update the quantity, if product is already present in the cart
      * @param $request
      * @param $cart
      * @return mixed
      */
     public function addProductsToCart($request, $cart)
     {
-        $current_quantity=0;
-       if( $this->checkIfProductInCart($request, $cart)>0)
-       {
-           $current_quantity = $this->getProductQuantityInCart($request, $cart);
-       }
+        $current_quantity = 0;
+        if ($this->checkIfProductInCart($request, $cart) > 0) {
+            $current_quantity = $this->getProductQuantityInCart($request, $cart);
+        }
 
-        if($current_quantity>0)
-        {
-            $updated_quantity=$request['quantity']+$current_quantity;
-            $cartProduct= CartProduct::where('product_id',$request['product_id'])
-                ->where('cart_id',$cart->id)
+        if ($current_quantity > 0) {
+            $updated_quantity = $request['quantity'] + $current_quantity;
+            $cartProduct = CartProduct::where('product_id', $request['product_id'])
+                ->where('cart_id', $cart->id)
                 ->update(['quantity' => $updated_quantity]);
 
             return $cartProduct;
@@ -56,7 +55,7 @@ class CartProductRepository implements Repository
         $params = $this->params($request, $cart);
         //dd($params);
         $cartProduct = CartProduct::create($params);
-       
+
         return $cartProduct;
     }
 
@@ -68,16 +67,14 @@ class CartProductRepository implements Repository
      */
     private function params($request, $cart)
     {
-       // dd($cart->all());
-       // dd($cart->id);
+        // dd($cart->all());
+        // dd($cart->id);
         return [
             'product_id' => $request['product_id'],
             'cart_id' => $cart->id,
             'quantity' => $request['quantity'],
-           'totalprice' => $request['price']
+            'totalprice' => $request['price']
         ];
-
-       // dd($params);
     }
 
     /**
@@ -102,8 +99,8 @@ class CartProductRepository implements Repository
      */
     private function checkIfProductInCart($request, $cart)
     {
-     // dd($request->all());
-      return ( CartProduct::where('product_id',$request['product_id'])->where('cart_id',$cart->id)->count());
+        // dd($request->all());
+        return (CartProduct::where('product_id', $request['product_id'])->where('cart_id', $cart->id)->count());
     }
 
     /**
@@ -114,8 +111,8 @@ class CartProductRepository implements Repository
      */
     private function getProductQuantityInCart($request, $cart)
     {
-        return CartProduct::where('product_id',$request['product_id'])
-            ->where('cart_id',$cart->id)
+        return CartProduct::where('product_id', $request['product_id'])
+            ->where('cart_id', $cart->id)
             ->first()->quantity;
     }
 
@@ -127,8 +124,8 @@ class CartProductRepository implements Repository
      */
     public function updateProductQuantity($request, $cart)
     {
-        $cartProduct= CartProduct::where('product_id',$request['product_id'])
-            ->where('cart_id',$cart->id)
+        $cartProduct = CartProduct::where('product_id', $request['product_id'])
+            ->where('cart_id', $cart->id)
             ->update(['quantity' => $request['updated_quantity']]);
         return $cartProduct;
     }
@@ -153,12 +150,17 @@ class CartProductRepository implements Repository
         // TODO: Implement update() method.
     }
 
+    /**
+     * Remove a product from Cart
+     * @param $id
+     * @return mixed
+     */
     public function delete($id)
     {
-        $product_id=$id;
+        $product_id = $id;
 
-        $cart= $this->cartRepository->getCart();
+        $cart = $this->cartRepository->getCart();
 
-        return CartProduct::where('product_id',$product_id)->where('cart_id',$cart->id)->delete();
+        return CartProduct::where('product_id', $product_id)->where('cart_id', $cart->id)->delete();
     }
 }

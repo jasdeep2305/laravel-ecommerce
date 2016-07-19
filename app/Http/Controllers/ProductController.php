@@ -20,17 +20,19 @@ class ProductController extends Controller
      */
     public function __construct(ProductRepository $productRepository)
     {
-        $this->middleware('editor')->only(['create','store']);
+        $this->middleware('editor')->only(['create', 'store']);
         $this->productRepository = $productRepository;
     }
 
+
     /**
-     *
+     * View All Products
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
         $products = $this->productRepository->viewAllProduct();
-        return view ('product.index',compact('products'));
+        return view('product.index', compact('products'));
     }
 
     /**
@@ -42,7 +44,6 @@ class ProductController extends Controller
     {
         $product = $this->productRepository->viewProduct($id);
         return view('product.show', compact('product'));
-
     }
 
     /**
@@ -63,15 +64,17 @@ class ProductController extends Controller
      */
     public function store(CreateProductRequest $request)
     {
-
         $this->productRepository->addNewProduct($request);
         return redirect()->to('/products');
     }
-    
-   
+
+    /**
+     * Delete a product
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($id)
     {
-
         $this->productRepository->delete($id);
         return redirect()->to('/products');
     }
