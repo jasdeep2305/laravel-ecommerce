@@ -35,6 +35,26 @@
                     {!! Form::submit('Buy Now') !!}
                     {!! Form::close() !!}
 
+                    <br>
+
+                    @if(Auth::check()&&Auth::user()->level_id<3)
+
+                        {!! Form::model($product,['url'=>'/products/'.$product->id.'/edit','method'=>'GET']) !!}
+                        {!! Form::submit('Edit the Product') !!}
+                        {!! Form::close() !!}
+
+                    @endif
+
+                    <br>
+
+                    @if(Auth::check()&&Auth::user()->level_id<3)
+
+                        {!! Form::model($product,['url'=>'/products/'.$product->id,'method'=>'DELETE']) !!}
+                        {!! Form::submit('Delete the Product') !!}
+                        {!! Form::close() !!}
+
+                    @endif
+
                     </li>
 
                 @endforeach</ul>

@@ -88,7 +88,7 @@ class ProductRepository implements Repository
 
     public function delete($id)
     {
-        // TODO: Implement delete() method.
+      return Product::where('id',$id)->delete();
     }
 
     private function uploadFile($file)
@@ -99,4 +99,6 @@ class ProductRepository implements Repository
         }
 
     }
+
+
 }

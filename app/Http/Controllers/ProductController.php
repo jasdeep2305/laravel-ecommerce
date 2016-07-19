@@ -67,5 +67,13 @@ class ProductController extends Controller
         $this->productRepository->addNewProduct($request);
         return redirect()->to('/products');
     }
+    
+   
+    public function destroy($id)
+    {
+
+        $this->productRepository->delete($id);
+        return redirect()->to('/products');
+    }
 
 }
