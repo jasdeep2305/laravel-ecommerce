@@ -12,6 +12,12 @@ class CartProduct extends Model
         'totalprice',
         'cart_id'
     ];
+
+    /**
+     * Relation between Cart Product and Products
+     * 1 to Many
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function products()
     {
         return $this->hasMany('App\Product');

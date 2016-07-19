@@ -10,11 +10,21 @@ class Cart extends Model
         'user_id'
     ];
 
+    /**
+     * Relation between Cart and User
+     * 1 to 1
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo('App\User');
     }
 
+    /**
+     * Relation between Cart and Cart Products
+     * 1 to Many
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function cart_products()
     {
         return $this->hasMany('App\CartProduct');
