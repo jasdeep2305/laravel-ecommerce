@@ -30,20 +30,19 @@ class ProductRepository implements Repository
         $cache= Cache::get('product'.$id);
         if($cache)
         {
+
+           // dd($cache);
             $product=Product::find($cache->id);
             return $product;
         }
-        else{
-            $product=Product::find($id);
-            $expires_at= Carbon::now()->addDay(1);
-            $cache= Cache::put('product'.$id,$product,$expires_at);
-            return $product;
-        }
-
-        $cache= Cache::get('product'.$id,function () use ($id)
+        else
         {
-            return Product::find($id);
-        });
+            $product=Product::find($id);
+            $expiresAt=Carbon::now()->addDay(1);
+            Cache::put('product'.$id,$product,$expiresAt);
+            return $product;
+
+        }
     }
 
     /**
@@ -137,10 +136,6 @@ class ProductRepository implements Repository
      */
     private function updateProduct($request, $id)
     {
-//        DB::transaction(function ()
-//        {
-//
-//        });
         $product = Product::where('id', $id)->update($request);
         $update_product = Product::find($id)->first();
         event(new ProductUpdated($update_product));

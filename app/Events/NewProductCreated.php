@@ -2,10 +2,8 @@
 
 namespace App\Events;
 
-use App\Events\Event;
 use App\Product;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class NewProductCreated extends Event
 {

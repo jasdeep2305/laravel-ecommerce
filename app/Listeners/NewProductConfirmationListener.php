@@ -3,11 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\NewProductCreated;
-use App\Jobs\Product\SendEmailToEditorsAboutNewProduct;
 use App\Jobs\Product\SendEmailToAdminsAboutNewProduct;
-use App\Product;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Jobs\Product\SendEmailToEditorsAboutNewProduct;
 
 class NewProductConfirmationListener
 {

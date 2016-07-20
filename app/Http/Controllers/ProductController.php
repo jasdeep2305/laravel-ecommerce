@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\NewProductCreated;
-use App\Events\ProductUpdated;
 use App\Http\Repositories\ProductRepository;
 use App\Http\Requests\CreateProductRequest;
 use App\Listeners\NewProductConfirmation;
