@@ -4,3 +4,10 @@
 Homestead.yaml
 Homestead.json
 .env
+/.idea/
+.idea/copyright/
+.idea/demo.iml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+resources/views/product/partials/
