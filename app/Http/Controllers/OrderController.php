@@ -57,7 +57,6 @@ class OrderController extends Controller
     {
         $orders = $this->orderRepository->getAllOrders();
         return view('order.index', compact('orders'));
-        // return $orders;
     }
 
     /**
@@ -70,9 +69,6 @@ class OrderController extends Controller
         $order = $this->orderRepository->find($id);
         $orderProduct = $this->orderProductRepository->getProductsForOrder($id);
         return view('order.show', compact('orderProduct', 'order'));
-
-//        $orderProducts=$this->productRepository->getAllProductsForOrder($id);
-//        return view('order.show',compact('orderProducts'));
     }
 
     /**
@@ -83,16 +79,10 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         if ($request->confirmation == 'no') {
-            //dd($request->all());
             return redirect()->to('/products');
         }
-       
         $this->orderRepository->create();
         return redirect('/orders');
-        //$new_order = $this->orderRepository->addNewOrder();
-        //dd($request->all());
-//        $new_order = $this->orderRepository->addNewOrder($request);
-//        $this->orderProductRepository->addProductToYourOrders($request->all(), $new_order);
     }
 
     /**
@@ -102,7 +92,6 @@ class OrderController extends Controller
      */
     public function confirmation(Request $request)
     {
-
         $cart = $this->cartRepository->getCart();
         $this->cartProductRepository->addProductsToCart($request, $cart);
         return view('order.confirmation');

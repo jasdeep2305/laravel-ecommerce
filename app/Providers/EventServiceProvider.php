@@ -17,7 +17,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Events\NewOrderCreated'=>
                 ['App\Listeners\NewOrderCreatedListener'],
             'App\Events\NewUserCreated'=>
-                ['App\Listeners\NewUserCreatedListener']
+                ['App\Listeners\NewUserCreatedListener'],
 
         'App\Events\NewProductCreated' => [
             'App\Listeners\NewProductConfirmationListener',
