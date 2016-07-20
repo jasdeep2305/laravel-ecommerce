@@ -26,7 +26,7 @@ trait EmailNotifier
     public function sendEmail(User $user, Product $product, $view)
     {
 
-            dd('Mail Sent');
+         echo('Mail Sent');
             //Mail::sent();
 
 

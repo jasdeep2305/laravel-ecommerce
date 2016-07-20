@@ -84,6 +84,12 @@ class ProductRepository implements Repository
         // TODO: Implement create() method.
     }
 
+    /**
+     * Get required parameters and call updateProduct function
+     * @param $request
+     * @param $id
+     * @return mixed
+     */
     public function update($request, $id)
     {
         $param = $this->params($request);
@@ -113,14 +119,16 @@ class ProductRepository implements Repository
 
     }
 
+    /**Update the product and fire an event to sent Email
+     * @param $request
+     * @param $id
+     * @return mixed
+     */
     private function updateProduct($request, $id)
     {
-
         $product = Product::where('id', $id)->update($request);
-//        dd($product);
-//        $update_product= Product::find($product)->first();
-//        dd($update_product);
-//       event(new ProductUpdated($update_product));
+        $update_product= Product::find($id)->first();
+        event(new ProductUpdated($update_product));
         return $product;
     }
 
