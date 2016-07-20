@@ -26,6 +26,5 @@ class NewUserCreatedListener
     {
         //dd('In listener');
         dispatch(new WelcomeUserMail($event->user));
-
     }
 }
