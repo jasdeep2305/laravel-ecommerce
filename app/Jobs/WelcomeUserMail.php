@@ -37,7 +37,8 @@ class WelcomeUserMail extends Job implements ShouldQueue
     {
         $user = $this->user;
         echo('Mail Sent about New User ');
-        Mail::send('emails.user.welcomeUserMail', compact($this->user), function ($message) use ($user) {
+
+        Mail::send('emails.user.welcomeUserMail', compact('user'), function ($message) use ($user) {
             $message->from('divyadawra@instaveritas.com', 'Laravel');
             $message->to($user->email)->subject('Subject');
        });

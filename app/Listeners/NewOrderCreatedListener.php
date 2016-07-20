@@ -18,24 +18,22 @@ class NewOrderCreatedListener
      *
      * @return void
      */
-    public function __construct(NewOrderCreated $event)
+    public function __construct()
     {
 
-        $this->event = $event;
     }
 
     /**
      * Handle the event.
      *
-     * @param  NewOrderCreated  $event
+     * @param  NewOrderCreated $event
      * @return void
      */
-    public function handle()
+    public function handle(NewOrderCreated $event)
     {
-       dispatch(new EmailSellerForNewOrder($this->event->order));
-        dispatch(new EmailUserOrderConfirmation($this->event->order));
+        dispatch(new EmailSellerForNewOrder($event->order));
+        dispatch(new EmailUserOrderConfirmation($event->order));
 
 
-        
     }
 }
