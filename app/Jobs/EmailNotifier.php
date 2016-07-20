@@ -17,16 +17,23 @@ trait EmailNotifier
 {
 
     /**
-     * @param User $users
+     * @param User $user
      * @param Product $product
      * @param $view
+     * @param $subject
+     * @internal param User $users
      * @internal param User $user
      */
 
-    public function sendEmail(User $user, Product $product, $view)
+    public function sendEmail(User $user, Product $product, $view, $subject)
     {
-         echo('Mail Sent');
-            //Mail::sent();
+        echo('Mail Sent about New Product');
+
+        Mail::send($view, compact('product'), function ($mail) use ($user,$subject) {
+
+            $mail->from('Unkown@app.com', 'Your Application');
+            $mail->to($user->email, $user->name)->subject($subject);
+        });
 
     }
 

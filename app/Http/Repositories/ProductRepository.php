@@ -38,7 +38,7 @@ class ProductRepository implements Repository
         $params = $this->params($request);
         $this->uploadFile($request->file('product_image'));
         $product = Product::create($params);
-       // event(new NewProductCreated($product));
+       event(new NewProductCreated($product));
         return $product;
     }
 

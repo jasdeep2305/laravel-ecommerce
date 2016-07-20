@@ -62,7 +62,7 @@ class CartRepository implements Repository
      * @param $cart_id
      * @return mixed
      */
-    public function removeProductsFromCart($product_id, $cart_id)
+    public function removeProduct($product_id, $cart_id)
     {
         return CartProduct::where('product_id', $product_id)->where('cart_id', $cart_id)->delete();
     }
@@ -82,7 +82,7 @@ class CartRepository implements Repository
         // TODO: Implement create() method.
     }
 
-    public function update($request, $id)
+    public function update($id,$data)
     {
         // TODO: Implement update() method.
     }
