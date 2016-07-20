@@ -18,17 +18,14 @@ use Illuminate\Support\Facades\Auth;
 class OrderRepository implements Repository
 {
 
-
     /**
      * Get all orders of logged in user
-     * 
      * @return mixed
      */
-    public function getAllOrders()
+    public function all()
     {
         return Order::where('user_id', Auth::user()->id)->get();
     }
-
 
 
     /**
@@ -38,9 +35,8 @@ class OrderRepository implements Repository
 
     public function getProductsForOrder($id)
     {
-        return Order::where('id',$id)->get();
+        return Order::where('id', $id)->get();
     }
-
 
 
     /**
@@ -52,9 +48,16 @@ class OrderRepository implements Repository
         return Order::find($id);
     }
 
+    public function findFromOrderProduct($id)
+    {
+        return OrderProduct::where('order_id', $id)->get();
+    }
 
-
-
+    public function getProductsForOrderFromOrderProduct($id)
+    {
+        return $this->findFromOrderProduct($id);
+        //return OrderProduct::where('order_id',$id)->get();
+    }
     /**
      * Add a new order
      * @param $request
@@ -62,14 +65,13 @@ class OrderRepository implements Repository
      */
     public function addNewOrder($request)
     {
-        $user_id=Auth::user()->id;
-        $placed_on= Carbon::now()->toDateString();
-        $delivered_on= Carbon::now()->addDay(3)->toDateString();
-        $bill_amount= $request['totalprice'];
-        $order=Order::create(['user_id'=>$user_id,'placed_on'=>$placed_on,'delivered_on'=>$delivered_on,'bill_amount'=>$bill_amount]);
+        $user_id = Auth::user()->id;
+        $placed_on = Carbon::now()->toDateString();
+        $delivered_on = Carbon::now()->addDay(3)->toDateString();
+        $bill_amount = $request['totalprice'];
+        $order = Order::create(['user_id' => $user_id, 'placed_on' => $placed_on, 'delivered_on' => $delivered_on, 'bill_amount' => $bill_amount]);
         return $order;
     }
-
 
 
     /**
@@ -80,25 +82,21 @@ class OrderRepository implements Repository
      */
     public function addProductsToOrder($order_id, $product_id)
     {
-        $newProduct= OrderProduct::create(['order_id'=>$order_id,'product_id'=>$product_id]);
+        $newProduct = OrderProduct::create(['order_id' => $order_id, 'product_id' => $product_id]);
         return $newProduct;
 
     }
 
-    public function all()
-    {
-        // TODO: Implement all() method.
-    }
 
     public function create()
     {
         // TODO: Implement create() method.
         $task = new CreateNewOrder();
         $task->handle();
-        
+
     }
 
-    public function update($request,$id)
+    public function update($request, $id)
     {
         // TODO: Implement update() method.
     }
@@ -107,4 +105,12 @@ class OrderRepository implements Repository
     {
         // TODO: Implement delete() method.
     }
+    private function params($request, $new_order)
+    {
+        return [
+            'product_id' => $request['product_id'],
+            'order_id' => $new_order->id,
+        ];
+    }
+
 }
