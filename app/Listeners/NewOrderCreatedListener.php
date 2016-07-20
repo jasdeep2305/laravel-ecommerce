@@ -21,6 +21,7 @@ class NewOrderCreatedListener
     public function __construct()
     {
 
+
     }
 
     /**

@@ -27,9 +27,12 @@ class ProductRepository implements Repository
      */
     public function viewProduct($id)
     {
-        $cache= Cache::get('product'.$id);
+        //get the cache
+        $cache= Cache::get('product_'.$id);
+
         if($cache)
         {
+           // return the cache
             return $cache;
         }
         else
@@ -38,6 +41,7 @@ class ProductRepository implements Repository
             $expiresAt=Carbon::now()->addDay(1);
             Cache::put('product'.$id,$product,$expiresAt);
             return $product;
+
         }
 
         $cache=Cache::get('product'.$id,function ()use ($id){

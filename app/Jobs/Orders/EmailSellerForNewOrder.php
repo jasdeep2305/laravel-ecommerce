@@ -3,22 +3,29 @@
 namespace App\Jobs\Orders;
 
 use App\Jobs\Job;
+use App\Order;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 
 class EmailSellerForNewOrder extends Job implements ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
+    /**
+     * @var Order
+     */
+    private $order;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Order $order)
     {
-        //
+        $order=$this->order;
+
     }
 
     /**
@@ -28,8 +35,13 @@ class EmailSellerForNewOrder extends Job implements ShouldQueue
      */
     public function handle()
     {
-        echo('Mail sent to Seller');
-        
+
+        $order=$this->order;
+        Mail::send('emails.order.notifySellerForNewOrder', compact('order'), function ($message)  {
+            $message->from('divyadawra@instaveritas.com', 'Laravel');
+            $message->to('seller@seller.com')->subject('New product ordered');
+
+        });
         
     }
 }

@@ -22,6 +22,7 @@ class NewOrderCreated extends Event
     public function __construct(Order $order)
     {
         $this->order = $order;
+        
     }
 
     /**
