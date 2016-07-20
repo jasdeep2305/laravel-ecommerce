@@ -70,7 +70,7 @@ class CartProductRepository implements Repository
             'product_id' => $request['product_id'],
             'cart_id' => $cart->id,
             'quantity' => $request['quantity'],
-            'totalprice' => $request['price']
+            'totalprice' => $request['totalprice']
         ];
     }
 
