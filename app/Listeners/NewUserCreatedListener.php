@@ -3,24 +3,17 @@
 namespace App\Listeners;
 
 use App\Events\NewUserCreated;
-use App\Jobs\EmailUserForRegistration;
+use App\Jobs\WelcomeUserMail;
 
 class NewUserCreatedListener
 {
-    /**
-     * @var NewUserCreated
-     */
-    private $event;
-
     /**
      * Create the event listener.
      *
      * @return void
      */
-    public function __construct(NewUserCreated $event)
+    public function __construct()
     {
-        //
-        $this->event = $event;
     }
 
     /**
@@ -29,8 +22,10 @@ class NewUserCreatedListener
      * @param  NewUserCreated  $event
      * @return void
      */
-    public function handle()
+    public function handle(NewUserCreated $event)
     {
-        dispatch(new EmailUserForRegistration($this->event->user));
+        //dd('In listener');
+        dispatch(new WelcomeUserMail($event->user));
+
     }
 }

@@ -19,10 +19,10 @@
 
                                     @include('order.form.payment')
 
-
                                 </li>
 
                             @endforeach
+                            {{$orders->links()}}
 
                             <div class="form-group" >
                                 <label><a href="{{url('/products')}}">Continue Shopping</a> </label>
