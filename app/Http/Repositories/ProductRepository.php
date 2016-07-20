@@ -29,15 +29,6 @@ class ProductRepository implements Repository
     }
 
     /**
-     * Fetch all the products
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
-    public function viewAllProduct()
-    {
-        return Product::all();
-    }
-
-    /**
      *
      * Add a new product to DB and fire event
      * @param $request
@@ -67,9 +58,13 @@ class ProductRepository implements Repository
         ];
     }
 
+    /**
+     * Fetch all the products
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function all()
     {
-        // TODO: Implement all() method.
+        return Product::paginate(1);
     }
 
     public function find($id)

@@ -7,5 +7,6 @@
 
     @include('product.form.index')
 
+        {{$products->links()}}
     </div>
 @stop
