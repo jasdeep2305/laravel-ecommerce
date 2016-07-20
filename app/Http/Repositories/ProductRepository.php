@@ -13,6 +13,7 @@ use App\Contracts\Repository;
 use App\Events\NewProductCreated;
 use App\Events\ProductUpdated;
 use App\Product;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class ProductRepository implements Repository
@@ -25,6 +26,7 @@ class ProductRepository implements Repository
      */
     public function viewProduct($id)
     {
+        $cache= Cache::get('product'.$id);
         return Product::find($id);
     }
 
