@@ -49,6 +49,7 @@ class CartProductRepository implements Repository
 
             return $cartProduct;
         }
+
         $params = $this->params($request, $cart);
         $cartProduct = CartProduct::create($params);
         return $cartProduct;
@@ -129,7 +130,7 @@ class CartProductRepository implements Repository
         // TODO: Implement all() method.
     }
 
-    public function create()
+    public function create(array $data)
     {
         // TODO: Implement create() method.
     }

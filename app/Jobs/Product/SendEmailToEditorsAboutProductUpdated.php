@@ -38,8 +38,9 @@ class SendEmailToEditorsAboutProductUpdated extends Job implements ShouldQueue
     {
         //all editors
         $users = User::where('level_id', 2)->get();
+
         foreach ($users as $user) {
-            $this->sendEmail($user, $this->product, 'product.update');
+            $this->sendEmail($user, $this->product, 'emails.product.update','Product Updated');
         }
     }
 }

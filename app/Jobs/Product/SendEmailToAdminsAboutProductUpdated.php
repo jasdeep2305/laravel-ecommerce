@@ -38,8 +38,9 @@ class SendEmailToAdminsAboutProductUpdated extends Job implements ShouldQueue
     {
         //all admins
         $users = User::where('level_id', 1)->get();
+
         foreach ($users as $user) {
-            $this->sendEmail($user, $this->product, 'product.update');
+            $this->sendEmail($user, $this->product, 'emails.product.update','Product Updated');
         }
     }
 }

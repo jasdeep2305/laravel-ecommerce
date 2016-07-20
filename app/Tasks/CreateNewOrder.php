@@ -77,7 +77,7 @@ class CreateNewOrder extends Task
 
         foreach($products as $product) {
             $this->orderRepository->addProductsToOrder($this->order->id, $product->id);
-            $this->cartRepository->removeProductsFromCart($product->id, $this->cart->id);
+            $this->cartRepository->removeProduct($product->id, $this->cart->id);
         }
     }
 

@@ -39,7 +39,7 @@ class SendEmailToAdminsAboutNewProduct extends Job implements ShouldQueue
         $users=User::where('level_id', 1)->get();
 
         foreach ($users as $user) {
-            $this->sendEmail($user, $this->product, 'product.create');
+            $this->sendEmail($user, $this->product, 'emails.product.create','New Product Added');
         }
     }
 }

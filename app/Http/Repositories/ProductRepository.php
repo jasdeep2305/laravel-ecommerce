@@ -29,15 +29,6 @@ class ProductRepository implements Repository
     }
 
     /**
-     * Fetch all the products
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
-    public function viewAllProduct()
-    {
-        return Product::all();
-    }
-
-    /**
      *
      * Add a new product to DB and fire event
      * @param $request
@@ -47,7 +38,7 @@ class ProductRepository implements Repository
         $params = $this->params($request);
         $this->uploadFile($request->file('product_image'));
         $product = Product::create($params);
-       // event(new NewProductCreated($product));
+       event(new NewProductCreated($product));
         return $product;
     }
 
@@ -67,9 +58,13 @@ class ProductRepository implements Repository
         ];
     }
 
+    /**
+     * Fetch all the products
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function all()
     {
-        // TODO: Implement all() method.
+        return Product::paginate(1);
     }
 
     public function find($id)
