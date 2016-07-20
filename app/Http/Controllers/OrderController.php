@@ -35,7 +35,6 @@ class OrderController extends Controller
 
     public function __construct(
         OrderRepository $orderRepository,
-        OrderProductRepository $orderProductRepository,
         ProductRepository $productRepository,
         CartProductRepository $cartProductRepository,
         CartRepository $cartRepository
@@ -43,7 +42,6 @@ class OrderController extends Controller
     {
         $this->middleware('auth');
         $this->orderRepository = $orderRepository;
-        $this->orderProductRepository = $orderProductRepository;
         $this->productRepository = $productRepository;
         $this->cartProductRepository = $cartProductRepository;
         $this->cartRepository = $cartRepository;
@@ -55,9 +53,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = $this->orderRepository->getAllOrders();
+        $orders = $this->orderRepository->all();
         return view('order.index', compact('orders'));
-        // return $orders;
     }
 
     /**
@@ -68,11 +65,8 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = $this->orderRepository->find($id);
-        $orderProduct = $this->orderProductRepository->getProductsForOrder($id);
+        $orderProduct = $this->orderRepository->getProductsForOrderFromOrderProduct($id);
         return view('order.show', compact('orderProduct', 'order'));
-
-//        $orderProducts=$this->productRepository->getAllProductsForOrder($id);
-//        return view('order.show',compact('orderProducts'));
     }
 
     /**
@@ -83,16 +77,10 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         if ($request->confirmation == 'no') {
-            //dd($request->all());
             return redirect()->to('/products');
         }
-       
         $this->orderRepository->create();
         return redirect('/orders');
-        //$new_order = $this->orderRepository->addNewOrder();
-        //dd($request->all());
-//        $new_order = $this->orderRepository->addNewOrder($request);
-//        $this->orderProductRepository->addProductToYourOrders($request->all(), $new_order);
     }
 
     /**
