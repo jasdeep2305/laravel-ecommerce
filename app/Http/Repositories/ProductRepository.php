@@ -26,8 +26,6 @@ class ProductRepository implements Repository
     public function viewProduct($id)
     {
         return Product::find($id);
-        //return Product::find(1);
-        //return Product::where('id',$id)->first();
     }
 
     /**
@@ -41,7 +39,7 @@ class ProductRepository implements Repository
 
     /**
      *
-     * Add a new product to DB
+     * Add a new product to DB and fire event
      * @param $request
      */
     public function addNewProduct($request)
@@ -112,25 +110,27 @@ class ProductRepository implements Repository
      */
     private function uploadFile($file)
     {
-        if ($file) {
-
+        if ($file)
+        {
             Storage::put($file->getClientOriginalName(), file_get_contents($file));
         }
-
     }
 
-    /**Update the product and fire an event to sent Email
+    /**
+     * Update the product and fire an event to sent Email
      * @param $request
      * @param $id
      * @return mixed
      */
     private function updateProduct($request, $id)
     {
+//        DB::transaction(function ()
+//        {
+//
+//        });
         $product = Product::where('id', $id)->update($request);
-        $update_product= Product::find($id)->first();
+        $update_product = Product::find($id)->first();
         event(new ProductUpdated($update_product));
         return $product;
     }
-
-
 }

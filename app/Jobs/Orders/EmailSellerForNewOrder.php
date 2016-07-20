@@ -28,7 +28,6 @@ class EmailSellerForNewOrder extends Job implements ShouldQueue
      */
     public function handle()
     {
-        
-    //   dd('Mail Sent to Seller');
+        echo('Mail sent to User');
     }
 }

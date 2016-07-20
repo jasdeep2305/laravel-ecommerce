@@ -90,7 +90,6 @@ class OrderController extends Controller
      */
     public function confirmation(Request $request)
     {
-
         $cart = $this->cartRepository->getCart();
         $this->cartProductRepository->addProductsToCart($request, $cart);
         return view('order.confirmation');

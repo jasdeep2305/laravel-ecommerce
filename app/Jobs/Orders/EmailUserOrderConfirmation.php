@@ -28,7 +28,7 @@ class EmailUserOrderConfirmation extends Job implements ShouldQueue
      */
     public function handle()
     {
-       dd('Mail sent to User');
+       echo('Mail sent to User');
         
     }
     

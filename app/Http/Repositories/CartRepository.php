@@ -23,7 +23,6 @@ class CartRepository implements Repository
      */
     public function createCart()
     {
-
         $user_id = null;
 
         if (Auth::check())
