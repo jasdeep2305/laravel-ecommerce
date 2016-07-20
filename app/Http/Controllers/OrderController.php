@@ -8,7 +8,6 @@ use App\Http\Repositories\OrderProductRepository;
 use App\Http\Repositories\OrderRepository;
 use App\Http\Repositories\ProductRepository;
 use App\Http\Requests;
-use App\Tasks\CreateNewOrder;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -87,8 +86,8 @@ class OrderController extends Controller
             //dd($request->all());
             return redirect()->to('/products');
         }
-        $task = new CreateNewOrder();
-        $task->handle();
+       
+        $this->orderRepository->create();
         return redirect('/orders');
         //$new_order = $this->orderRepository->addNewOrder();
         //dd($request->all());
@@ -103,8 +102,6 @@ class OrderController extends Controller
      */
     public function confirmation(Request $request)
     {
-        //dd($request->all());
-        //$this->dispatch(new CreateNewOrder($request));
 
         $cart = $this->cartRepository->getCart();
         $this->cartProductRepository->addProductsToCart($request, $cart);
