@@ -14,16 +14,13 @@
 
 
 
-
                                 <li class="list-group-item">
                                     Product ID: {{request('product_id')}} <br>
                                     Title: {{request('title')}}<br>
                                     Product Description: {{request('description')}}<br>
                                     Total Price: {{request('totalprice')}}
                                 </li>
-                            {{--{!! Form::label('product_id','Product ID:') !!}--}}
 
-                            {{--{!! Form::label('') !!}--}}
 
                             <br>
                             @include('order.form.confirmation')

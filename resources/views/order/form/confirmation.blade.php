@@ -1,5 +1,5 @@
 {!! Form::open(['url'=>'/orders','method'=>'POST']) !!}
-
+{{--{!! csrf_token() !!}--}}
     {!! Form::hidden('product_id', request('product_id')) !!}
     {!! Form::hidden('totalprice',request('totalprice')) !!}
     {!! Form::hidden('quantity',request('quantity')) !!}
