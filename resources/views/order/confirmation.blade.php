@@ -18,7 +18,7 @@
                                     Product ID: {{request('product_id')}} <br>
                                     Title: {{request('title')}}<br>
                                     Product Description: {{request('description')}}<br>
-                                    Total Price: {{request('totalprice')}}
+                                    Total Price: {{request('price')}}
                                 </li>
 
 

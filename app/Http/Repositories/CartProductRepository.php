@@ -130,7 +130,7 @@ class CartProductRepository implements Repository
         // TODO: Implement all() method.
     }
 
-    public function create(array $data)
+    public function create()
     {
         // TODO: Implement create() method.
     }

@@ -13,6 +13,7 @@ use App\Contracts\Repository;
 use App\Events\NewProductCreated;
 use App\Events\ProductUpdated;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,7 +28,22 @@ class ProductRepository implements Repository
     public function viewProduct($id)
     {
         $cache= Cache::get('product'.$id);
-        return Product::find($id);
+        if($cache)
+        {
+            $product=Product::find($cache->id);
+            return $product;
+        }
+        else{
+            $product=Product::find($id);
+            $expires_at= Carbon::now()->addDay(1);
+            $cache= Cache::put('product'.$id,$product,$expires_at);
+            return $product;
+        }
+
+        $cache= Cache::get('product'.$id,function () use ($id)
+        {
+            return Product::find($id);
+        });
     }
 
     /**
