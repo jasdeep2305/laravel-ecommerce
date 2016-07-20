@@ -21,7 +21,7 @@ class CartRepository implements Repository
      * @param $request
      * @return cart
      */
-    public function createCart()
+    public function create()
     {
         $user_id = null;
 
@@ -34,7 +34,6 @@ class CartRepository implements Repository
             $cart = Cart::create(['user_id' => $user_id]);
             return $cart;
         }
-
     }
 
     /**
@@ -75,11 +74,6 @@ class CartRepository implements Repository
     public function find($id)
     {
         // TODO: Implement find() method.
-    }
-
-    public function create()
-    {
-        // TODO: Implement create() method.
     }
 
     public function update($id,$data)

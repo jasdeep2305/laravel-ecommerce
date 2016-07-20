@@ -32,7 +32,7 @@ class CartProductController extends Controller
      */
     public function store(Request $request)
     {
-        $cart = $this->cartRepository->createCart();
+        $cart = $this->cartRepository->create();
         $this->cartProductRepository->addProductsToCart($request->all(), $cart);
         return redirect('/cart');
 
@@ -59,7 +59,7 @@ class CartProductController extends Controller
     public function update(Request $request)
     {
         //get the card
-        $cart = $this->cartRepository->createCart();
+        $cart = $this->cartRepository->create();
         $this->cartProductRepository->updateProductQuantity($request, $cart);
         return redirect()->back();
 

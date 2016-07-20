@@ -35,7 +35,6 @@ class WelcomeUserMail extends Job implements ShouldQueue
      */
     public function handle()
     {
-       
         $user = $this->user;
         Mail::send('emails.user.welcomeUserMail', compact('user'), function ($message) use ($user) {
             $message->from('divyadawra@instaveritas.com', 'Laravel');
