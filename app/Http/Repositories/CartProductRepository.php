@@ -37,11 +37,14 @@ class CartProductRepository implements Repository
      */
     public function addProductsToCart($request, $cart)
     {
+        //dd($request->all());
         $current_quantity = 0;
         if ($this->checkIfProductInCart($request, $cart) > 0) {
+          //  dd($request->all());
             $current_quantity = $this->getProductQuantityInCart($request, $cart);
         }
         if ($current_quantity > 0) {
+          // dd($request->all());
             $updated_quantity = $request['quantity'] + $current_quantity;
             $cartProduct = CartProduct::where('product_id', $request['product_id'])
                 ->where('cart_id', $cart->id)
@@ -49,6 +52,7 @@ class CartProductRepository implements Repository
 
             return $cartProduct;
         }
+
         $params = $this->params($request, $cart);
         $cartProduct = CartProduct::create($params);
         return $cartProduct;
