@@ -24,7 +24,7 @@ class EmailSellerForNewOrder extends Job implements ShouldQueue
      */
     public function __construct(Order $order)
     {
-        $order=$this->order;
+        $this->order=$order;
 
     }
 
