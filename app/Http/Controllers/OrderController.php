@@ -16,8 +16,8 @@ class OrderController extends Controller
      */
     private $orderRepository;
     /**
-
-    /**
+     *
+     * /**
      * @var ProductRepository
      */
     private $productRepository;
@@ -61,7 +61,7 @@ class OrderController extends Controller
     }
 
     /**
-     * for adding a new order
+     * For adding a new order
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */

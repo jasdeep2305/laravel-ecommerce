@@ -28,23 +28,20 @@ class ProductRepository implements Repository
     public function viewProduct($id)
     {
         //get the cache
-        $cache= Cache::get('product_'.$id);
+        $cache = Cache::get('product_' . $id);
 
-        if($cache)
-        {
-           // return the cache
+        if ($cache) {
+            // return the cache
             return $cache;
-        }
-        else
-        {
-            $product=Product::find($id);
-            $expiresAt=Carbon::now()->addDay(1);
-            Cache::put('product'.$id,$product,$expiresAt);
+        } else {
+            $product = Product::find($id);
+            $expiresAt = Carbon::now()->addDay(1);
+            Cache::put('product' . $id, $product, $expiresAt);
             return $product;
 
         }
 
-        $cache=Cache::get('product'.$id,function ()use ($id){
+        $cache = Cache::get('product' . $id, function () use ($id) {
             return Product::find($id);
         });
     }
@@ -59,7 +56,7 @@ class ProductRepository implements Repository
         $params = $this->params($request);
         $this->uploadFile($request->file('product_image'));
         $product = Product::create($params);
-       event(new NewProductCreated($product));
+        event(new NewProductCreated($product));
         return $product;
     }
 
@@ -126,8 +123,7 @@ class ProductRepository implements Repository
      */
     private function uploadFile($file)
     {
-        if ($file)
-        {
+        if ($file) {
             Storage::put($file->getClientOriginalName(), file_get_contents($file));
         }
     }
