@@ -1,25 +1,18 @@
 <div class="row">
     <div class="col-md-4">
 
-        {!! Form::model($product,['url'=>'/cartproducts/'.$product->id,'method'=>'DELETE'])!!}
-
+        {!! Form::model($product,['url'=>'/cart','method'=>'DELETE'])!!}
         {!! Form::hidden('product_id',$product->id) !!}
         {!! Form::hidden('cart_id',$cart->id) !!}
-        {!! Form::submit('Remove from Cart') !!}
-        <br>
-
+        {!! Form::submit('Remove from Cart') !!}<br>
         {!! Form::close() !!}
 
-
-
-        {!! Form::model($product,['url'=>'/cartproducts/.$product->id','method'=>'PATCH'])!!}
+        {!! Form::model($product,['url'=>'/cart','method'=>'PUT'])!!}
         {!! Form::hidden('product_id',$product->id) !!}
-        {!! Form::hidden('cart_id',$cart->id) !!}
-        <br>
+        {!! Form::hidden('cart_id',$cart->id) !!} <br>
         {!! Form::label('quantity', 'New Quantity')!!}
-        {!! Form::selectRange('updated_quantity', 1, 10) !!}
+        {!! Form::selectRange('updated_quantity', 1, 10) !!}<br>
         {{--{!! Form::number('updated_quantity',null,['class'=>'form-control','placeholder'=>'Enter New Quantity here']) !!}--}}
-        <br>
         {!! Form::submit('Update Quantity') !!}
         {!! Form::close() !!}
 

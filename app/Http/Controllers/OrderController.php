@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Repositories\CartProductRepository;
+
 use App\Http\Repositories\CartRepository;
-use App\Http\Repositories\OrderProductRepository;
 use App\Http\Repositories\OrderRepository;
 use App\Http\Repositories\ProductRepository;
 use App\Http\Requests;
@@ -17,13 +16,11 @@ class OrderController extends Controller
      */
     private $orderRepository;
     /**
+
+    /**
      * @var ProductRepository
      */
     private $productRepository;
-    /**
-     * @var CartProductRepository
-     */
-    private $cartProductRepository;
     /**
      * @var CartRepository
      */
@@ -32,14 +29,12 @@ class OrderController extends Controller
     public function __construct(
         OrderRepository $orderRepository,
         ProductRepository $productRepository,
-        CartProductRepository $cartProductRepository,
         CartRepository $cartRepository
     )
     {
         $this->middleware('auth');
         $this->orderRepository = $orderRepository;
         $this->productRepository = $productRepository;
-        $this->cartProductRepository = $cartProductRepository;
         $this->cartRepository = $cartRepository;
     }
 
@@ -87,7 +82,7 @@ class OrderController extends Controller
     public function confirmation(Request $request)
     {
         $cart = $this->cartRepository->getCart();
-        $this->cartProductRepository->addProductsToCart($request, $cart);
+        $this->cartRepository->addProduct($request, $cart);
         return view('order.confirmation');
     }
 

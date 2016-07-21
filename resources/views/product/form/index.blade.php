@@ -9,32 +9,27 @@
                     {!! link_to('/products/'.$product->id, $title = $product->title, $attributes = ['title'], $secure = null) !!}
                     <BR>
 
-                    {!! Form::model ($product,['method'=>'POST','url'=>'/cartproducts']) !!}
-                    <br>
+
+                    {!! Form::model ($product,['method'=>'POST','url'=>'/cart']) !!} <br>
                     {!! Form::label('product_description', 'Product Description')!!}
-                    {!! Form::text ('description',null,['class'=>'form-control','readonly']) !!}
-                    <br>
+                    {!! Form::text ('description',null,['class'=>'form-control','readonly']) !!} <br>
                     {!! Form::label('quantity', 'Product Quantity')!!}
-                    {!! Form::selectRange('quantity', 1, 10) !!}
-                    <br>
+                    {!! Form::selectRange('quantity', 1, 10) !!}<br>
                     {!! Form::label('price', 'Product Price')!!}
-                    {!! Form::number ('price',null,['class'=>'form-control','readonly']) !!}
-                    <br>
+                    {!! Form::number ('price',null,['class'=>'form-control','readonly']) !!}<br>
                     {!! Form::hidden('product_id',$product->id) !!}
                     {!! Form::submit('Add To Cart') !!}
                     {!! Form::close() !!}
 
-                    {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
 
+                    {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
                     {!! Form::hidden('product_id',$product->id) !!}
                     {!! Form::hidden('quantity','1') !!}
                     {!! Form::hidden('description',$product->description) !!}
                     {!! Form::hidden('title',$product->title) !!}
-                    {!! Form::hidden('price',$product->price) !!}
-                    <br>
+                    {!! Form::hidden('price',$product->price) !!}<br>
                     {!! Form::submit('Buy Now') !!}
                     {!! Form::close() !!}
-
                     <br>
 
                     @if(Auth::check()&&Auth::user()->level_id<3)
