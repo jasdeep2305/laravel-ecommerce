@@ -44,15 +44,17 @@ class ProductRepository implements Repository
 
         }
 
-        $cache=Cache::get('product'.$id,function ()use ($id){
-            return Product::find($id);
-        });
+        //Other method to implement the caching
+//        $cache=Cache::get('product'.$id,function ()use ($id){
+//            return Product::find($id);
+//        });
     }
 
     /**
      *
      * Add a new product to DB and fire event
      * @param $request
+     * @return static
      */
     public function addNewProduct($request)
     {
@@ -88,6 +90,11 @@ class ProductRepository implements Repository
         return Product::paginate(1);
     }
 
+    /**
+     * Fetches the product details for the selected product id
+     * @param $id
+     * @return mixed
+     */
     public function find($id)
     {
         return Product::find($id)->first();

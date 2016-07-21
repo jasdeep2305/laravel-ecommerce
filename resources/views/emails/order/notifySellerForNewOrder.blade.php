@@ -1,7 +1,7 @@
-Hi
-
+Hi, <br><br>
 
 A new product has been ordered with {{$order->id}}.
-
-Thanks
+<br>
+<br>
+Thanks<br>
 Admin
