@@ -25,7 +25,6 @@ class ProductController extends Controller
         $this->productRepository = $productRepository;
     }
 
-
     /**
      * View All Products
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

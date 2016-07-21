@@ -17,6 +17,7 @@ class CartRepository implements Repository
 {
     /**
      * Get the current cart
+     * If cart not present, create a new cart
      * @return static
      */
     public function getCart()
@@ -48,6 +49,7 @@ class CartRepository implements Repository
 
 
     /**
+     * Add a new product to the cart
      * @param $request
      * @param $cart
      * @return static
@@ -73,7 +75,7 @@ class CartRepository implements Repository
     }
 
     /**
-     * fetch required parameters from request
+     * Fetch required parameters from request
      * @param $request
      * @param $cart
      * @return array
@@ -113,7 +115,7 @@ class CartRepository implements Repository
     }
 
     /**
-     *
+     * Update Product Quantity for a product present in cart
      * @param $request
      * @param $cart
      */
