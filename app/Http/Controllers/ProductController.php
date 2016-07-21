@@ -7,6 +7,7 @@ use App\Http\Requests\CreateProductRequest;
 use App\Listeners\NewProductConfirmation;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -21,7 +22,7 @@ class ProductController extends Controller
      */
     public function __construct(ProductRepository $productRepository)
     {
-        $this->middleware('editor')->only(['create', 'store']);
+        //$this->middleware('editor')->only(['create', 'store']);
         $this->productRepository = $productRepository;
     }
 
@@ -53,6 +54,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', new Product());
         return view('product.create');
     }
 
@@ -75,6 +77,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete', new Product());
         $this->productRepository->delete($id);
         return redirect()->to('/products');
     }
@@ -98,6 +101,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('edit',new Product());
         $product = $this->productRepository->find($id);
         return view('product.edit', compact('product'));
     }

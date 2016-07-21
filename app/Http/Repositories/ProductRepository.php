@@ -12,6 +12,7 @@ namespace App\Http\Repositories;
 use App\Contracts\Repository;
 use App\Events\NewProductCreated;
 use App\Events\ProductUpdated;
+use App\Exceptions\ProductNotFound;
 use App\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -34,7 +35,11 @@ class ProductRepository implements Repository
             // return the cache
             return $cache;
         } else {
-            $product = Product::find($id);
+            $product = Product::find    ($id);
+
+            if(!$product){
+                throw new \App\Exceptions\ProductNotFound('Product Not Found !!!');
+            }
             $expiresAt = Carbon::now()->addDay(1);
             Cache::put('product' . $id, $product, $expiresAt);
             return $product;
