@@ -27,7 +27,7 @@ trait EmailNotifier
 
     public function sendEmail(User $user, Product $product, $view, $subject)
     {
-        echo('Mail Sent about New Product');
+        echo('Mail Sent about New Product ');
 
         Mail::send($view, compact('product'), function ($mail) use ($user,$subject) {
 

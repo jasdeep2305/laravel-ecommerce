@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Events\NewOrderCreated;
 use App\Jobs\Orders\EmailSellerForNewOrder;
+use App\Jobs\Orders\EmailUserOrderConfirmation;
 
 class NewOrderCreatedListener
 {
@@ -26,16 +27,14 @@ class NewOrderCreatedListener
     /**
      * Handle the event.
      *
-     * @param  NewOrderCreated  $event
+     * @param  NewOrderCreated $event
      * @return void
      */
     public function handle(NewOrderCreated $event)
     {
+        dispatch(new EmailSellerForNewOrder($event->order));
+        dispatch(new EmailUserOrderConfirmation($event->order));
 
-       dispatch(new EmailSellerForNewOrder($event->order));
-      
 
-
-        
     }
 }
