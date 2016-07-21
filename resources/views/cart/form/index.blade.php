@@ -12,7 +12,6 @@
         {!! Form::hidden('cart_id',$cart->id) !!} <br>
         {!! Form::label('quantity', 'New Quantity')!!}
         {!! Form::selectRange('updated_quantity', 1, 10) !!}<br>
-        {{--{!! Form::number('updated_quantity',null,['class'=>'form-control','placeholder'=>'Enter New Quantity here']) !!}--}}
         {!! Form::submit('Update Quantity') !!}
         {!! Form::close() !!}
 
