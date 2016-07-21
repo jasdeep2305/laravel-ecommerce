@@ -34,7 +34,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = $this->cartRepository->create();
+        $cart = $this->cartRepository->getCart();
         return view('cart.index', compact('cart'));
     }
 
@@ -46,7 +46,7 @@ class CartController extends Controller
     public function addProduct(Request $request)
     {
         $cart = $this->cartRepository->getCart();
-        $this->cartRepository->addProduct($request,$cart);
+        $this->cartRepository->addProduct($request, $cart);
         return redirect('/cart');
     }
 
@@ -77,6 +77,5 @@ class CartController extends Controller
         return redirect()->back();
 
     }
-
 
 }
