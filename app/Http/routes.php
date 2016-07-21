@@ -11,6 +11,10 @@
 |
 */
 
+    Route::get('/cart','CartController@index');
+    Route::post('/cart','CartController@addProduct');
+    Route::put('/cart','CartController@updateProductQuantity');
+    Route::delete('/cart','CartController@removeProduct');
 
     Route::post('orders/confirmation', 'OrderController@confirmation');
     Route::get('/', 'ProductController@index');
@@ -18,7 +22,7 @@
 
     Route::get('/viewcart', 'CartController@show');
 
-    Route::resource('cart', 'CartController');
+   // Route::resource('cart', 'CartController');
     Route::resource('cartproducts', 'CartProductController');
     Route::resource('products', 'ProductController');
     Route::resource('products/{product_id}/reviews', 'ProductReviewsController');
