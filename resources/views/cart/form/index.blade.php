@@ -29,7 +29,7 @@
         {!! Form::hidden('quantity',$product->quantity) !!}
         {!! Form::hidden('description',$product->description) !!}
         {!! Form::hidden('title',$product->title) !!}
-        {!! Form::hidden('totalprice',$product->price) !!}
+        {!! Form::hidden('price',$product->price) !!}
         {!! Form::submit('Buy Now') !!}
         {!! Form::close() !!}
 

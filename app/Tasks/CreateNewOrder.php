@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Tasks;
+
 use App\Events\NewOrderCreated;
 use App\Http\Repositories;
 use App\Http\Repositories\CartRepository;
@@ -21,18 +22,17 @@ class CreateNewOrder extends Task
 
     public function __construct()
     {
-        $this->cartRepository=new CartRepository();
-        $this->orderRepository=new OrderRepository();
+        $this->cartRepository = new CartRepository();
+        $this->orderRepository = new OrderRepository();
     }
 
-/*
- * This will call the NewOrderCreated Event
- */
+    /*
+     * This will call the NewOrderCreated Event
+     */
     public function handle()
     {
-        DB::transaction(function ()
-        {
-            $this->cart=$this->cartRepository->getCart();
+        DB::transaction(function () {
+            $this->cart = $this->cartRepository->getCart();
             $this->createOrder();
             $this->addProductsToOrder();
         });
@@ -47,13 +47,13 @@ class CreateNewOrder extends Task
      */
     public function createOrder()
     {
-        $params=[
-        'user_id'=>Auth::user()->id,
-        'placed_on'=> Carbon::now()->toDateString(),
-        'delivered_on'=> Carbon::now()->addDay(3)->toDateString(),
-            'bill_amount'=>$this->billamount()
+        $params = [
+            'user_id' => Auth::user()->id,
+            'placed_on' => Carbon::now()->toDateString(),
+            'delivered_on' => Carbon::now()->addDay(3)->toDateString(),
+            'bill_amount' => $this->billamount()
         ];
-        $this->order=Order::create($params);
+        $this->order = Order::create($params);
         return $this->order;
 
 
@@ -73,13 +73,13 @@ class CreateNewOrder extends Task
      */
     public function addProductsToOrder()
     {
-        $products=$this->cart->products;
+        $products = $this->cart->products;
 
-        foreach($products as $product) {
-            $this->orderRepository->addProductsToOrder($this->order->id, $product->id);
+        foreach ($products as $product) {
+            $this->orderRepository->addProduct($this->order->id, $product->id);
             $this->cartRepository->removeProduct($product->id, $this->cart->id);
         }
     }
 
-     
+
 }

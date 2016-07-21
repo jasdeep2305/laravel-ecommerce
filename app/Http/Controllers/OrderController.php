@@ -17,10 +17,6 @@ class OrderController extends Controller
      */
     private $orderRepository;
     /**
-     * @var OrderProductRepository
-     */
-    private $orderProductRepository;
-    /**
      * @var ProductRepository
      */
     private $productRepository;
@@ -65,7 +61,7 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = $this->orderRepository->find($id);
-        $orderProduct = $this->orderRepository->getProductsForOrderFromOrderProduct($id);
+        $orderProduct = $this->orderRepository->findOrderProduct($id);
         return view('order.show', compact('orderProduct', 'order'));
     }
 
