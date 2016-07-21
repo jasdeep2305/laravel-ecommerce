@@ -16,27 +16,6 @@ use Illuminate\Support\Facades\Auth;
 class CartRepository implements Repository
 {
     /**
-     * Create a cart if doesn't exist for a user
-     * Else return cart
-     * @param $request
-     * @return cart
-     */
-    public function create()
-    {
-        $user_id = null;
-
-        if (Auth::check())
-            $user_id = Auth::user()->id;
-
-        if ($cart = Cart::where('user_id', $user_id)->first()) {
-            return $cart;
-        } else {
-            $cart = Cart::create(['user_id' => $user_id]);
-            return $cart;
-        }
-    }
-
-    /**
      * Get the current cart
      * @return static
      */
@@ -94,7 +73,7 @@ class CartRepository implements Repository
     }
 
     /**
-     * fetch required parameters
+     * fetch required parameters from request
      * @param $request
      * @param $cart
      * @return array
@@ -108,7 +87,6 @@ class CartRepository implements Repository
             'totalprice' => $request['price']
         ];
     }
-
 
     /**
      * Check if a product is already added in Cart
@@ -167,4 +145,10 @@ class CartRepository implements Repository
     {
         // TODO: Implement delete() method.
     }
+
+
+    public function create()
+    {
+    }
+
 }
