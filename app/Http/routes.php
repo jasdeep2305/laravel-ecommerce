@@ -16,30 +16,23 @@
     Route::put('/cart','CartController@updateProductQuantity');
     Route::delete('/cart','CartController@removeProduct');
 
-    Route::post('orders/confirmation', 'OrderController@confirmation');
+
     Route::get('/', 'ProductController@index');
 
 
     Route::get('/viewcart', 'CartController@show');
 
-   // Route::resource('cart', 'CartController');
     Route::resource('cartproducts', 'CartProductController');
     Route::resource('products', 'ProductController');
     Route::resource('products/{product_id}/reviews', 'ProductReviewsController');
 
 
-
     Route::get('/home', 'HomeController@index');
-
     Route::resource('user', 'UserController');
 
     Route::resource('orders', 'OrderController');
-
-
+    Route::post('orders/confirmation', 'OrderController@confirmation');
     Route::post('/payment/{order_id}', 'OrderController@payment');
 
 
-Route::auth();
-//Route::get('orders/confirmation',function(){
-//   return  view('order.confirmation');
-//});
+    Route::auth();

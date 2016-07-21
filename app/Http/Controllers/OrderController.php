@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Repositories\CartRepository;
-
 use App\Http\Repositories\OrderRepository;
 use App\Http\Repositories\ProductRepository;
 use App\Http\Requests;
@@ -16,6 +15,7 @@ class OrderController extends Controller
      * @var OrderRepository
      */
     private $orderRepository;
+    /**
 
     /**
      * @var ProductRepository
@@ -56,7 +56,7 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = $this->orderRepository->find($id);
-        $orderProduct = $this->orderRepository->getProductsForOrderFromOrderProduct($id);
+        $orderProduct = $this->orderRepository->findOrderProduct($id);
         return view('order.show', compact('orderProduct', 'order'));
     }
 

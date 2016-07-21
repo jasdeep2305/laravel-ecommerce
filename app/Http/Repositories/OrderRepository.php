@@ -12,7 +12,6 @@ use App\Contracts\Repository;
 use App\Order;
 use App\OrderProduct;
 use App\Tasks\CreateNewOrder;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class OrderRepository implements Repository
@@ -27,19 +26,8 @@ class OrderRepository implements Repository
         return Order::where('user_id', Auth::user()->id)->paginate(1);
     }
 
-
     /**
-     * @param $id
-     * @return mixed
-     */
-
-    public function getProductsForOrder($id)
-    {
-        return Order::where('id', $id)->get();
-    }
-
-
-    /**
+     * Finding an order with the $id.. used by 'show' method of OrderController
      * @param $id
      * @return mixed
      */
@@ -48,53 +36,38 @@ class OrderRepository implements Repository
         return Order::find($id);
     }
 
-    public function findFromOrderProduct($id)
+
+    public function findOrderProduct($id)
     {
         return OrderProduct::where('order_id', $id)->get();
     }
 
-    public function getProductsForOrderFromOrderProduct($id)
-    {
-        return $this->findFromOrderProduct($id);
-        //return OrderProduct::where('order_id',$id)->get();
-    }
-    /**
-     * Add a new order
-     * @param $request
-     * @return static
-     */
-    public function addNewOrder($request)
-    {
-        $user_id = Auth::user()->id;
-        $placed_on = Carbon::now()->toDateString();
-        $delivered_on = Carbon::now()->addDay(3)->toDateString();
-        $bill_amount = $request['totalprice'];
-        $order = Order::create(['user_id' => $user_id, 'placed_on' => $placed_on, 'delivered_on' => $delivered_on, 'bill_amount' => $bill_amount]);
-        return $order;
-    }
-
 
     /**
-     * Add products to a order
+     * Add product to a order, used by task 'CreateNewOrder'
      * @param $order_id
      * @param $product_id
      * @return static
      */
-    public function addProductsToOrder($order_id, $product_id)
+    public function addProduct($order_id, $product_id)
     {
         $newProduct = OrderProduct::create(['order_id' => $order_id, 'product_id' => $product_id]);
         return $newProduct;
 
     }
 
-
+    /**
+     * Create a new order for the current logged in user.  Repository Interface method implemented
+     *
+     */
     public function create()
     {
-        // TODO: Implement create() method.
+
         $task = new CreateNewOrder();
         $task->handle();
 
     }
+
 
     public function update($request, $id)
     {
@@ -105,12 +78,4 @@ class OrderRepository implements Repository
     {
         // TODO: Implement delete() method.
     }
-    private function params($request, $new_order)
-    {
-        return [
-            'product_id' => $request['product_id'],
-            'order_id' => $new_order->id,
-        ];
-    }
-
 }
