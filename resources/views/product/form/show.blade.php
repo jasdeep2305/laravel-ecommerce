@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-4">
 
-        {!! Form::model ($product,['method'=>'POST','url'=>'/cartproducts']) !!}
+        {!! Form::model ($product,['method'=>'POST','url'=>'/cart']) !!}
         {!! Form::hidden('product_id',$product->id) !!}
         {!! Form::label('quantity', 'Product Quantity')!!}
         {!! Form::selectRange('quantity', 1, 10) !!}

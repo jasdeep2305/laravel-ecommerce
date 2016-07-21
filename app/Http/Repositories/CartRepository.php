@@ -41,7 +41,7 @@ class CartRepository implements Repository
      * @internal param $product_id
      * @internal param $cart_id
      */
-    public function removeProduct($product_id,$cart_id)
+    public function removeProduct($product_id, $cart_id)
     {
         return CartProduct::where('product_id', $product_id)->where('cart_id', $cart_id)->delete();
     }
@@ -136,7 +136,7 @@ class CartRepository implements Repository
         // TODO: Implement find() method.
     }
 
-    public function update($id,$data)
+    public function update($id, $data)
     {
         // TODO: Implement update() method.
     }
