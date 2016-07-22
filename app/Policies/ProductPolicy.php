@@ -10,18 +10,18 @@ class ProductPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function create(User $user)
     {
-        //
+        return $user->level_id < 3;
     }
 
-    public function create(User $user, Product $product)
+    public function edit(User $user)
     {
-        return true;
+        return $user->level_id < 3;
+    }
+
+    public function delete(User $user)
+    {
+        return $user->level_id == 1;
     }
 }
