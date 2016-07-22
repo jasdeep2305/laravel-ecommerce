@@ -9,6 +9,7 @@
 namespace App\Http\Repositories;
 
 use App\Contracts\Repository;
+use App\Exceptions\OrderNotFound;
 use App\Order;
 use App\OrderProduct;
 use App\Tasks\CreateNewOrder;
@@ -33,7 +34,10 @@ class OrderRepository implements Repository
      */
     public function find($id)
     {
-        return Order::find($id);
+        $order=Order::find($id);
+        if(!$order)
+            throw new OrderNotFound('Order does not exist');
+        return $order;
     }
 
 

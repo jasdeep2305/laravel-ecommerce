@@ -56,6 +56,10 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = $this->orderRepository->find($id);
+        //$this->authorize('view', $order);
+//        if(Gate::denies('view-order')){
+//
+//        }
         $orderProduct = $this->orderRepository->findOrderProduct($id);
         return view('order.show', compact('orderProduct', 'order'));
     }
@@ -70,6 +74,7 @@ class OrderController extends Controller
         if ($request->confirmation == 'no') {
             return redirect()->to('/products');
         }
+        
         $this->orderRepository->create();
         return redirect('/orders');
     }

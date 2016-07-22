@@ -53,6 +53,7 @@ class CreateNewOrder extends Task
             'delivered_on' => Carbon::now()->addDay(3)->toDateString(),
             'bill_amount' => $this->billamount()
         ];
+       
         $this->order = Order::create($params);
         return $this->order;
 

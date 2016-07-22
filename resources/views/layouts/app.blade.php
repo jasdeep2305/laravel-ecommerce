@@ -51,9 +51,9 @@
                     <li><a href="{{ url('/products') }}">All Products</a></li>
                     <li><a href="{{ url('/cart') }}">Your Cart</a></li>
                     <li><a href="{{ url('/orders') }}">Your Orders</a></li>
-                    @if(Auth::check()&&Auth::user()->level_id<3)
-                        <li><a href="{{url('/products/create')}}" >Add New Product</a></li>
-                    @endif
+                    @can('create', new \App\Order())
+                        <li><a href="{{url('/products/create')}}">create Product</a></li>
+                    @endcan
                 </ul>
 
                 <!-- Right Side Of Navbar -->

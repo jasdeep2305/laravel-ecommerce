@@ -8,19 +8,17 @@
                         <div class="panel-heading">Your Orders</div>
 
                         <div class="panel-body">
+
+
                             Total Items ordered: {{count($orders)}} <br>
                             @foreach($orders as $order)
-
                                 <li class="list-group-item">
                                     <b>Order ID: <a href={{url('/orders/'.$order->id)}}> {{$order->id}} </a></b> <br>
                                     Order Placed on: {{$order->placed_on}} <br>
                                     Total Price: {{$order->bill_amount}}
                                     <br>
-
                                     @include('order.form.payment')
-
                                 </li>
-
                             @endforeach
                             {{$orders->links()}}
 

@@ -10,6 +10,8 @@
                         <div class="panel-heading">Products</div>
 
                         <div class="panel-body">
+                            @can('view-order', $order)
+
                             @foreach($order->products as $product)
 
                                 <li class="list-group-item">
@@ -19,6 +21,7 @@
                                 </li>
 
                             @endforeach
+                            @endcan
                                 <div class="form-group" >
                                     <label><a href="{{url('/products')}}">Continue Shopping</a> </label>
                                 </div>
