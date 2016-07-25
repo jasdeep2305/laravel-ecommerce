@@ -3,31 +3,45 @@
     <ul class="list-group">
 
         <div class="container">
+            <div class="form-group" >
+                <label><a href="{{url('/products')}}">Continue Shopping</a> </label>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading" ALIGN="CENTER">Confirmation </div>
+
+                        <div class="panel-heading" ALIGN="center"> <h3>Confirmation </h3></div>
 
                         <div class="panel-body">
-                            Do you want to buy the following product?
+                           <h4>Details of the product ordered</h4>
                             <br>
 
-
-
-                                <li class="list-group-item">
-                                    Product ID: {{request('product_id')}} <br>
-                                    Title: {{request('title')}}<br>
-                                    Product Description: {{request('description')}}<br>
-                                    Total Price: {{request('price')}}
+                            <li class="list-group-item">
+                                <div class="row">
+                                <div class="col-lg-3"><label>Product ID:</label>  </div>
+                                <div class="col-lg-9">{{request('product_id')}}</div>  <br>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"><label>Title:</label>  </div>
+                                    <div class="col-lg-9">{{request('title')}}</div> <br>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"><label>Product Description:</label></div>
+                                    <div class="col-lg-9">{{request('description')}}</div> <br>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3"><label>Total Price:</label></div>
+                                    <div class="col-lg-9">{{request('price')}}</div>
+                                </div>
                                 </li>
-
-
                             <br>
                             @include('order.form.confirmation')
-
-                            <div class="form-group" >
-                            <label><a href="{{url('/products')}}">Continue Shopping</a> </label>
-                        </div>
+                            <br>
+                            {{--<div class="container">--}}
+                            {{--<div class="form-group" >--}}
+                            {{--<label><a href="{{url('/products')}}">Continue Shopping</a> </label>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
 
 
 
