@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Products</div>
+                        <div class="panel-heading"><h3>Products</h3></div>
 
                         <div class="panel-body">
                             @can('view-order', $order)

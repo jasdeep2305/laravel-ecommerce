@@ -1,5 +1,4 @@
-<ul class="list-group">
-    <li class="list-group-item">
+
 {!! Form::open(['url'=>'/products/'.$product->id,'method'=>'PUT','files'=>true]) !!}
 
     <div class="row">
@@ -24,5 +23,4 @@
     {!! Form::submit('Update Product',['class'=>'btn btn-default','data-toggle'=>'tooltip',
     'data-placement'=>'top','title'=>'Update Product']) !!}
 {!! Form::close() !!}
-</li>
-    </ul>
+
