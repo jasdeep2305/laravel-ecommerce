@@ -5,7 +5,7 @@ class ProductTest extends TestCase
 {
 
     use \Illuminate\Foundation\Testing\DatabaseTransactions;
-
+  
     /**
      * A basic test example.
      *
@@ -16,6 +16,7 @@ class ProductTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
 
 
     // Test Case to create a product
