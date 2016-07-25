@@ -99,7 +99,7 @@ class ProductRepository implements Repository
      */
     public function find($id)
     {
-        return Product::find($id)->first();
+        return Product::find($id);
     }
 
     public function create()

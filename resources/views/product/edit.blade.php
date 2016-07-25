@@ -2,8 +2,11 @@
 @section('content')
 
     <div class="container">
-
-        <h1 align="center">Edit {{$product->title}}</h1>
+        <div class="panel panel-default">
+            <div class="panel-heading" ALIGN="CENTER">
+                <h3>Edit "{{$product->title}}"</h3>
+            </div>
+        </div>
         @include('product.form.edit')
     </div>
 @stop

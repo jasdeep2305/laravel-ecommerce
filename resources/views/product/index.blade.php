@@ -2,8 +2,11 @@
 @section('content')
 
     <div class="container">
-
-    <h1 align="center">All Products</h1>
+        <div class="panel panel-default">
+            <div class="panel-heading" ALIGN="CENTER">
+                <h3>All Products</h3>
+            </div>
+        </div>
 
     @include('product.form.index')
         {{$products->links()}}

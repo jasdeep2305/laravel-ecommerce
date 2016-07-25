@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Confirmation </div>
+                        <div class="panel-heading" ALIGN="CENTER">Confirmation </div>
 
                         <div class="panel-body">
                             Do you want to buy the following product?
