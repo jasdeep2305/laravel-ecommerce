@@ -2,34 +2,68 @@
 @section('content')
     <ul class="list-group">
         <div class="container">
+            <div class="form-group" >
+                <label><a href="{{url('/products')}}">Continue Shopping</a> </label>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">Your Orders</div>
+                       <div class="panel-heading"><h3>Your Orders</h3></div>
 
                         <div class="panel-body">
 
 
-                            Total Items ordered: {{count($orders)}} <br>
+                            <h4>Total Items ordered: {{count($orders)}} </h4><br>
                             @foreach($orders as $order)
                                 <li class="list-group-item">
-                                    <b>Order ID: <a href={{url('/orders/'.$order->id)}}> {{$order->id}} </a></b> <br>
-                                    Order Placed on: {{$order->placed_on}} <br>
-                                    Total Price: {{$order->bill_amount}}
-                                    <br>
-                                    @include('order.form.payment')
-                                </li>
-                            @endforeach
-                            {{$orders->links()}}
+                                    <div class="container">
+                                        <div class="row">
+                                            <button type="button" class="btn btn-lg btn-blue">
+                                                <a href={{url('/orders/'.$order->id)}}> OD {{$order->id}} </a>
+                                            </button>
+                                        </div>
+                                    </div>
 
-                            <div class="form-group" >
-                                <label><a href="{{url('/products')}}">Continue Shopping</a> </label>
+                        <br>
+
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                           <label> Order Placed on:</label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            {{$order->placed_on}}
+                                        </div>
+                                    </div>
+                                        <div class="row">
+                                        <div class="col-lg-4">
+                                            <label>Total Price: </label>
+                                        </div>
+                                        <div class="col-lg-6">
+                                                {{$order->bill_amount}}
+                                        </div>
+                                        </div>
+
+                                    <br>
+                            @include('order.form.payment')
+
+
+                            @endforeach
+                        </div>
+
+                        <div class="container">
+                            {{$orders->links()}}
+                        {{--<div class="row">--}}
+
+                            {{--<div class="col-lg-6">--}}
+                                {{--<label><a href="{{url('/products')}}">Continue Shopping</a> </label>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                             </div>
 
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </ul>
 @stop

@@ -23,6 +23,7 @@
         .fa-btn {
             margin-right: 6px;
         }
+
     </style>
 </head>
 <body id="app-layout">
@@ -72,16 +73,20 @@
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
+                    @else
+                        <button type="button" class="btn btn-default" data-toggle="dropdown">
+                            {{Auth::user()->name}}
+                            <span class="caret"></span>
+
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('/cart') }}"><i class=""></i>Your Cart</a></li>
+                            <li><a href="{{ url('/orders') }}"><i class=""></i>Your Order</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+
+                        </ul>
                     @endif
                 </ul>
             </div>

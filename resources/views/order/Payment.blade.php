@@ -6,12 +6,18 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading"> Payment </div>
+                        <div class="panel-heading"><h3>Payment</h3></div>
 
                         <div class="panel-body">
-                            Make Payment here.. <br>
-
-                            Total Price to pay: {{$details->bill_amount}}
+                           <label>Make Payment here..</label>  <br>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <label>Total Price to pay:</label>
+                                </div>
+                                <div class="col-lg-9">
+                                    {{$details->bill_amount}}
+                                </div>
+                            </div>
 
                         </div>
                     </div>
