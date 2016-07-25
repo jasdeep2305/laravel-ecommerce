@@ -37,15 +37,6 @@
                             <br>
                             @include('order.form.confirmation')
                             <br>
-                            {{--<div class="container">--}}
-                            {{--<div class="form-group" >--}}
-                            {{--<label><a href="{{url('/products')}}">Continue Shopping</a> </label>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-
-
-
-
 
                         </div>
                     </div>
