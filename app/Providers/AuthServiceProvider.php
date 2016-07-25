@@ -31,6 +31,7 @@ class AuthServiceProvider extends ServiceProvider
 
 
         $gate->define('view-order',function($user,Order $order){
+
             return $user->id==$order->user_id;
         });
 //

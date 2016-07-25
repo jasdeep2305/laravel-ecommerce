@@ -8,12 +8,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                       <div class="panel-heading"><h3>Your Orders</h3></div>
-
+                       <div class="panel-heading" align="center"><h3>Your Orders</h3></div>
                         <div class="panel-body">
-
-
-                            <h4>Total Items ordered: {{count($orders)}} </h4><br>
+                            <h5>Total Items ordered: {{count($orders)}} </h5><br>
                             @foreach($orders as $order)
                                 <li class="list-group-item">
                                     <div class="container">
@@ -26,6 +23,7 @@
 
                         <br>
 
+
                                     <div class="row">
                                         <div class="col-lg-4">
                                            <label> Order Placed on:</label>
@@ -34,19 +32,17 @@
                                             {{$order->placed_on}}
                                         </div>
                                     </div>
-                                        <div class="row">
+                                    <div class="row">
                                         <div class="col-lg-4">
                                             <label>Total Price: </label>
                                         </div>
                                         <div class="col-lg-6">
                                                 {{$order->bill_amount}}
                                         </div>
-                                        </div>
+                                    </div>
 
                                     <br>
                             @include('order.form.payment')
-
-
                             @endforeach
                         </div>
 
