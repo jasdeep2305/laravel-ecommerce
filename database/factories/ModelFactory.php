@@ -28,3 +28,12 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'seller_id'=>rand(10,20),
     ];
 });
+
+
+
+$factory->define(App\Order::class, function (Faker\Generator $faker) {
+    return [
+        'bill_amount' => rand(5000,7000)
+    ];
+});
+

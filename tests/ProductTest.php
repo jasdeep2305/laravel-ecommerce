@@ -3,7 +3,7 @@
 
 class ProductTest extends TestCase
 {
-
+    use \Illuminate\Foundation\Testing\DatabaseTransactions;
 
     /**
      * A basic test example.
@@ -16,14 +16,13 @@ class ProductTest extends TestCase
         $this->assertTrue(true);
     }
 
-//    public function testCreateAProduct()
-//    {
-//        $created=factory(App\Product::class)->create();
-//
-//        $product=App\Product::find(4)->first();
-//
-//        $this->assertEquals($created->title,$product->title);
-//    }
+    public function testCreateAProduct()
+    {
+        $created=factory(App\Product::class)->create();
+        $product=App\Product::find($created->id);
+        $this->assertEquals($created->title,$product->title);
+
+    }
 
     public function testProductHomePage()
     {
