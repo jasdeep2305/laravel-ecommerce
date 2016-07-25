@@ -28,3 +28,5 @@ $factory->define(App\Product::class, function (Faker\Generator $faker) {
         'seller_id'=>rand(10,20),
     ];
 });
+
+
