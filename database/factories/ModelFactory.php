@@ -20,9 +20,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Order::class, function (Faker\Generator $faker) {
+$factory->define(App\Product::class, function (Faker\Generator $faker) {
     return [
-        'bill_amount' => rand(500,999),
-        'user_id' => $faker->number,
+        'title' => $faker->name,
+        'description' => $faker->sentence,
+        'seller_name' => $faker->name,
+        'seller_id'=>rand(10,20),
     ];
 });
