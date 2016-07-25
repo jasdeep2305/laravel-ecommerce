@@ -6,7 +6,6 @@
     <h1 align="center">All Products</h1>
 
     @include('product.form.index')
-
         {{$products->links()}}
     </div>
 @stop

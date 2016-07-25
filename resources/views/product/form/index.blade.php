@@ -1,24 +1,53 @@
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-9">
 
         @foreach($products as $product)
             <ul class="list-group">
                 <li class="list-group-item">
 
-                    {!! Form::label('product_title', 'Product Title:')!!}
-                    {!! link_to('/products/'.$product->id, $title = $product->title, $attributes = ['title'], $secure = null) !!}
-                    <BR>
-
-
+                    <div class="row">
+                        <div class="col-md-4">
+                          {!! Form::label('product_title', 'Product Title :')!!}
+                        </div>
+                        <div class="col-md-8">
+                            {!! link_to('/products/'.$product->id, $title = $product->title, $attributes = ['title'], $secure = null) !!}
+                            <br>
+                        </div>
+                    </div>
                     {!! Form::model ($product,['method'=>'POST','url'=>'/cart']) !!} <br>
-                    {!! Form::label('product_description', 'Product Description')!!}
-                    {!! Form::text ('description',null,['class'=>'form-control','readonly']) !!} <br>
-                    {!! Form::label('quantity', 'Product Quantity')!!}
-                    {!! Form::selectRange('quantity', 1, 10) !!}<br>
-                    {!! Form::label('price', 'Product Price')!!}
-                    {!! Form::number ('price',null,['class'=>'form-control','readonly']) !!}<br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            {!! Form::label('product_description', 'Product Description :')!!}
+                            </div>
+                        <div class="col-md-8">
+                            {!! Form::text ('description',null,['class'=>'form-control','readonly']) !!}
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            {!! Form::label('quantity', 'Select Product Quantity : ')!!}
+                        </div>
+                        <div class="col-md-8">
+                            {!! Form::selectRange('quantity', 1, 10) !!}<br>
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            {!! Form::label('price', 'Product Price')!!}
+                        </div>
+                        <div class="col-md-8">
+                            {!! Form::number ('price',null,['class'=>'form-control','readonly']) !!}<br>
+                            <br>
+                        </div>
+                    </div>
+
+
                     {!! Form::hidden('product_id',$product->id) !!}
-                    {!! Form::submit('Add To Cart') !!}
+                    {!! Form::submit('Add To Cart',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Add A Product']) !!}
                     {!! Form::close() !!}
 
 
@@ -28,7 +57,7 @@
                     {!! Form::hidden('description',$product->description) !!}
                     {!! Form::hidden('title',$product->title) !!}
                     {!! Form::hidden('price',$product->price) !!}<br>
-                    {!! Form::submit('Buy Now') !!}
+                    {!! Form::submit('Buy Now',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Add A Product']) !!}
                     {!! Form::close() !!}
                     <br>
 
@@ -42,7 +71,7 @@
                         {!! Form::hidden('title',$product->title) !!}
                         {!! Form::hidden('price',$product->price) !!}
 
-                        {!! Form::submit('Edit the Product') !!}
+                        {!! Form::submit('Edit the Product',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Add A Product']) !!}
                         {!! Form::close() !!}
 
                     @endif
@@ -52,7 +81,7 @@
                     @if(Auth::check()&&Auth::user()->level_id<3)
 
                         {!! Form::model($product,['url'=>'/products/'.$product->id,'method'=>'DELETE']) !!}
-                        {!! Form::submit('Delete the Product') !!}
+                        {!! Form::submit('Delete the Product',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Add A Product']) !!}
                         {!! Form::close() !!}
 
                     @endif
