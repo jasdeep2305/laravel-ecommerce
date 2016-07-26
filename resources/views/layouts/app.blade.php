@@ -103,6 +103,8 @@
                     </div>
 
                     @endcan
+
+
                     {{--@can('create-product')--}}
                         {{--<li><a href="{{url('/products/create')}}" >Add New Product</a></li>--}}
                     {{--@endcan--}}

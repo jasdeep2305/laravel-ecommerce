@@ -2,13 +2,13 @@
 @section('content')
     <ul class="list-group">
         <div class="container">
-            <div class="form-group" >
+            <div class="form-group">
                 <label><a href="{{url('/products')}}">Continue Shopping</a> </label>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                       <div class="panel-heading" align="center"><h3>Your Orders</h3></div>
+                        <div class="panel-heading" align="center"><h3>Your Orders</h3></div>
                         <div class="panel-body">
                             <h5>Total Items ordered: {{count($orders)}} </h5><br>
                             @foreach($orders as $order)
@@ -21,12 +21,12 @@
                                         </div>
                                     </div>
 
-                        <br>
+                                    <br>
 
 
                                     <div class="row">
                                         <div class="col-lg-4">
-                                           <label> Order Placed on:</label>
+                                            <label> Order Placed on:</label>
                                         </div>
                                         <div class="col-lg-6">
                                             {{$order->placed_on}}
@@ -37,24 +37,19 @@
                                             <label>Total Price: </label>
                                         </div>
                                         <div class="col-lg-6">
-                                                {{$order->bill_amount}}
+                                            {{$order->bill_amount}}
                                         </div>
                                     </div>
 
                                     <br>
-                            @include('order.form.payment')
+                                @include('order.form.payment')
                             @endforeach
                         </div>
 
                         <div class="container">
                             {{$orders->links()}}
-                        {{--<div class="row">--}}
 
-                            {{--<div class="col-lg-6">--}}
-                                {{--<label><a href="{{url('/products')}}">Continue Shopping</a> </label>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                            </div>
+                        </div>
 
                     </div>
                 </div>
