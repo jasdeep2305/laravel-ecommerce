@@ -72,7 +72,7 @@ class AuthController extends Controller
             //  sAdd this field to fillable array in User model.
         ]);
 
-        dd($user);
+        //dd($user);
         event(new NewUserCreated($user));
         return $user;
     }
