@@ -74,12 +74,44 @@
                         {!! Form::close() !!}
                     @endif
                 </div> 
+                <br>
                 <div class="col-md-6">  
                     @if(Auth::check()&&Auth::user()->level_id<3)
-                        {!! Form::model($product,['url'=>'/products/'.$product->id,'method'=>'DELETE']) !!}
-                        {!! Form::submit('Delete the Product',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Delete this Product']) !!}
-                        {!! Form::close() !!}
+                        {{--{!! Form::model($product,['url'=>'/products/'.$product->id,'method'=>'DELETE']) !!}--}}
+                        {{--{!! Form::submit('Delete the Product',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Delete this Product']) !!}--}}
+                        {{--{!! Form::close() !!}--}}
 
+
+                        <button type="button" class="btn btn-default"  title="Delete Product" data-toggle="modal" data-target="#deleteProduct">
+                            Delete Product
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Do you really want to remove this product ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                {!! Form::model($product,['url'=>'/products/'.$product->id,'method'=>'DELETE']) !!}
+                                                {!! Form::submit('Delete the Product',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Delete this Product']) !!}
+                                                {!! Form::close() !!}
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endif
                 </div>
                  </div>
