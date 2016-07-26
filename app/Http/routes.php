@@ -32,7 +32,7 @@
 
     Route::resource('orders', 'OrderController');
     Route::post('orders/confirmation', 'OrderController@confirmation');
-    Route::post('/payment/{order_id}', 'OrderController@payment');
+   // Route::post('/payment/{order_id}', 'OrderController@payment');
 
 
     Route::auth();

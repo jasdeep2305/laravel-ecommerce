@@ -96,6 +96,8 @@ class OrderController extends Controller
      * @param $order_id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+
+    // Not using because of the use of modal at its place..
     public function payment($order_id)
     {
         $details = $this->orderRepository->find($order_id);
