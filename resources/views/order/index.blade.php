@@ -42,7 +42,7 @@
                                     </div>
 
                                     <br>
-                                @include('order.form.payment')
+                                @include('order.Payment')
                             @endforeach
                         </div>
 

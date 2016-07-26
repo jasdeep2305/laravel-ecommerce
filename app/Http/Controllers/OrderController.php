@@ -91,15 +91,17 @@ class OrderController extends Controller
         return view('order.confirmation');
     }
 
-//    /**
-//     * Making the payment of the order using order_id
-//     * @param $order_id
-//     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-//     */
-//    public function payment($order_id)
-//    {
-//        $details = $this->orderRepository->find($order_id);
-//        return view('order.payment', compact('details'));
-//    }
+    /**
+     * Making the payment of the order using order_id
+     * @param $order_id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+
+    // Not using because of the use of modal at its place..
+    public function payment($order_id)
+    {
+        $details = $this->orderRepository->find($order_id);
+        return view('order.payment', compact('details'));
+    }
 
 }
