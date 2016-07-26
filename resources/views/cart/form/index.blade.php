@@ -31,7 +31,7 @@
         {{--{!! Form::submit('Remove from Cart',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Remove product from Cart']) !!}<br>--}}
         {{--{!! Form::close() !!}--}}
 
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#removeFromCart">
+        <button type="button" class="btn btn-default"  title="Remove Product from Cart" data-toggle="modal" data-target="#removeFromCart">
             Remove from Cart
         </button>
 
