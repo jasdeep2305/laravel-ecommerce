@@ -28,6 +28,18 @@
                 <div class="col-md-6">
                     {!! Form::selectRange('quantity', 1, 10) !!}<br>
                     <br>
+
+                    {{--<a href="#" class="dropdown-toggle" id="quantity" data-toggle="dropdown" role="button"--}}
+                       {{--aria-haspopup="true" aria-expanded="true">--}}
+                        {{--Select <span class="caret"></span>--}}
+                    {{--</a>--}}
+
+                    {{--<ul class="dropdown-menu" id="menu1" aria-labelledby="drop4">--}}
+                        {{--<li><a href="#">1</a></li>--}}
+                        {{--<li><a href="#">2</a></li>--}}
+                        {{--<li><a href="#">3</a></li>--}}
+                    {{--</ul>--}}
+
                 </div>
             </div>
 
@@ -43,9 +55,12 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    {!! Form::hidden('product_id',$product->id) !!}
-                    {!! Form::submit('Add To Cart',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Add A Product']) !!}
-                    {!! Form::close() !!}
+                    {{--{!! Form::hidden('product_id',$product->id) !!}--}}
+                    {{--{!! Form::submit('Add To Cart',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Add A Product']) !!}--}}
+                    {{--{!! Form::close() !!}--}}
+
+                    <a class="btn btn-default add-to-cart" data-product-id="{{$product->id}}">Add To Cart</a>
+
                 </div>
                 <div class="col-md-6">
                     {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
@@ -118,3 +133,37 @@
             <br>
         @endforeach
 
+
+@section('scripts')
+
+    <script>
+
+        $(".add-to-cart").on('click',function () {
+
+            var product_id= $(this).data('product-id');
+            var quantity = $('#quantity').val();
+            var price = $('#price').val();
+            var total_price= quantity * price;
+
+            console.log(total_price);
+
+            //console.log('clicked');
+
+            $.ajax({
+                headers:{
+                    'X-CSRF-TOKEN': "{{csrf_token()}}"
+                },
+
+                'url':'cart',
+                'data':{
+                    'product_id':product_id,
+                    'quantity': quantity,
+                    'price':total_price,
+
+                },
+                'method':'POST'
+            });
+
+        });
+    </script>
+@endsection
