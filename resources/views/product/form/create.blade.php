@@ -22,4 +22,3 @@
     </div>
     {!! Form::submit('Add Product' ,['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Add New Product'])!!}
     {!! Form::close() !!}
-

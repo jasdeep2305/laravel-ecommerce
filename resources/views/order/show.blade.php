@@ -33,8 +33,7 @@
                                             <span class="small" > Order on: {{$order->placed_on}}</span>
                                         </div>
                                         </div>
-                                        {{--<div class="col-lg-3"><label>Seller Name:</label> </div>--}}
-                                        {{--<div class="col-lg-6">{{$product->seller_name}}</div>--}}
+
                                     </li>
 
                                 @endforeach

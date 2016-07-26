@@ -69,10 +69,10 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'level_id'=>3, // to give the default value of the level id as a User.
-            //  sAdd this field to fillable array in User model.
+            //  Add this field to fillable array in User model.
         ]);
 
-        //dd($user);
+
         event(new NewUserCreated($user));
         return $user;
     }
