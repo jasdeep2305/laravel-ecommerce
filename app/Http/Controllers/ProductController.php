@@ -79,6 +79,15 @@ class ProductController extends Controller
     {
         $this->authorize('delete', new Product());
         $this->productRepository->delete($id);
+
+        if(request()->ajax())
+        {
+            return [
+                'message' => 'Deleted',
+                'status' => 200
+            ];
+        }
+
         return redirect()->to('/products');
     }
 

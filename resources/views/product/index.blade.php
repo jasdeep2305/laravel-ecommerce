@@ -1,4 +1,9 @@
 @extends('layouts.app')
+
+@section('meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
 @section('content')
     <ul class="list-group">
         <div class="container">
