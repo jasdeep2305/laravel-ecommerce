@@ -1,6 +1,4 @@
-<div class="panel-body" id="panel-for-product">
-
-    @foreach($products as $product)
+@foreach($products as $product)
 
         <li class="list-group-item all-product-container" data-product-id="{{$product->id}}">
             <div class="row">
@@ -62,7 +60,6 @@
                     {!! Form::hidden('price',$product->price) !!}
                     {!! Form::submit('Buy Now',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Now']) !!}
                     {!! Form::close() !!}
-
                 </div>
             </div>
 
@@ -134,7 +131,7 @@
 
 
 
-    @section('scripts')
+@section('scripts')
         <script>
 
             var HOME = '{{  url('') }}/';
