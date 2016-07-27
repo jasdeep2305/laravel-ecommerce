@@ -2,6 +2,26 @@
 
 @foreach($products as $product)
 
+        <li class="list-group-item all-product-container" data-product-id="{{$product->id}}">
+            <div class="row">
+                <div class="col-md-4">
+                    {!! Form::label('product_title', 'Product Title :')!!}
+                </div>
+                <div class="col-md-6">
+                    {!! link_to('/products/'.$product->id, $title = $product->title, $attributes = ['title'], $secure = null) !!}
+                    <br>
+                </div>
+            </div>
+            {!! Form::model ($product,['method'=>'POST','url'=>'/cart']) !!} <br>
+            <div class="row">
+                <div class="col-md-4">
+                    {!! Form::label('product_description', 'Product Description :')!!}
+                </div>
+                <div class="col-md-6">
+                    {!! Form::text ('description',null,['class'=>'form-control','readonly']) !!}
+                    <br>
+                </div>
+            </div>
     <div class="row">
         <div class="col-md-4">
             {!! Form::label('product_title', 'Product Title :')!!}
@@ -88,41 +108,48 @@
                     Delete Product
                 </button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                            aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
-                            </div>
-                            <div class="modal-body">
-                                Do you really want to remove this product ?
-                            </div>
-                            <div class="modal-footer">
-                                <div class="row">
-                                    <div class="col-md-4">
-
-                                        <a class="btn btn-default delete-the-product"
-                                           data-product-id="{{$product->id}}" data-dismiss="modal">YES</a>
-
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close"><span
+                                                    aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
                                     </div>
-                                    <div class="col-md-4">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+                                    <div class="modal-body">
+                                        Do you really want to remove this product ?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="row">
+                                            <div class="col-md-4">
+
+                                                <a class="btn btn-default delete-the-product"
+                                                   data-product-id="{{$product->id}}" data-dismiss="modal">YES</a>
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">NO
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
-            @endif
-        </div>
-         
-    </div>
-    <br>
-@endforeach
-</div>
+                 
+            </div>
+            <br>
+        </li>
+    @endforeach
+
+
+
+
 
 
 @section('scripts')
@@ -222,14 +249,21 @@
                     })
 
                     .success(function (response) {
-
                         if (response.status == 200) {
-                            console.log(response.message);
-                            //$(".panel-for-product").fadeOut()
-                           // window.location.reload();
+
+                            var counter = $(".product-counter");
+                            var new_count = counter.attr('data-count') - 1;
+                            counter.attr('data-count',new_count);
+                            console.log(new_count);
+                            counter.html(new_count);
+
+                            $("li[data-product-id='" + product_id + "']").fadeOut(500)
+
                         }
 
-                    });
+                    }).error(function (error) {
+                console.log(error);
+            })
         });
 
         $(".buy-now").on('click', function () {
