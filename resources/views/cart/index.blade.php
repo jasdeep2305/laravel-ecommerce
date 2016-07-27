@@ -74,9 +74,16 @@
         $(".update-quantity").on('click', function () {
 
             var product_id = $(this).data('product-id');
-            var quantity = $('#updated_quantity').val();
+            var updated_quantity = $('#updated_quantity').val();
             var price = $(this).data('product-price');
-            var total_price = quantity * price;
+            var total_price = updated_quantity * price;
+
+            console.log(product_id);
+            console.log(updated_quantity);
+            console.log(price);
+            console.log(total_price);
+
+
 
             $.ajax({
                 headers: {
@@ -86,17 +93,17 @@
                 'url': 'cart',
                 'data': {
                     'product_id': product_id,
-                    'quantity': quantity,
+                    'quantity': updated_quantity,
                     'price': total_price,
 
                 },
                 'type': 'PUT'
             }).success(function (response) {
 
-                console.log(response);
+                console.log('success');
                 var new_quantity = $('.cart-product-quantity');
-                new_quantity.attr('data-count', quantity);
-                new_quantity.html(quantity);
+                new_quantity.attr('data-count', updated_quantity);
+                new_quantity.html(updated_quantity);
 
 
             }).error(function (error) {

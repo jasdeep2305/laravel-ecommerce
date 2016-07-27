@@ -84,20 +84,20 @@ class CartController extends Controller
 
     public function updateProductQuantity(Request $request)
     {
-        //get the card
+        //get the cart
         $cart = $this->cartRepository->getCart();
         $this->cartRepository->updateProductQuantity($request, $cart);
 
-        if ($request . response(200)) {
-
-            return redirect('/products');
-        }
+//        if ($request . response(200)) {
+//
+//            return redirect('/products');
+//        }
         // if ajax request
         if ($request->ajax()) {
             return 'true';
         }
 
-        return redirect()->back();
+        //return redirect()->back();
     }
 
 }

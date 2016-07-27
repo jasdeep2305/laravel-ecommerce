@@ -44,7 +44,9 @@
 
     <div class="row">
         <div class="col-md-4">
+            @if(Auth::check()&&Auth::user()->cart)
             <a class="btn btn-default add-to-cart" data-product-id="{{$product->id}}">Add To Cart</a>
+            @endif
         </div>
         <div class="col-md-6">
             {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
@@ -135,7 +137,7 @@
 
         $(".add-to-cart").on('click', function () {
 
-            console.log('clicked');
+            console.log('Add to Cart clicked');
 
             var button = $(this);
 
@@ -174,6 +176,36 @@
 
         $(".remove-from-cart").on('click', function () {
 
+            console.log('Remove from Cart clicked');
+
+            var button = $(this);
+
+            var product_id = $(this).data('product-id');
+
+            button.html('Removing from Cart...');
+
+            $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': "{{csrf_token()}}"
+                        },
+
+                        'url': 'cart',
+                        'data': {
+                            'product_id': product_id
+                        },
+                        'type': 'DELETE'
+                    })
+
+                    .success(function () {
+
+                        button.addClass('add-to-cart');
+                        button.removeClass('remove-from-cart');
+                        button.html('Add to Cart');
+
+                        button.removeClass('disabled');
+
+                    });
+
         });
 
 
@@ -181,16 +213,6 @@
             var product_id = $(this).data('product-id');
             $.ajax({
                 headers: {
-                    'X-CSRF-TOKEN': '{{csrf_token()}}'
-                },
-                'url': HOME + 'products/' + product_id,
-                'data': {
-                    'product_id': product_id,
-                },
-                'type': 'DELETE',
-
-            });
-                        headers: {
                             'X-CSRF-TOKEN': '{{csrf_token()}}'
                         },
                         'url': HOME + 'products/' + product_id,
