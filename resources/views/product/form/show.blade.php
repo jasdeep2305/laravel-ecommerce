@@ -17,8 +17,12 @@
                 {!! Form::hidden('description',$product->description) !!}
                 {!! Form::hidden('title',$product->title) !!}
                 {!! Form::hidden('price',$product->price) !!}<br>
-                {!! Form::submit('Add To Cart',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Now']) !!}
+                {{--{!! Form::submit('Add To Cart',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Now']) !!}--}}
+
+
+                <a class="btn btn-default add-to-cart" data-product-id="{{$product->id}}" data-product-price="{{$product->price}}">Add To Cart</a>
                 {!! Form::close() !!}
+
             </div>
             <div class="col-md-6">
                 {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
@@ -36,6 +40,36 @@
 
 
 
+@section('scripts')
+    <script>
+        $(".add-to-cart").on('click', function () {
 
+            console.log('clicked');
+
+            var HOME = '{{  url('') }}/';
+
+            var product_id = $(this).data('product-id');
+            var quantity = $('#quantity').val();
+            var price = $(this).data('product-price');
+            var total_price = quantity * price;
+
+            console.log(quantity);
+            console.log(price);
+
+            $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        },
+                        'url': HOME + 'cart',
+                        'data': {
+                            'product_id': product_id,
+                            'quantity': quantity,
+                            'price': total_price
+                        },
+                        'method': 'POST'
+                    })
+        });
+    </script>
+@endsection
 
 
