@@ -8,10 +8,9 @@
                 <div class="col-md-6">
            <span class="title" data="{{$product->title}}"> {!! link_to('/products/'.$product->id, $title = $product->title, $attributes = ['title'], $secure = null) !!}
             </span>
-                    <br>
                 </div>
             </div>
-            <br>
+        <br>
             <div class="row">
                 <div class="col-md-4">
                     <label>Product Description:</label>
@@ -22,17 +21,16 @@
                     <br>
                 </div>
             </div>
-
+            <br>
             <div class="row">
                 <div class="col-md-4">
                     {!! Form::label('quantity', 'Select Product Quantity : ')!!}
                 </div>
                 <div class="col-md-6">
                     {!! Form::selectRange('quantity', 1, 10) !!}<br>
-                    <br>
                 </div>
             </div>
-
+            <br>
             <div class="row">
                 <div class="col-md-4">
                     <label>Product Price:</label>
