@@ -57,11 +57,21 @@ class CartController extends Controller
      * Remove a product from cart
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
-     * @internal param $productid
      */
     public function removeProduct(Request $request)
     {
-        $this->cartRepository->removeProduct($request->product_id, $request->cart_id);
+        $cart = $this->cartRepository->getCart();
+
+        $query = $this->cartRepository->removeProduct($request->product_id, $cart->id);
+
+        if ($request->ajax()) {
+
+            if ($query)
+                return 'true';
+
+            return 'false';
+        }
+
         return redirect()->back();
     }
 
@@ -78,9 +88,12 @@ class CartController extends Controller
         $cart = $this->cartRepository->getCart();
         $this->cartRepository->updateProductQuantity($request, $cart);
 
+        if ($request . response(200)) {
+
+            return redirect('/products');
+        }
         // if ajax request
-        if($request->ajax())
-        {
+        if ($request->ajax()) {
             return 'true';
         }
 

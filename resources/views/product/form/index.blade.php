@@ -145,16 +145,21 @@
 
             console.log('clicked');
 
+            var button = $(this);
+
             var product_id = $(this).data('product-id');
             var quantity = $('#quantity').val();
             var price = $('#price').val();
             var total_price = quantity * price;
 
+            button.addClass('disabled');
+            button.html('Adding To Cart...');
+
             $.ajax({
+                        'url': HOME + 'cart',
                         headers: {
                             'X-CSRF-TOKEN': '{{ csrf_token() }}',
                         },
-                        'url': HOME + 'cart',
                         'data': {
                             'product_id': product_id,
                             'quantity': quantity,
@@ -164,8 +169,18 @@
                     })
 
                     .success(function () {
-                        window.location = HOME + 'cart';
+
+                        button.removeClass('add-to-cart');
+                        button.addClass('remove-from-cart');
+                        button.html('Remove From Cart');
+
+                        button.removeClass('disabled');
+
                     });
+
+        });
+
+        $(".remove-from-cart").on('click', function () {
 
         });
 
@@ -177,23 +192,16 @@
             var product_id = $(this).data('product-id');
 
             $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': '{{csrf_token()}}'
-                        },
-                        'url': HOME + 'products/' + product_id,
-                        'data': {
-                            'product_id': product_id,
-                        },
-                        'type': 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': '{{csrf_token()}}'
+                },
+                'url': HOME + 'products/' + product_id,
+                'data': {
+                    'product_id': product_id,
+                },
+                'type': 'DELETE',
 
-                    })
-                    .success(function (response) {
-
-                        if (response.status == 200) {
-
-                            alert(response.message);
-                        }
-                    });
+            });
         });
         // delete
         // and remove/fade div from DOM

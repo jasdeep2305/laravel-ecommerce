@@ -39,8 +39,6 @@ class CartRepository implements Repository
      * Remove products present in cart
      * @param $id
      * @return mixed
-     * @internal param $product_id
-     * @internal param $cart_id
      */
     public function removeProduct($product_id, $cart_id)
     {
