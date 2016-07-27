@@ -88,6 +88,8 @@ class OrderController extends Controller
     {
         $cart = $this->cartRepository->getCart();
         $this->cartRepository->addProduct($request, $cart);
+
+        if($request.response(200))
         return view('order.confirmation');
     }
 
