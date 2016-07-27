@@ -1,3 +1,5 @@
+<div class="panel-body" id="panel-for-product">
+
 @foreach($products as $product)
 
     <div class="row">
@@ -42,12 +44,7 @@
 
     <div class="row">
         <div class="col-md-4">
-            {{--{!! Form::hidden('product_id',$product->id) !!}--}}
-            {{--{!! Form::submit('Add To Cart',['class'=>'btn btn-default','id'=>"AddToCartButton",'data-loading-text'=>"Loading...",'autocomplete'=>"off",'data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Add A Product']) !!}--}}
-            {{--{!! Form::close() !!}--}}
-
             <a class="btn btn-default add-to-cart" data-product-id="{{$product->id}}">Add To Cart</a>
-
         </div>
         <div class="col-md-6">
             {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
@@ -80,9 +77,6 @@
         <br>
         <div class="col-md-6">  
             @if(Auth::check()&&Auth::user()->level_id<3)
-                {{--{!! Form::model($product,['url'=>'/products/'.$product->id,'method'=>'DELETE']) !!}--}}
-                {{--{!! Form::submit('Delete the Product',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Delete this Product']) !!}--}}
-                {{--{!! Form::close() !!}--}}
 
 
                 <button type="button" class="btn btn-default" title="Delete Product" data-toggle="modal"
@@ -105,12 +99,9 @@
                             <div class="modal-footer">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        {{--{!! Form::model($product,['url'=>'/products/'.$product->id,'method'=>'DELETE']) !!}--}}
-                                        {{--{!! Form::submit('Delete the Product',['class'=>'btn btn-default ','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Delete this Product']) !!}--}}
-                                        {{--{!! Form::close() !!}--}}
 
                                         <a class="btn btn-default delete-the-product"
-                                           data-product-id="{{$product->id}}">YES</a>
+                                           data-product-id="{{$product->id}}" data-dismiss="modal">YES</a>
 
                                     </div>
                                     <div class="col-md-4">
@@ -127,6 +118,7 @@
     </div>
     <br>
 @endforeach
+</div>
 
 
 @section('scripts')
@@ -158,7 +150,7 @@
             $.ajax({
                         'url': HOME + 'cart',
                         headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
                         },
                         'data': {
                             'product_id': product_id,
@@ -186,11 +178,7 @@
 
 
         $(".delete-the-product").on('click', function () {
-
-            console.log('deleted');
-
             var product_id = $(this).data('product-id');
-
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': '{{csrf_token()}}'
@@ -202,6 +190,25 @@
                 'type': 'DELETE',
 
             });
+                        headers: {
+                            'X-CSRF-TOKEN': '{{csrf_token()}}'
+                        },
+                        'url': HOME + 'products/' + product_id,
+                        'data': {
+                            'product_id': product_id,
+                        },
+                        'type': 'DELETE',
+                    })
+
+                    .success(function (response) {
+
+                        if (response.status == 200) {
+                            console.log(response.message);
+                            //$(".panel-for-product").fadeOut()
+                           // window.location.reload();
+                        }
+
+                    });
         });
         // delete
         // and remove/fade div from DOM
