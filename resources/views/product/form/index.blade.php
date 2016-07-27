@@ -60,26 +60,6 @@
             {!! Form::close() !!}
         </div>
     </div>
-            <div class="row">
-                <div class="col-md-4">
-                    {{--{!! Form::hidden('product_id',$product->id) !!}--}}
-                    {{--{!! Form::submit('Add To Cart',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Add A Product']) !!}--}}
-                    {{--{!! Form::close() !!}--}}
-
-                    <a class="btn btn-default add-to-cart" data-product-id="{{$product->id}}">Add To Cart</a>
-
-                </div>
-                <div class="col-md-6">
-                    {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
-                    {!! Form::hidden('product_id',$product->id) !!}
-                    {!! Form::hidden('quantity','1') !!}
-                    {!! Form::hidden('description',$product->description) !!}
-                    {!! Form::hidden('title',$product->title) !!}
-                    {!! Form::hidden('price',$product->price) !!}
-                    {!! Form::submit('Buy Now',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Now']) !!}
-                    {!! Form::close() !!}
-                </div>
-            </div>
 
     <div class="row"> 
         <div class="col-md-4">  
