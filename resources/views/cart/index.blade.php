@@ -83,8 +83,6 @@
             console.log(price);
             console.log(total_price);
 
-
-
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': "{{csrf_token()}}"

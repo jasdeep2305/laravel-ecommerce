@@ -93,11 +93,11 @@ class CartController extends Controller
 //            return redirect('/products');
 //        }
         // if ajax request
-        if ($request->ajax()) {
-            return 'true';
-        }
+//        if ($request->ajax()) {
+//            return 'true';
+//        }
 
-        //return redirect()->back();
+        return redirect()->back();
     }
 
 }

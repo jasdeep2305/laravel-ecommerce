@@ -7,8 +7,9 @@
             {!! Form::label('product_title', 'Product Title :')!!}
         </div>
         <div class="col-md-6">
-            {!! link_to('/products/'.$product->id, $title = $product->title, $attributes = ['title'], $secure = null) !!}
-            <br>
+           <span class="title" data="{{$product->title}}"> {!! link_to('/products/'.$product->id, $title = $product->title, $attributes = ['title'], $secure = null) !!}
+            </span>
+               <br>
         </div>
     </div>
     {!! Form::model ($product,['method'=>'POST','url'=>'/cart']) !!} <br>
@@ -17,8 +18,9 @@
             {!! Form::label('product_description', 'Product Description :')!!}
         </div>
         <div class="col-md-6">
-            {!! Form::text ('description',null,['class'=>'form-control','readonly']) !!}
-            <br>
+            <span class="description" data="{{$product->description}}">{!! Form::text ('description',null,['class'=>'form-control','readonly']) !!}
+            </span>
+                <br>
         </div>
     </div>
 
@@ -49,20 +51,22 @@
             @endif
         </div>
         <div class="col-md-6">
-            {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
-            {!! Form::hidden('product_id',$product->id) !!}
-            {!! Form::hidden('quantity','1') !!}
-            {!! Form::hidden('description',$product->description) !!}
-            {!! Form::hidden('title',$product->title) !!}
-            {!! Form::hidden('price',$product->price) !!}
-            {!! Form::submit('Buy Now',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Now']) !!}
-            {!! Form::close() !!}
+            {{--{!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}--}}
+            {{--{!! Form::hidden('product_id',$product->id) !!}--}}
+            {{--{!! Form::hidden('quantity','1') !!}--}}
+            {{--{!! Form::hidden('description',$product->description) !!}--}}
+            {{--{!! Form::hidden('title',$product->title) !!}--}}
+            {{--{!! Form::hidden('price',$product->price) !!}--}}
+            {{--{!! Form::submit('Buy Now',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Now']) !!}--}}
+            {{--{!! Form::close() !!}--}}
+
+            <button type="button" class="btn btn-default buy-now" data-product-id="{{$product->id}}">Buy Now</button>
         </div>
     </div>
 
     <div class="row"> 
         <div class="col-md-4">  
-
+                <br>
             @if(Auth::check()&&Auth::user()->level_id<3)
                 {!! Form::model($product,['url'=>'/products/'.$product->id.'/edit','method'=>'GET']) !!}
 
@@ -79,8 +83,6 @@
         <br>
         <div class="col-md-6">  
             @if(Auth::check()&&Auth::user()->level_id<3)
-
-
                 <button type="button" class="btn btn-default" title="Delete Product" data-toggle="modal"
                         data-target="#deleteProduct">
                     Delete Product
@@ -176,12 +178,9 @@
 
         $(".remove-from-cart").on('click', function () {
 
-            console.log('Remove from Cart clicked');
-
-            var button = $(this);
-
             var product_id = $(this).data('product-id');
-
+            console.log('Remove from Cart clicked');
+            var button = $(this);
             button.html('Removing from Cart...');
 
             $.ajax({
@@ -232,8 +231,44 @@
 
                     });
         });
-        // delete
-        // and remove/fade div from DOM
+
+        $(".buy-now").on('click', function () {
+            var product_id = $(this).data('product-id');
+            var quantity = $('#quantity').val();
+            var price = $('#price').val();
+            var temp_title = $('.title');
+            var title= temp_title.attr('data');
+
+            var temp_description = $('.description');
+            var description= temp_description.attr('data');
+
+            var total_price = quantity * price;
+
+            console.log(product_id);
+            console.log(quantity);
+            console.log(price);
+            console.log(title);
+            console.log(description);
+
+            $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': '{{csrf_token()}}'
+                        },
+
+                        'url': HOME + 'orders/confirmation',
+                        'data': {
+                            'product_id': product_id,
+                            'quantity': quantity,
+                            'price': total_price,
+                            'title' : title
+                        },
+                        'method': 'POST',
+                    })
+
+                    .success(function (response) {
+                        console.log('success');
+                    });
+        });
 
     </script>
 @endsection
