@@ -40,6 +40,9 @@ class CartController extends Controller
 
     /**
      * Adding Products to Cart
+     *
+     * @method POST
+     * @url /cart
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -74,8 +77,14 @@ class CartController extends Controller
         //get the card
         $cart = $this->cartRepository->getCart();
         $this->cartRepository->updateProductQuantity($request, $cart);
-        return redirect()->back();
 
+        // if ajax request
+        if($request->ajax())
+        {
+            return 'true';
+        }
+
+        return redirect()->back();
     }
 
 }

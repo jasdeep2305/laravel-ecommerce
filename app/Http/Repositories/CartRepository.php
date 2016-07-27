@@ -57,14 +57,18 @@ class CartRepository implements Repository
     public function addProduct($request, $cart)
     {
         $current_quantity = 0;
+        $current_total_price=0;
+
         if ($this->checkIfProductInCart($request, $cart) > 0) {
             $current_quantity = $this->getProductQuantityInCart($request, $cart);
+            $current_total_price = $this->getCurrentTotalPriceInCart($request,$cart);
         }
         if ($current_quantity > 0) {
             $updated_quantity = $request['quantity'] + $current_quantity;
+            $total_price= $request['price'] + $current_total_price;
             $cartProduct = CartProduct::where('product_id', $request['product_id'])
                 ->where('cart_id', $cart->id)
-                ->update(['quantity' => $updated_quantity]);
+                ->update(['quantity' => $updated_quantity,'totalprice'=>$total_price]);
 
             return $cartProduct;
         }
@@ -123,7 +127,7 @@ class CartRepository implements Repository
     {
         $cartProduct = CartProduct::where('product_id', $request['product_id'])
             ->where('cart_id', $cart->id)
-            ->update(['quantity' => $request['updated_quantity']]);
+            ->update(['quantity' => $request['quantity'],'totalprice'=>$request['price']]);
         return $cartProduct;
     }
 
@@ -151,6 +155,20 @@ class CartRepository implements Repository
 
     public function create()
     {
+    }
+
+    /**
+     * Fetch the totalprice of products in Cart
+     * @param $request
+     * @param $cart
+     * @return mixed
+     */
+    private function getCurrentTotalPriceInCart($request, $cart)
+    {
+        return CartProduct::where('product_id', $request['product_id'])
+            ->where('cart_id', $cart->id)
+            ->first()->totalprice;
+
     }
 
 }

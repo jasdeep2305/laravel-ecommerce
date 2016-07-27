@@ -129,8 +129,6 @@
 @endforeach
 
 
-
-
 @section('scripts')
     <script>
 

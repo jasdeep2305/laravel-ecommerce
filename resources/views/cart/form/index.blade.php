@@ -4,11 +4,12 @@
         {!! Form::hidden('product_id',$product->id) !!}
         {!! Form::hidden('cart_id',$cart->id) !!} <br>
             <div class="col-md-4">
-                {!! Form::label('quantity', 'New Quantity : ')!!}
+                {!! Form::label('updated_quantity', 'New Quantity : ')!!}
                 {!! Form::selectRange('updated_quantity', 1, 10) !!}<br>
             </div>
             <div class="col-md-4">
-                {!! Form::submit('Update Quantity',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Update Quantity']) !!}
+                {{--{!! Form::submit('Update Quantity',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Update Quantity']) !!}--}}
+                <a class="btn btn-default update-quantity" data-product-id="{{$product->id}}" data-product-price="{{$product->price}}">Update Quantity</a>
             </div>
         {!! Form::close() !!}
 </div>
@@ -67,4 +68,38 @@
 </div>
 
 
+@section('scripts')
 
+    <script>
+
+        $(".update-quantity").on('click',function () {
+
+            var product_id= $(this).data('product-id');
+            var quantity = $('#updated_quantity').val();
+            var price = $(this).data('product-price');
+            var total_price= quantity * price;
+
+//            console.log(product_id);
+//            console.log(quantity);
+//            console.log(price);
+//            console.log(total_price);
+
+
+            $.ajax({
+                headers:{
+                    'X-CSRF-TOKEN': "{{csrf_token()}}"
+                },
+
+                'url':'cart',
+                'data':{
+                    'product_id':product_id,
+                    'quantity': quantity,
+                    'price':total_price,
+
+                },
+                'type':'PUT'
+            });
+
+        });
+    </script>
+@endsection
