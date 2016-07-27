@@ -50,6 +50,11 @@ class CartController extends Controller
     {
         $cart = $this->cartRepository->getCart();
         $this->cartRepository->addProduct($request, $cart);
+
+        if ($request->ajax()) {
+            return 'true';
+        }
+
         return redirect('/cart');
     }
 

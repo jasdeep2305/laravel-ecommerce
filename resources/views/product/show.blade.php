@@ -32,7 +32,7 @@
                                 <div class="col-md-4">  <label>Product Price : </label></div> 
                                 <div class="col-md-6">  
                                     <span class="price" data="{{$product->price}}">
-                                    {{$product->price}}<span>
+                                    {{$product->price}}</span>
                                 </div>
                             </div>
                             @include('product.form.show')
@@ -48,12 +48,10 @@
 @section('scripts')
     <script>
         var HOME = '{{  url('') }}/';
+
         $(".add-to-cart").on('click', function () {
 
             console.log('clicked');
-
-            var HOME = '{{  url('') }}/';
-
             var product_id = $(this).data('product-id');
             var quantity = $('#quantity').val();
             var price = $(this).data('product-price');
@@ -72,11 +70,12 @@
                     'quantity': quantity,
                     'price': total_price
                 },
-                'method': 'POST'
+                'type': 'POST'
             })
         });
 
         $(".buy-now").on('click', function () {
+
             var product_id = $(this).data('product-id');
             var quantity = $('#quantity').val();
             var temp_price= $('.price');
@@ -111,6 +110,7 @@
                     })
 
                     .success(function (response) {
+
                         console.log('success');
 
                     });

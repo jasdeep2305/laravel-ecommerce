@@ -27,12 +27,6 @@
         {!! Form::close() !!}
     </div>
     <div class="col-md-4">
-        {{--{!! Form::model($product,['url'=>'/cart','method'=>'DELETE'])!!}--}}
-        {{--{!! Form::hidden('product_id',$product->id) !!}--}}
-        {{--{!! Form::hidden('cart_id',$cart->id) !!}--}}
-        {{--{!! Form::submit('Remove from Cart',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Remove product from Cart']) !!}<br>--}}
-        {{--{!! Form::close() !!}--}}
-
         <button type="button" class="btn btn-default remove-from-cart" data-product-id="{{$product->id}}"
                 title="Remove Product from Cart">
             Remove from Cart
