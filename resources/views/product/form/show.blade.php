@@ -88,7 +88,6 @@
 
                     button.html('Removing From Cart...');
 
-
                     $.ajax({
                                 'url': HOME + 'cart',
                                 headers: {

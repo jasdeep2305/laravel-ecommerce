@@ -16,11 +16,16 @@
                                 All Products
                             </h3>
 
+                        </div>
+                        </div>
+                        <div class="panel-body">
+
                             @include('product.form.index')
                         </div>
                         {{$products->links()}}
+
                 </div>
             </div>
-        </div>
+         </div>
     </ul>
 @stop
