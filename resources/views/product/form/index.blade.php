@@ -1,4 +1,4 @@
-<div class="panel-body" id="panel-for-product">
+<div class="panel-body panel-for-product" data-product-id="{{$product->id}}">
 
 @foreach($products as $product)
 
@@ -183,7 +183,10 @@
                            // window.location.reload();
                         }
 
-                    });
+
+                    })
+
+
         });
         // delete
         // and remove/fade div from DOM
