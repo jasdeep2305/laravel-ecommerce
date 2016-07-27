@@ -9,7 +9,7 @@ To add the payment button
 {{--'data-placement'=>'top','title'=>'Pay']) !!}--}}
 {{--{!! Form::close() !!}--}}
 
-<button type="button" class="btn btn-default"  title="Proceed to make Payment" data-toggle="modal" data-target="#PaymentModal">
+<button type="button" class="btn btn-default" title="Proceed to make Payment" data-toggle="modal" data-target="#PaymentModal">
     Proceed to Pay
 </button>
 
