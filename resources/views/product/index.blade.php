@@ -10,11 +10,14 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading" ALIGN="CENTER"><h3>All Products</h3></div>
-                            @include('product.form.index')
+                        <div class="panel-heading" ALIGN="CENTER">
+                            <h3>
+                                All Products
+                            </h3>
 
-                    </div>
-                    {{$products->links()}}
+                            @include('product.form.index')
+                        </div>
+                        {{$products->links()}}
                 </div>
             </div>
         </div>

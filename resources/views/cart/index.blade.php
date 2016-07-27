@@ -93,7 +93,7 @@
                 'type': 'PUT'
             }).success(function (response) {
 
-                console.log(response);
+//                console.log(response);
                 var new_quantity = $('.cart-product-quantity');
                 new_quantity.attr('data-count', quantity);
                 new_quantity.html(quantity);
