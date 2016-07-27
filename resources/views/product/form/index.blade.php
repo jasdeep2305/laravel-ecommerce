@@ -1,6 +1,5 @@
 @foreach($products as $product)
-
-        <li class="list-group-item all-product-container" data-product-id="{{$product->id}}">
+<li class="list-group-item all-product-container" data-product-id="{{$product->id}}">
             <div class="row">
                 <div class="col-md-4">
                     {!! Form::label('product_title', 'Product Title :')!!}
@@ -121,8 +120,6 @@
             <br>
         </li>
     @endforeach
-
-
 
 
 
