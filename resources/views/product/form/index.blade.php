@@ -192,7 +192,7 @@
                     .success(function (response) {
 
                         if (response.status == 200) {
-$
+
                             alert(response.message);
                         }
                     });
