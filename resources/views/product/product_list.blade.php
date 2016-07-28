@@ -2,13 +2,13 @@
     <div class="col-lg-4 col-sm-4 hero-feature text-center">
         <div class="thumbnail all-product-container " data-product-id="{{$product->id}}">
             <div class="caption">
-                <a href="detail.html" class="link-p" style="overflow: hidden; position: relative;">
+                <a href="products/{{$product->id}}" class="link-p" style="overflow: hidden; position: relative;">
                     <img src="instaveritas.png" alt="" style="position: relative; width: 120px; height: auto; max-width: none; max-height: none; left: 0px; top: 0px;">
                 </a>
                 <h4><span class="title" data="{{$product->title}}"> {!! link_to('/products/'.$product->id, $title = $product->title, $attributes = ['title'], $secure = null) !!}</span></h4>
                 <p><span class="description" data="{{$product->description}}">{{$product->description}}</span></p>
-                {!! Form::label('quantity', 'Quantity : ')!!}
-                {!! Form::selectRange('quantity', 1, 10) !!}
+                {!! Form::selectRange('updated_quantity', 1, 10, 1,['data-product-id' => $product->id, 'class' => 'quantity-select']) !!}
+
                 <br>
                 <span class="price" data="{{$product->price}}">Rs. {{$product->price}}</span>
                 @if(Auth::check())

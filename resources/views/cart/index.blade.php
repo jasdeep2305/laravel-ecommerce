@@ -84,14 +84,11 @@
                         <td>
                             {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
                             {!! Form::hidden('product_id',$product->id) !!}
-                            {!! Form::hidden('quantity',$product->quantity) !!}
+                            {!! Form::hidden('quantity',$product->pivot->quantity) !!}
                             {!! Form::hidden('description',$product->description) !!}
                             {!! Form::hidden('title',$product->title) !!}
-                            {!! Form::hidden('price',$product->price) !!}
-                            <span class="price hidden" data="{{$product->price}}">
-                                    {{$product->price}}</span>
-                            <button class="btn btn-default buy-now" data-product-id="{{$product->id}}"
-                                    title="Buy now">
+                            {!! Form::hidden('price',$product->pivot->totalprice) !!}
+                            <button class="btn btn-default buy-now" title="Buy now">
                                 Buy Now
                             </button>
                             {{--{!! Form::submit('Buy Now',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Product']) !!}--}}
@@ -199,50 +196,6 @@
 
 
         });
-
-
-        $(".buy-now").on('click', function () {
-
-            var product_id = $(this).data('product-id');
-            var quantity = $('#quantity').val();
-            var temp_price = $('.price');
-            var price = temp_price.attr('data');
-            var temp_title = $('.title');
-            var title = temp_title.attr('data');
-
-            var temp_description = $('.description');
-            var description = temp_description.attr('data');
-
-            var total_price = quantity * price;
-
-            console.log(product_id);
-            console.log(quantity);
-            console.log(price);
-            console.log(title);
-            console.log(description);
-
-            $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': '{{csrf_token()}}'
-                        },
-
-                        'url': HOME + 'orders/confirmation',
-                        'data': {
-                            'product_id': product_id,
-                            'quantity': quantity,
-                            'price': total_price,
-                            'title': title
-                        },
-                        'method': 'POST',
-                    })
-
-                    .success(function (response) {
-
-                        console.log('success');
-
-                    });
-        });
-
 
     </script>
 @endsection

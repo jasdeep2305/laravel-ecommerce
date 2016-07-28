@@ -1,38 +1,44 @@
-<div class="row">
-    <div class="col-md-12">
-
-        {{--{!! Form::model ($product,['method'=>'POST','url'=>'/cart']) !!}--}}
-        {{--{!! Form::hidden('product_id',$product->id) !!}--}}
-
-        {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
-        <div class="row"> 
-            <div class="col-md-4">  
-                {!! Form::label('quantity', 'Select Product Quantity : ')!!}
-            </div>
-            <div class="col-md-6">  
-                {!! Form::selectRange('quantity', 1, 10) !!}
-            </div>
-             
-        </div>
-        <br>
+<div class="col-lg-12 col-sm-12 hero-feature text-center">
+    <div class="thumbnail all-product-container " data-product-id="{{$product->id}}">
         <div class="row">
-            <div class="col-md-4">
-                @if(Auth::check()&&Auth::user()->cart)
-                    <a class="btn btn-default add-to-cart-toggle" data-product-in-cart="0"
-                       data-product-id="{{$product->id}}" data-product-price="{{$product->price}}">Add To Cart</a>
-                @endif
+            <div class="col-lg-6">
+                <div class="caption">
+                    <a href="/products/{{$product->id}}" class="link-p" style="overflow: hidden; position: relative;">
+                        <img src="/instaveritas.png" alt="" style="position: relative;
+                        width: 250px; height: auto; max-width: none; max-height: none; left: 0px; top: 0px;">
+                    </a>
+                </div>
             </div>
-            <div class="col-md-6">
 
-                {!! Form::hidden('product_id',$product->id) !!}
-                {!! Form::hidden('quantity','1') !!}
-                {!! Form::hidden('description',$product->description) !!}
-                {!! Form::hidden('title',$product->title) !!}
-                {!! Form::hidden('price',$product->price) !!}<br>
-                {!! Form::submit('Buy Now',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Now']) !!}
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <br>
+                        <h5>Best Price: <span class="price" data="{{$product->price}}">Rs. {{$product->price}}</span>
+                        </h5>
+
+                        <br>
+                        Quantity :
+                        {!! Form::selectRange('updated_quantity', 1, 10, 1,['data-product-id' => $product->id, 'class' => 'quantity-select']) !!}
+                        <br>
+                        <br>
+                        <a class="btn btn-default add-to-cart-toggle" data-product-in-cart="0"
+                           data-product-id="{{$product->id}}" data-product-price="{{$product->price}}">Add To Cart</a>
+                        <br>
+                        <br>
+                        <span class="title hidden" data="{{$product->title}}">Rs. {{$product->title}}</span>
+                        <button class="btn btn-default buy-now" data-product-id="{{$product->id}}" title="Buy now">Buy Now</button>
+                        <br>
+                        <br>
+                        <p><span class="description" data="{{$product->description}}">{{$product->description}}</span></p>
+                    </div>
+                    <div class="col-md-6">
+                        <br>
+                        Sold By: {{$product->seller_name}}
+                    </div>
+                </div>
 
             </div>
         </div>
-        {!! Form::close() !!}
-    </div>
+     </div>
 </div>
