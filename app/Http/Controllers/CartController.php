@@ -93,14 +93,9 @@ class CartController extends Controller
         $cart = $this->cartRepository->getCart();
         $this->cartRepository->updateProductQuantity($request, $cart);
 
-//        if ($request . response(200)) {
-//
-//            return redirect('/products');
-//        }
-        // if ajax request
-//        if ($request->ajax()) {
-//            return 'true';
-//        }
+        if ($request->ajax()) {
+            return 'true';
+        }
 
         return redirect()->back();
     }
