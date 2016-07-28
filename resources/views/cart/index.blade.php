@@ -30,9 +30,9 @@
                     <td>
                         <label>Product Title:</label>
                     </td>
-                    <td>
-                        <label>Product quantity:</label>
-                    </td>
+                    {{--<td>--}}
+                        {{--<label>Product quantity:</label>--}}
+                    {{--</td>--}}
                     <td>
                         <label>Product Price: </label>
                     </td>
@@ -55,10 +55,11 @@
                         <td>
                             {{$product-> title}}
                         </td>
-                        <td>
-                                <span class="cart-product-quantity"
+                        <td class="hidden">
+                                <span class="cart-product-quantity hidden"
                                       data-product-id="{{$product->id}}"
-                                      data-count="{{$product->pivot->quantity}}">
+                                      {{--data-total-price="{{$product->pivot->totalprice}}"--}}
+                                      data-product-quantity="{{$product->pivot->quantity}}">
                                     {{$product->pivot->quantity}}</span>
                         </td>
 
@@ -70,17 +71,20 @@
                             {{--{!! Form::hidden('product_id',$product->id) !!}--}}
                             {{--{!! Form::hidden('cart_id',$cart->id) !!}--}}
                             {{--{!! Form::label('updated_quantity', 'Quantity:')!!}--}}
-                            {!! Form::selectRange('updated_quantity', 1, 10, $product->pivot->quantity,['data-product-id' => $product->id, 'class' => 'update-quantity-select']) !!}
+                            {!! Form::selectRange('updated_quantity', 1, 10, $product->pivot->quantity,['data-product-id' => $product->id, 'data-product-price'=>$product->price,'class' => 'update-quantity-select']) !!}
 
                             <br>
                             {{--{!! Form::submit('Update Quantity',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Update Quantity']) !!}--}}
-                            <button class="update-quantity" data-product-id="{{$product->id}}"
-                                    data-product-price="{{$product->price}}">Save
-                            </button>
+                            {{--<button class="update-quantity" data-product-id="{{$product->id}}"--}}
+                                    {{--data-product-price="{{$product->price}}">Save--}}
+                            {{--</button>--}}
 
                             {{--{!! Form::close() !!}--}}
                         </td>
-                        <td>{{ $product->pivot->totalprice }}</td>
+                        <td>
+                           <span class="data-product-price"
+                                 data-product-id="{{$product->id}}">{{ $product->pivot->totalprice }}</span>
+                        </td>
                         <td>
                             {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
                             {!! Form::hidden('product_id',$product->id) !!}
@@ -116,7 +120,7 @@
 
     <script>
 
-        $(".update-quantity").on('click', function () {
+        $(".update-quantity-select").on('change', function () {
 
             var product_id = $(this).data('product-id');
 
@@ -124,6 +128,7 @@
             var updated_quantity = $("select[data-product-id='" + product_id + "'].update-quantity-select").val();
 
             var price = $(this).data('product-price');
+
             var total_price = updated_quantity * price;
 
             console.log(product_id);
@@ -151,6 +156,10 @@
                 var counter = $("span[data-product-id='" + product_id + "'].cart-product-quantity");
                 counter.attr('data-product-quantity', updated_quantity);
                 counter.html(updated_quantity);
+
+                var counter_total_price = $("span[data-product-id='" + product_id + "'].data-product-price");
+                counter_total_price.attr('data-total-price',total_price);
+                counter_total_price.html(total_price);
 
 
             }).error(function (error) {
@@ -196,6 +205,7 @@
 
 
         });
+
 
     </script>
 @endsection
