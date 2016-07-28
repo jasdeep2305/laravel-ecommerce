@@ -88,17 +88,14 @@
                         <td>
                             {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
                             {!! Form::hidden('product_id',$product->id) !!}
-                            {!! Form::hidden('quantity',$product->pivot->quantity) !!}
+                            {!! Form::hidden('quantity',$product->quantity) !!}
                             {!! Form::hidden('description',$product->description) !!}
                             {!! Form::hidden('title',$product->title) !!}
-                            {!! Form::hidden('price',$product->pivot->totalprice) !!}
-                            {{--<span class="price hidden" data="{{$product->price}}">--}}
-                                    {{--{{$product->price}}</span>--}}
-                            <button class="btn btn-default buy-now" data-product-id="{{$product->id}}"
-                                    title="Buy now">
-                                Buy Now
-                            </button>
-                            {{--{!! Form::submit('Buy Now',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Product']) !!}--}}
+                            {!! Form::hidden('price',$product->price) !!}
+                            {!! Form::hidden('totalprice',$product->pivot->totalprice) !!}
+
+
+                            {!! Form::submit('Buy Now',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Product']) !!}
                             {!! Form::close() !!}
 
                             <button type="button" class="btn btn-default remove-from-cart"
