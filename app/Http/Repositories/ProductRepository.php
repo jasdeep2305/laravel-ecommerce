@@ -89,7 +89,7 @@ class ProductRepository implements Repository
      */
     public function all()
     {
-        return Product::paginate(1);
+        return Product::paginate(3);
     }
 
     /**
