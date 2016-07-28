@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
     <ul class="list-group">
-
         <div class="container">
             <div class="form-group" >
                 <label><a href="{{url('/products')}}">Continue Shopping</a> </label>

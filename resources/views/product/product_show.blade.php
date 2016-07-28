@@ -16,17 +16,17 @@
                         <br>
                         <h5>Best Price: <span class="price" data="{{$product->price}}">Rs. {{$product->price}}</span>
                         </h5>
-
+                        {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
                         <br>
                         Quantity :
-                        {!! Form::selectRange('updated_quantity', 1, 10, 1,['data-product-id' => $product->id, 'class' => 'quantity-select']) !!}
+                        {!! Form::selectRange('quantity', 1, 10, 1,['data-product-id' => $product->id, 'class' => 'quantity-select']) !!}
                         <br>
                         <br>
                         <a class="btn btn-default add-to-cart-toggle" data-product-in-cart="0"
                            data-product-id="{{$product->id}}" data-product-price="{{$product->price}}">Add To Cart</a>
                         <br>
                         <br>
-                        {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
+
                         {!! Form::hidden('product_id',$product->id) !!}
                         {!! Form::hidden('description',$product->description) !!}
                         {!! Form::hidden('title',$product->title) !!}
