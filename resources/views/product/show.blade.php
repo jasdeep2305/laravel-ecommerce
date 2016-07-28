@@ -35,7 +35,7 @@
                                     {{$product->price}}</span>
                                 </div>
                             </div>
-                            @include('product.form.show')
+                            @include('product.product_show')
                         </div>
                     </div>
                 </div>
@@ -49,30 +49,83 @@
     <script>
         var HOME = '{{  url('') }}/';
 
-        $(".add-to-cart").on('click', function () {
+        $(document).ready(function () {
 
-            console.log('clicked');
-            var product_id = $(this).data('product-id');
-            var quantity = $('#quantity').val();
-            var price = $(this).data('product-price');
-            var total_price = quantity * price;
+            $(".add-to-cart-toggle").on('click', function () {
 
-            console.log(quantity);
-            console.log(price);
+                var button = $(this);
 
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                },
-                'url': HOME + 'cart',
-                'data': {
-                    'product_id': product_id,
-                    'quantity': quantity,
-                    'price': total_price
-                },
-                'type': 'POST'
-            })
+                button.addClass('disabled');
+
+                var product_id = button.data('product-id');
+                var quantity = $('#quantity').val();
+                var price = button.data('product-price');
+                var total_price = quantity * price;
+
+
+                function addToCart() {
+
+                    button.html('Adding To Cart...');
+
+                    $.ajax({
+                                'url': HOME + 'cart',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                'data': {
+                                    'product_id': product_id,
+                                    'quantity': quantity,
+                                    'price': total_price
+                                },
+                                'method': 'POST'
+                            })
+
+                            .success(function () {
+
+                                button.html('Remove From Cart');
+                                button.removeClass('disabled');
+                                button.attr('data-product-in-cart', '1');
+
+                            });
+
+                }
+
+                function removeFromCart() {
+                    button.html('Removing From Cart...');
+
+                    $.ajax({
+                                'url': HOME + 'cart',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                'data': {
+                                    'product_id': product_id,
+                                },
+                                'type': 'DELETE'
+                            })
+
+                            .success(function () {
+
+                                button.html('Add To Cart');
+                                button.removeClass('disabled');
+                                button.attr('data-product-in-cart', '0');
+
+                            });
+
+                }
+
+                console.log(button.attr('data-product-in-cart'));
+
+                if (button.attr('data-product-in-cart') == 1) {
+                    console.log('removing ' + button.attr('data-product-in-cart'));
+                    removeFromCart();
+                } else if(button.attr('data-product-in-cart') == 0) {
+                    console.log('adding ' + button.attr('data-product-in-cart'));
+                    addToCart();
+                }
+            });
         });
+
 
         $(".buy-now").on('click', function () {
 
