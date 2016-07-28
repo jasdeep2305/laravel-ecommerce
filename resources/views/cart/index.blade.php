@@ -2,11 +2,13 @@
 @section('content')
 
     <div class="container">
-        <ul class="list-group">
+
+        <div class="col-md-3 col-sm-3"></div>
+        <div class="col-md-9 col-sm-9">
+        {{--<ul class="list-group">--}}
             <div class="form-group">
                 <label><a href="{{url('/products')}}">Continue Shopping</a> </label>
             </div>
-
             <div class="panel panel-default">
                 <div class="panel-heading" ALIGN="CENTER">
                     <h3>Your Cart contains
@@ -17,51 +19,87 @@
                 </div>
             </div>
 
-            @foreach($cart->products as $product)
 
-                <li class="list-group-item cart-product-container" data-product-id="{{$product->id}}">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label> Product id :</label>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="{{url('/products/'.$product->id)}}">{{$product->id}}</a>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label>Product Title:</label>
-                        </div>
-                        <div class="col-md-6">
-                            {{$product-> title}}
-                        </div>
-                    </div>
+                {{--<li class="list-group-item cart-product-container" data-product-id="{{$product->id}}">--}}
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label> Product quantity:</label>
-                        </div>
-                        <div class="col-md-6">
-                            <span class="cart-product-quantity" data-count="{{$product->pivot->quantity}}">{{$product->pivot->quantity}}</span>
-                        </div>
-                    </div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>
+                                <label> Product id :</label>
+                            </td>
+                            <td>
+                                <label>Product Title:</label>
+                            </td>
+                            <td>
+                                <label>Product quantity:</label>
+                            </td>
+                            <td>
+                                <label>Product Price: </label>
+                            </td>
+                            <td>
+                                <label>Quantity</label>
+                            </td>
+                            <td>
+                                <label>Options</label>
+                            </td>
+                        </tr>
+                        @foreach($cart->products as $product)
+                        <tr class="cart-product-container" data-product-id="{{$product->id}}">
+                            <td>
+                                <a href="{{url('/products/'.$product->id)}}">{{$product->id}}</a>
+                            </td>
+                            <td>
+                                {{$product-> title}}
+                            </td>
+                            <td>
+                                <span class="cart-product-quantity" data-count=
+                                "{{$product->pivot->quantity}}">{{$product->pivot->quantity}}</span>
+                            </td>
 
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label>Product Price: </label>
-                        </div>
-                        <div class="col-md-6">
-                            {{$product->pivot->totalprice}}
-                        </div>
-                    </div>
+                            <td>
+                                {{$product->pivot->totalprice}}
+                            </td>
+                            <td>
+                                {!! Form::model($product,['url'=>'/cart','method'=>'PUT'])!!}
+                                {!! Form::hidden('product_id',$product->id) !!}
+                                {!! Form::hidden('cart_id',$cart->id) !!}
+                                    {!! Form::label('updated_quantity', 'Quantity:')!!}
+                                    {!! Form::selectRange('updated_quantity', 1, 10) !!}
 
-                    @include('cart.form.index')
-                </li>
-            @endforeach
+                                <br>
+                                    {{--{!! Form::submit('Update Quantity',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Update Quantity']) !!}--}}
+                                    <button class="update-quantity" data-product-id="{{$product->id}}"
+                                            data-product-price="{{$product->price}}">Save</button>
 
-        </ul>
+                                {!! Form::close() !!}
+                            </td>
+                            <td >
+                                {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
+                                {!! Form::hidden('product_id',$product->id) !!}
+                                {!! Form::hidden('quantity',$product->quantity) !!}
+                                {!! Form::hidden('description',$product->description) !!}
+                                {!! Form::hidden('title',$product->title) !!}
+                                {!! Form::hidden('price',$product->price) !!}
+                                <button class="btn btn-default buy-now" data-product-id="{{$product->id}}"
+                                        title="Buy now">
+                                    Buy Now
+                                </button>
+                                {{--{!! Form::submit('Buy Now',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Product']) !!}--}}
+                                {!! Form::close() !!}
 
+                                <button type="button" class="btn btn-default remove-from-cart" data-product-id="{{$product->id}}"
+                                        title="Remove Product from Cart">
+                                    Remove from Cart
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+
+                    </table>
+
+
+        </div>
     </div>
 
 @endsection
@@ -137,7 +175,7 @@
                 counter.attr('data-count', new_count);
                 counter.html(new_count);
 
-                $("li[data-product-id='" + product_id + "']").fadeOut(500);
+                $("tr[data-product-id='" + product_id + "']").fadeOut(500);
 
             }).error(function (error) {
 
@@ -147,6 +185,8 @@
 
 
         });
+
+
 
     </script>
 @endsection
