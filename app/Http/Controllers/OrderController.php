@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\CartProduct;
 use App\Http\Repositories\CartRepository;
 use App\Http\Repositories\OrderRepository;
 use App\Http\Repositories\ProductRepository;
@@ -87,8 +88,14 @@ class OrderController extends Controller
     public function confirmation(Request $request)
     {
         $cart = $this->cartRepository->getCart();
-        $this->cartRepository->addProduct($request, $cart);
-        return view('order.confirmation');
+
+        if($request['source']=='fromcart'){
+            return view('order.confirmation');
+        }
+        else{
+            $this->cartRepository->addProduct($request, $cart);
+            return view('order.confirmation');
+        }
     }
 
     /**
