@@ -48,7 +48,8 @@
                 button.addClass('disabled');
 
                 var product_id = button.data('product-id');
-                var quantity = $('#quantity').val();
+                var quantity = $("select[data-product-id='" + product_id + "'].quantity-select").val();
+                //var quantity = $('#quantity').val();
                 var price = button.data('product-price');
                 var total_price = quantity * price;
 

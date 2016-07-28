@@ -88,7 +88,7 @@
                         <td>
                             {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
                             {!! Form::hidden('product_id',$product->id) !!}
-                            {!! Form::hidden('quantity',$product->quantity) !!}
+                            {!! Form::hidden('quantity',$product->pivot->quantity) !!}
                             {!! Form::hidden('description',$product->description) !!}
                             {!! Form::hidden('title',$product->title) !!}
                             {!! Form::hidden('price',$product->price) !!}
@@ -131,12 +131,10 @@
 
             var total_price = updated_quantity * price;
 
-
             console.log(product_id);
             console.log(updated_quantity);
             console.log(price);
             console.log(total_price);
-
 
             $.ajax({
                 headers: {
