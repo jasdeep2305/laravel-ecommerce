@@ -56,6 +56,7 @@ class CartRepository implements Repository
     {
         $current_quantity = 0;
         $current_total_price=0;
+        //dd($request->all());
 
         if ($this->checkIfProductInCart($request, $cart) > 0) {
             $current_quantity = $this->getProductQuantityInCart($request, $cart);
@@ -63,6 +64,7 @@ class CartRepository implements Repository
         }
         if ($current_quantity > 0) {
             $updated_quantity = $request['quantity'] + $current_quantity;
+            //dd($updated_quantity);
             $total_price= $request['price'] * $updated_quantity;
             $cartProduct = CartProduct::where('product_id', $request['product_id'])
                 ->where('cart_id', $cart->id)

@@ -93,6 +93,7 @@ class OrderController extends Controller
             return view('order.confirmation');
         }
         else{
+            $request['price']=$request['price']*$request['quantity'];
             $this->cartRepository->addProduct($request, $cart);
             return view('order.confirmation');
         }

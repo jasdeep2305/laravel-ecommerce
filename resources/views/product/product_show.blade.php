@@ -23,7 +23,7 @@
                         <br>
                         <br>
                         <a class="btn btn-default add-to-cart-toggle" data-product-in-cart="0"
-                           data-product-id="{{$product->id}}" data-product-price="{{$product->price}}">Add To Cart</a>
+                           data-product-id="{{$product->id}}" data-product-price="{{$product->price}}" >Add To Cart</a>
                         <br>
                         <br>
 

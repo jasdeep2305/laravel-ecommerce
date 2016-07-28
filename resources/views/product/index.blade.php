@@ -51,7 +51,7 @@
                 var quantity = $("select[data-product-id='" + product_id + "'].quantity-select").val();
                 //var quantity = $('#quantity').val();
                 var price = button.data('product-price');
-                var total_price = quantity * price;
+                //var total_price = quantity * price;
 
 
                 function addToCart() {
@@ -66,7 +66,7 @@
                                 'data': {
                                     'product_id': product_id,
                                     'quantity': quantity,
-                                    'price': total_price
+                                    'price': price
                                 },
                                 'method': 'POST'
                             })
