@@ -134,7 +134,8 @@ class CartRepository implements Repository
 
     public function find($id)
     {
-        // TODO: Implement find() method.
+        $cartproducts=CartProduct::where('cart_id',$id)->get();
+        return $cartproducts;
     }
 
     public function update($id, $data)

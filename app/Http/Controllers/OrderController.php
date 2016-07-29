@@ -75,7 +75,7 @@ class OrderController extends Controller
         if ($request->confirmation == 'no') {
             return redirect()->to('/products');
         }
-        
+
         $this->orderRepository->create();
         return redirect('/orders');
     }
@@ -90,10 +90,9 @@ class OrderController extends Controller
     {
         $cart = $this->cartRepository->getCart();
 
-        if($request['source']=='fromcart'){
+        if ($request['source'] == 'fromcart') {
             return view('order.confirmation');
-        }
-        else{
+        } else {
             $this->cartRepository->addProduct($request, $cart);
             return view('order.confirmation');
         }
@@ -112,4 +111,16 @@ class OrderController extends Controller
         return view('order.payment', compact('details'));
     }
 
+
+    /**
+     * Post
+     * /checkout
+     */
+    public function checkout(Request $request)
+    {
+        $cart = $this->cartRepository->getCart();
+
+        return view('order.checkout', compact('cart'));
+
+    }
 }

@@ -80,14 +80,14 @@
                                  data-product-id="{{$product->id}}">{{ $product->pivot->totalprice }}</span>
                         </td>
                         <td>
-                            {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
-                            {!! Form::hidden('product_id',$product->id) !!}
-                            {!! Form::hidden('quantity',$product->pivot->quantity) !!}
-                            {!! Form::hidden('description',$product->description) !!}
-                            {!! Form::hidden('title',$product->title) !!}
-                            {!! Form::hidden('price',$product->price) !!}
-                            {!! Form::hidden('source','fromcart') !!}
-                            {!! Form::submit('Place Order',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Product']) !!}
+                            {!! Form::model($cart,['url'=>'/checkout','method'=>'POST'])!!}
+                            {{--{!! Form::hidden('cart_id',$cart->id) !!}--}}
+                            {{--{!! Form::hidden('quantity',$cart->pivot->quantity) !!}--}}
+                            {{--{!! Form::hidden('description',$product->description) !!}--}}
+                            {{--{!! Form::hidden('title',$product->title) !!}--}}
+                            {{--{!! Form::hidden('totalprice',$cart->pivot->totalprice) !!}--}}
+                            {{--{!! Form::hidden('source','fromcart') !!}--}}
+                            {!! Form::submit('Check Out',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Product']) !!}
                             {!! Form::close() !!}
 
                             <button type="button" class="btn btn-default remove-from-cart"
