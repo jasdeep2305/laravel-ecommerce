@@ -85,9 +85,9 @@
                             {!! Form::hidden('quantity',$product->pivot->quantity) !!}
                             {!! Form::hidden('description',$product->description) !!}
                             {!! Form::hidden('title',$product->title) !!}
-                            {!! Form::hidden('price',$product->pivot->totalprice) !!}
+                            {!! Form::hidden('price',$product->price) !!}
                             {!! Form::hidden('source','fromcart') !!}
-                            {!! Form::submit('Buy Now',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Product']) !!}
+                            {!! Form::submit('Place Order',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Product']) !!}
                             {!! Form::close() !!}
 
                             <button type="button" class="btn btn-default remove-from-cart"
@@ -137,7 +137,7 @@
                 'data': {
                     'product_id': product_id,
                     'quantity': updated_quantity,
-                    'price': total_price,
+                    'totalprice': total_price,
 
                 },
                 'type': 'PUT'

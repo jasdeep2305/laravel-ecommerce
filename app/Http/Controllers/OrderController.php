@@ -84,6 +84,7 @@ class OrderController extends Controller
      * Confirmation to place the order
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @url /order/confirmation
      */
     public function confirmation(Request $request)
     {
@@ -93,7 +94,6 @@ class OrderController extends Controller
             return view('order.confirmation');
         }
         else{
-            $request['price']=$request['price']*$request['quantity'];
             $this->cartRepository->addProduct($request, $cart);
             return view('order.confirmation');
         }
