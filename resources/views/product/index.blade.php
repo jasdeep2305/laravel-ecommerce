@@ -76,7 +76,8 @@
 
                             .success(function () {
 
-                                button.html('Remove From Cart');
+                                button.html(' Remove From Cart');
+                                button.addClass('fa fa-shopping-cart');
                                 button.removeClass('disabled');
                                 button.attr('data-product-in-cart', '1');
 

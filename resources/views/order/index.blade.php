@@ -72,10 +72,10 @@
                         @endforeach
                     </div>
                 </div>
-
+                {{$orders->links()}}
             </div>
         </div>
      </div>
-        {{$orders->links()}}
+
     </ul>
 @stop

@@ -95,6 +95,7 @@
                                     title="Remove Product from Cart">
                                 Remove from Cart
                             </button>
+
                         </td>
                     </tr>
                 @endforeach
