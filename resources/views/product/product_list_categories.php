@@ -1,5 +1,4 @@
 <div class="panel-body">
-
     <div class="list-group panel panel-cat">
         <a href="#sub1" class="list-group-item" data-toggle="collapse" data-parent="#main_menu" aria-expanded="true">Laptops<i class="fa fa-caret-down pull-right"></i></a>
         <div class="list-group-sub collapse in" id="sub1" aria-expanded="true">
