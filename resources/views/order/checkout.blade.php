@@ -21,7 +21,7 @@
                 <div class="col-md-3 col-md-3">
                 </div>
                 <div class="col-md-3 col-sm-3">
-                    <label> <a href="{{ url('/login') }}">Change Login</a></label>
+                    <label> <a href="{{ url('/logout') }}">Change Login</a></label>
                 </div>
 
             </div>
