@@ -21,7 +21,6 @@
             <table class="table table-bordered">
                 <tr>
                     <td>
-
                         <label> Product id :</label>
                     </td>
                     <td>
