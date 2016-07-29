@@ -15,6 +15,7 @@
                             <h3>Popular Products</h3>
                         </div>
                     </div>
+                    @include('product.product_show_data')
                 </div>
                 <div class="col-md-9">
                     <div class="panel panel-default">

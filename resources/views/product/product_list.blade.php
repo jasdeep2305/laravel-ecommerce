@@ -15,7 +15,7 @@
                 @if(Auth::check())
                     <a class="btn add-to-cart-toggle" href="#" data-product-in-cart="0"
                        data-product-id="{{$product->id}}" data-product-price="{{$product->price}}">
-                        Add To Cart<i class="icon-shopping-cart"></i></a>
+                        Add To <i class="fa fa-shopping-cart"></i></a>
                 @endif
                 <p>
                     @if(Auth::check()&&Auth::user()->level_id<3)
