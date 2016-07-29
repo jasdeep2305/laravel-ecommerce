@@ -24,7 +24,7 @@ class OrderRepository implements Repository
      */
     public function all()
     {
-        return Order::where('user_id', Auth::user()->id)->paginate(5);
+        return Order::where('user_id', Auth::user()->id)->paginate(3);
     }
 
     /**

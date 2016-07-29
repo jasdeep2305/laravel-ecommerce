@@ -3,8 +3,9 @@
         <div class="thumbnail all-product-container " data-product-id="{{$product->id}}">
             <div class="caption">
                 <a href="products/{{$product->id}}" class="link-p" style="overflow: hidden; position: relative;">
-                    <img src="instaveritas.png" alt="" style="position: relative; width: 120px; height: auto; max-width: none; max-height: none; left: 0px; top: 0px;">
+                    <img src="instaveritas.png" alt="" style="position: relative; width: 200px; height: auto; max-width: none; max-height: none; left: 0px; top: 0px;">
                 </a>
+                <hr style="height:1px;border:none;color:#333;background-color:#333;" />
                 <h4><span class="title" data="{{$product->title}}"> {!! link_to('/products/'.$product->id, $title = $product->title, $attributes = ['title'], $secure = null) !!}</span></h4>
                 <p><span class="description" data="{{$product->description}}">{{$product->description}}</span></p>
                 {!! Form::selectRange('updated_quantity', 1, 10, 1,['data-product-id' => $product->id,
