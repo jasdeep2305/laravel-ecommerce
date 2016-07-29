@@ -47,4 +47,18 @@ class Cart extends Model
 //            ->wherePivotIn('quantity', [3,4,5]);
         //dd( $this->hasManyThrough('App\Product', 'App\CartProduct', 'cart_id', 'id'));
     }
+
+
+    public function totalprice()
+    {
+
+        $sum=0;
+
+        foreach ($this->products as $product)
+        {
+            $sum = $sum + $product->pivot->totalprice;
+        }
+
+        return $sum;
+    }
 }

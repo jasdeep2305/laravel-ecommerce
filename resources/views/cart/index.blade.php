@@ -21,6 +21,7 @@
             <table class="table table-bordered">
                 <tr>
                     <td>
+
                         <label> Product id :</label>
                     </td>
                     <td>
@@ -38,15 +39,19 @@
                     <td>
                         <label>Total Price: </label>
                     </td>
-                    <td>
-                        <label>Options</label>
-                    </td>
+
                 </tr>
                 @foreach($cart->products as $product)
 
                     <tr class="cart-product-container" data-product-id="{{$product->id}}">
                         <td>
-                            <a href="{{url('/products/'.$product->id)}}">{{$product->id}}</a>
+                            <button type="button" class="btn btn-default btn-xs remove-from-cart"
+                                    data-product-id="{{$product->id}}"
+                                    title="Remove Product from Cart">
+                                <span aria-hidden="true">X</span>
+                            </button>
+                            &nbsp; &nbsp;
+                            <a href="{{url('/products/'.$product->id)}}">  {{$product->id}}</a>
                         </td>
                         <td>
                             {{$product-> title}}
@@ -68,38 +73,34 @@
                             'class' => 'update-quantity-select']) !!}
 
                             <br>
-                            {{--{!! Form::submit('Update Quantity',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Update Quantity']) !!}--}}
-                            {{--<button class="update-quantity" data-product-id="{{$product->id}}"--}}
-                                    {{--data-product-price="{{$product->price}}">Save--}}
-                            {{--</button>--}}
-
                             {!! Form::close() !!}
                         </td>
                         <td>
                            <span class="data-product-price"
                                  data-product-id="{{$product->id}}">{{ $product->pivot->totalprice }}</span>
+                            {{--<span class="data-product-sum hidden" id="sum" >{{$product->pivot->totalprice}}</span>--}}
                         </td>
-                        <td>
-                            {!! Form::model($cart,['url'=>'/checkout','method'=>'POST'])!!}
-                            {{--{!! Form::hidden('cart_id',$cart->id) !!}--}}
-                            {{--{!! Form::hidden('quantity',$cart->pivot->quantity) !!}--}}
-                            {{--{!! Form::hidden('description',$product->description) !!}--}}
-                            {{--{!! Form::hidden('title',$product->title) !!}--}}
-                            {{--{!! Form::hidden('totalprice',$cart->pivot->totalprice) !!}--}}
-                            {{--{!! Form::hidden('source','fromcart') !!}--}}
-                            {!! Form::submit('Check Out',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Product']) !!}
-                            {!! Form::close() !!}
 
-                            <button type="button" class="btn btn-default remove-from-cart"
-                                    data-product-id="{{$product->id}}"
-                                    title="Remove Product from Cart">
-                                Remove from Cart
-                            </button>
-                        </td>
                     </tr>
                 @endforeach
 
             </table>
+
+
+            <div class=" totalAmountArea">
+                <div class="row ">
+                    <div class="col-sm-4 col-sm-offset-10 col-xs-12">
+
+                            <h4>Grand Total: &nbsp; &nbsp; <span class="grandTotal">{{$cart->totalprice()}}</span></h4>
+
+                    </div>
+                </div>
+            </div>
+            <div class="chkBtnArea col-sm-offset-11">
+
+            <a href="{{url('/checkout')}}" class="btn btn-primary ">Check Out<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+
+            </div>
 
 
         </div>

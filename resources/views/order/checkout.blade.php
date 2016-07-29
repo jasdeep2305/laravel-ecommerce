@@ -8,40 +8,33 @@
             <div class="form-group">
                 <label><a href="{{url('/products')}}">Continue Shopping</a> </label>
             </div>
-            <div class="row">
+            <hr style="height:2px;border:none;color:#333;background-color:#333;"/>
+            <div class="row" width="50%">
                 <div class="col-md-6 col-sm-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 ALIGN="CENTER">Logged in as {{Auth::user()->email}}
-                                {{--<span class="cart-product-counter"--}}
-                                {{--data-count="{{count($cart->products)}}">{{count($cart->products)}}</span>--}}
-                                {{--products--}}
-                            </h4>
+                    <h4 ALIGN="CENTER">Logged in as {{Auth::user()->email}}
+                        {{--<span class="cart-product-counter"--}}
+                        {{--data-count="{{count($cart->products)}}">{{count($cart->products)}}</span>--}}
+                        {{--products--}}
+                    </h4>
 
-                        </div>
-                    </div>
                 </div>
                 <div class="col-md-3 col-md-3">
-
                 </div>
                 <div class="col-md-3 col-sm-3">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <label> <a href="{{ url('/login') }}">Change Login</a></label>
+                </div>
 
-                            <label> <a href="{{ url('/login') }}">Change Login</a></label>
-                        </div>
+            </div>
+            <hr style="height:2px;border:none;color:#333;background-color:#333;"/>
 
-                    </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4> Order Summary</h4>
                 </div>
             </div>
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4> Order Summary</h4>
-                    </div>
-                </div>
-
-            <table class="table table-bordered">
+            <table class="table table-stripped">
                 <tr>
                     <td>
                         <label>Product ID:</label>
@@ -83,31 +76,37 @@
 
             </table>
 
+            <div class="row ">
+                <div class="col-sm-4 col-sm-offset-9 col-xs-12">
+
+                    <h4>Amount Payable: &nbsp; <span class="grandTotal">{{$cart->totalprice()}}</span></h4>
+
+                </div>
+            </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4>Delivery Address</h4>
                 </div>
             </div>
-            <div class="row">
-                <label for="name" class="col-md-3 control-label">Name</label>
-                <div class="col-md-9">
-                    <input id="name" type="text" class="form-control" name="name">
-                </div>
-            </div>
-            <div class="row">
-                <label for="address" class="col-md-3 control-label">Address</label>
-                <div class="col-md-9">
-                    <input id="address" type="text" class="form-control" name="address">
-                </div>
-            </div>
-            <div class="row">
-                <label for="pincode" class="col-md-3 control-label">Pin Code</label>
-                <div class="col-md-9">
-                    <input id="pincode" type="text" class="form-control" name="pincode">
-                </div>
-            </div>
 
-            <button type="button" class="btn btn-default">Proceed</button>
+            <div class="input-group">
+                <span class="input-group-addon" id="name"> Name </span>
+                <input type="text" class="form-control" placeholder="Enter your name here" aria-describedby="name">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon" id="address"> Address </span>
+                <input type="text" class="form-control" placeholder="Address Line 1" aria-describedby="address">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon" id="pincode"> Pin Code </span>
+                <input type="text" class="form-control" placeholder="Pin Code" aria-describedby="pincode">
+            </div>
+            <br>
+
+
+            @include('order.Payment')
         </div>
 
     </div>
