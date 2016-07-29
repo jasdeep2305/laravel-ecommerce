@@ -7,7 +7,8 @@
                 </a>
                 <h4><span class="title" data="{{$product->title}}"> {!! link_to('/products/'.$product->id, $title = $product->title, $attributes = ['title'], $secure = null) !!}</span></h4>
                 <p><span class="description" data="{{$product->description}}">{{$product->description}}</span></p>
-                {!! Form::selectRange('updated_quantity', 1, 10, 1,['data-product-id' => $product->id, 'class' => 'quantity-select']) !!}
+                {!! Form::selectRange('updated_quantity', 1, 10, 1,['data-product-id' => $product->id,
+                'class' => 'quantity-select']) !!}
 
                 <br>
                 <span class="price" data="{{$product->price}}">Rs. {{$product->price}}</span>

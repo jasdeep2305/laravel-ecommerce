@@ -30,8 +30,12 @@
                                     <div class="col-lg-9">{{request('description')}}</div> <br>
                                 </div>
                                 <div class="row">
+                                    <div class="col-lg-3"><label>Quantity Purchased:</label></div>
+                                    <div class="col-lg-9">{{request('quantity')}}</div>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-3"><label>Total Price:</label></div>
-                                    <div class="col-lg-9">{{request('price')}}</div>
+                                    <div class="col-lg-9">{{request('price') *request('quantity')}}</div>
                                 </div>
                                 </li>
                             <br>

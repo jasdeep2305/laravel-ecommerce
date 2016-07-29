@@ -45,11 +45,11 @@
                 button.addClass('disabled');
 
                 var product_id = button.data('product-id');
-                var quantity = $('#quantity').val();
+                var quantity = $('.quantity-select').val();
                 var price = button.data('product-price');
-                var total_price = quantity * price;
+                //var total_price = quantity * price;
 
-
+                console.log('quant '+quantity);
                 function addToCart() {
 
                     button.html('Adding To Cart...');
@@ -62,7 +62,7 @@
                                 'data': {
                                     'product_id': product_id,
                                     'quantity': quantity,
-                                    'price': total_price
+                                    'price': price
                                 },
                                 'method': 'POST'
                             })
