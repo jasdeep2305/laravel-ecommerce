@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3"><label>Total Price:</label></div>
-                                    <div class="col-lg-9">{{request('totalprice')}}</div>
+                                    <div class="col-lg-9">{{request('price')}}</div>
                                 </div>
                                 </li>
                             <br>
