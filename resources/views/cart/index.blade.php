@@ -18,10 +18,6 @@
                     </h3>
                 </div>
             </div>
-
-
-            {{--<li class="list-group-item cart-product-container" data-product-id="{{$product->id}}">--}}
-
             <table class="table table-bordered">
                 <tr>
                     <td>
@@ -67,11 +63,9 @@
                             {{$product->price}}
                         </td>
                         <td>
-                            {{--{!! Form::model($product,['url'=>'/cart','method'=>'PUT'])!!}--}}
-                            {{--{!! Form::hidden('product_id',$product->id) !!}--}}
-                            {{--{!! Form::hidden('cart_id',$cart->id) !!}--}}
-                            {{--{!! Form::label('updated_quantity', 'Quantity:')!!}--}}
-                            {!! Form::selectRange('updated_quantity', 1, 10, $product->pivot->quantity,['data-product-id' => $product->id, 'data-product-price'=>$product->price,'class' => 'update-quantity-select']) !!}
+                            {!! Form::selectRange('updated_quantity', 1, 10, $product->pivot->quantity,
+                            ['data-product-id' => $product->id, 'data-product-price'=>$product->price,
+                            'class' => 'update-quantity-select']) !!}
 
                             <br>
                             {{--{!! Form::submit('Update Quantity',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Update Quantity']) !!}--}}
@@ -79,7 +73,7 @@
                                     {{--data-product-price="{{$product->price}}">Save--}}
                             {{--</button>--}}
 
-                            {{--{!! Form::close() !!}--}}
+                            {!! Form::close() !!}
                         </td>
                         <td>
                            <span class="data-product-price"
@@ -91,10 +85,8 @@
                             {!! Form::hidden('quantity',$product->pivot->quantity) !!}
                             {!! Form::hidden('description',$product->description) !!}
                             {!! Form::hidden('title',$product->title) !!}
-                            {!! Form::hidden('price',$product->price) !!}
-                            {!! Form::hidden('totalprice',$product->pivot->totalprice) !!}
-
-
+                            {!! Form::hidden('price',$product->pivot->totalprice) !!}
+                            {!! Form::hidden('source','fromcart') !!}
                             {!! Form::submit('Buy Now',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Product']) !!}
                             {!! Form::close() !!}
 

@@ -26,8 +26,14 @@
                            data-product-id="{{$product->id}}" data-product-price="{{$product->price}}">Add To Cart</a>
                         <br>
                         <br>
-                        <span class="title hidden" data="{{$product->title}}">Rs. {{$product->title}}</span>
-                        <button class="btn btn-default buy-now" data-product-id="{{$product->id}}" title="Buy now">Buy Now</button>
+                        {!! Form::model($product,['url'=>'/orders/confirmation','method'=>'POST'])!!}
+                        {!! Form::hidden('product_id',$product->id) !!}
+                        {!! Form::hidden('description',$product->description) !!}
+                        {!! Form::hidden('title',$product->title) !!}
+                        {!! Form::hidden('price',$product->price) !!}
+                        {!! Form::hidden('source','fromproduct') !!}
+                        {!! Form::submit('Buy Now',['class'=>'btn btn-default','data-toggle'=>'tooltip', 'data-placement'=>'top','title'=>'Buy Product']) !!}
+                        {!! Form::close() !!}
                         <br>
                         <br>
                         <p><span class="description" data="{{$product->description}}">{{$product->description}}</span></p>
