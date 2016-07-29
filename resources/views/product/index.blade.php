@@ -14,6 +14,7 @@
                             <h3>Categories</h3>
                         </div>
                     </div>
+                    @include('product.product_list_categories')
                 </div>
                 <div class="col-md-9">
                     <div class="panel panel-default">
